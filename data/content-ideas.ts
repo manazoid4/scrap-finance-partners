@@ -1,0 +1,17 @@
+export const contentIdeas: string[] = [
+  "26 years inside scrap finance: what I've learned about stock accuracy",
+  "Why margin leakage happens in scrap yards (and how to see it)",
+  "The Fred report nobody trusts, and how to fix it",
+  "Manual spreadsheets are a risk, not a shortcut",
+  "Transport cost per tonne: the number most yards can't see",
+  "PO workflows: how a £20k overpayment gets found",
+  "Cost-centre control that operations teams actually use",
+  "What a Sage to D365 migration teaches you about data integrity",
+  "Outsourced FD support: what a few days a month actually buys you",
+  "Finance visibility vs finance noise",
+  "Overpayment recovery: a case for validation controls",
+  "Monthly KPI rhythm: what good looks like",
+  "Digital waste tracking readiness for scrap yards",
+  "Why owners need better numbers, not more reports",
+  "The difference between an accountant and a finance business partner",
+];

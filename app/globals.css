@@ -1,26 +1,47 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #10131a;
+  --foreground: #f5f4f1;
+  --panel: #1a1d21;
+  --panel-alt: #2a2e33;
+  --copper: #b5714a;
+  --green: #4c6b57;
+  --amber: #c99a3d;
+  --blue-grey: #7c8a99;
+  --hairline: #33383f;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-panel: var(--panel);
+  --color-panel-alt: var(--panel-alt);
+  --color-copper: var(--copper);
+  --color-green: var(--green);
+  --color-amber: var(--amber);
+  --color-blue-grey: var(--blue-grey);
+  --color-hairline: var(--hairline);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.bg-grid {
+  background-image: linear-gradient(var(--hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: -1px -1px;
+}
+
+.glass-panel {
+  background: color-mix(in srgb, var(--panel) 70%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--hairline);
 }
