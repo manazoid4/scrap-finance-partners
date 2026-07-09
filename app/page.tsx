@@ -9,7 +9,7 @@ export default function Home() {
         and recycling businesses.
       </h1>
       <p className="max-w-[700px] text-lg text-muted-foreground sm:text-xl">
-        Outsourced finance intelligence for scrap yards, recyclers and circular businesses. Turn stock, transport and commercial data into better decisions.
+        Outsourced finance intelligence for scrap yards, recyclers and circular businesses. Prepare for EA Digital Waste Tracking. Connect FRED to Xero. Turn stock, transport and commercial data into better decisions.
       </p>
       <div className="flex flex-col sm:flex-row gap-4">
         <Button asChild size="lg">

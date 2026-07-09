@@ -70,5 +70,11 @@ export const sprints = [
     title: "Outsourced FD Setup Month",
     price: "£2,500 – £5,000",
     description: "Build dashboard, reporting cadence, monthly management pack and meeting rhythm."
+  },
+  {
+    id: "dwt-audit",
+    title: "Digital Waste Tracking (DWT) Audit",
+    price: "£1,500",
+    description: "Prepare for the Environment Agency's 2025 mandate. Process mapping, readiness review, and integration scoping."
   }
 ];

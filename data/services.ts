@@ -11,6 +11,16 @@ export const services = [
     ]
   },
   {
+    id: "dwt-compliance",
+    title: "Digital Waste Tracking (DWT) Readiness",
+    description: "Prepare for the Environment Agency's 2025 mandate.",
+    items: [
+      "DWT readiness audit",
+      "Process mapping to DWT requirements",
+      "System integration scoping"
+    ]
+  },
+  {
     id: "outsourced-fd",
     title: "Outsourced Finance Director",
     description: "Senior financial leadership without the full-time cost.",
@@ -29,7 +39,8 @@ export const services = [
       "Stock sheet optimisation",
       "EWC code maintenance",
       "New site setup",
-      "Transport module workflow"
+      "Transport module workflow",
+      "FRED to Xero/Sage integration"
     ]
   },
   {
@@ -60,7 +71,8 @@ export const services = [
     items: [
       "Manual deal sheet automation",
       "Xero product code automation",
-      "Nominal coding structure"
+      "Nominal coding structure",
+      "Bank reconciliation automation (Cash Act)"
     ]
   }
 ];

@@ -46,6 +46,22 @@ export default function HealthCheckPage() {
               Are Fred EWC codes, Xero product codes, and nominal structures aligned and automated?
             </CardContent>
           </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">DWT Readiness</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              Are your systems and processes prepared for the Environment Agency's 2025 Digital Waste Tracking mandate?
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">LME Margin Tracking</CardTitle>
+            </CardHeader>
+            <CardContent className="text-sm text-muted-foreground">
+              Can you track true profit per EWC code by bridging FRED and Xero/Sage in real-time?
+            </CardContent>
+          </Card>
         </div>
       </div>
 
