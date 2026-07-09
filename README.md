@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Scrap Finance Partners
 
-## Getting Started
-
-First, run the development server:
+## Local Setup
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Business Concept
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+A specialist UK consultancy for scrap metal, waste, recycling and circular economy businesses that need finance, reporting, stock visibility and commercial decision support without hiring a full-time Finance Director.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Built around 26 years of UK scrap metal accountancy, finance, operations, and commercial systems experience (including deep Fred system knowledge).
 
-## Learn More
+## Repo Structure
 
-To learn more about Next.js, take a look at the following resources:
+- `app/`: Next.js frontend pages (marketing, services, pricing, founder profile, health check).
+- `app/growth-hub/`: Internal strategic command centre.
+- `app/dashboard-demo/`: Mock KPI dashboard for prospect demonstration.
+- `agents/`: Markdown prompts for specialised AI agent roles.
+- `knowledge/`: Internal knowledge vault files.
+- `templates/`: Client-facing document templates.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Compliance Note
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Before trading, confirm business structure, professional body membership, AML supervision requirements, insurance, engagement letters, GDPR/privacy, professional indemnity insurance and whether Companies House authorised agent/ACSP status is needed for any filing or identity verification services.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This website is for consultancy positioning and does not provide legal, tax, audit or regulated financial advice.

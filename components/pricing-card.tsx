@@ -1,29 +1,50 @@
-import { Check } from "lucide-react";
-import type { PricingTier } from "@/data/pricing";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 
-export function PricingCard({ tier }: { tier: PricingTier }) {
+export function PricingCard({ 
+  title, 
+  price, 
+  description, 
+  features,
+  isPopular
+}: { 
+  title: string, 
+  price: string, 
+  description: string, 
+  features: string[],
+  isPopular?: boolean
+}) {
   return (
-    <div
-      className={`rounded-xl p-6 flex flex-col gap-4 border ${
-        tier.featured ? "border-[--color-copper] bg-[--color-panel]" : "border-[--color-hairline] bg-[--color-panel]/50"
-      }`}
-    >
-      {tier.featured && (
-        <span className="self-start rounded-full bg-[--color-copper] px-3 py-1 text-xs font-medium text-white">
-          Most popular
-        </span>
-      )}
-      <h3 className="text-xl font-semibold">{tier.name}</h3>
-      <p className="text-2xl font-semibold">{tier.price}</p>
-      <p className="text-sm text-[--color-blue-grey]">{tier.bestFor}</p>
-      <ul className="space-y-2 text-sm">
-        {tier.includes.map((item) => (
-          <li key={item} className="flex items-start gap-2">
-            <Check size={16} className="mt-0.5 text-[--color-green] shrink-0" />
-            <span>{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    <Card className={`h-full flex flex-col ${isPopular ? 'border-primary shadow-lg' : ''}`}>
+      <CardHeader>
+        {isPopular && <div className="text-primary text-sm font-semibold tracking-wider uppercase mb-2">Most Popular</div>}
+        <CardTitle className="text-2xl">{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
+      <CardContent className="flex-1">
+        <div className="text-4xl font-bold mb-6">{price}</div>
+        <ul className="space-y-2 text-sm text-muted-foreground">
+          {features.map((feature, i) => (
+            <li key={i} className="flex items-center">
+              <svg
+                className="mr-2 h-4 w-4 text-primary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              {feature}
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+      <CardFooter>
+        <Button className="w-full" variant={isPopular ? "default" : "outline"}>
+          Get Started
+        </Button>
+      </CardFooter>
+    </Card>
+  )
 }
