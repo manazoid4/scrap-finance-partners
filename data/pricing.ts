@@ -1,98 +1,74 @@
-export interface PricingTier {
-  slug: string;
-  name: string;
-  price: string;
-  bestFor: string;
-  includes: string[];
-  featured?: boolean;
-}
-
-export interface OneOff {
-  slug: string;
-  name: string;
-  price: string;
-  description: string;
-}
-
-export const oneOffs: OneOff[] = [
+export const pricing = [
   {
-    slug: "health-check",
-    name: "Scrap Yard Finance Health Check",
-    price: "£750-£1,500",
-    description: "A diagnostic engagement covering stock, margin, transport, systems and process control, with a scorecard and 30-day plan.",
-  },
-  {
-    slug: "stock-accuracy-sprint",
-    name: "Stock Accuracy Sprint",
-    price: "£1,500-£3,000",
-    description: "Fixes stock reconciliation gaps and rebuilds stock reporting rhythm.",
-  },
-  {
-    slug: "fred-sprint",
-    name: "Fred / Reporting Improvement Sprint",
-    price: "£1,500-£5,000",
-    description: "Improves Fred reports, stock sheets, EWC codes and system data integrity.",
-  },
-  {
-    slug: "transport-review",
-    name: "Transport Finance Review",
-    price: "£1,500-£4,000",
-    description: "Builds transport P&L visibility, cost-per-tonne reporting and cost-centre control.",
-  },
-  {
-    slug: "po-payroll-review",
-    name: "PO, Payroll & Process Control Review",
-    price: "£1,000-£3,000",
-    description: "Fixes PO approval workflow, payroll/commission accuracy and coding structure.",
-  },
-];
-
-export const pricingTiers: PricingTier[] = [
-  {
-    slug: "bronze",
-    name: "Bronze",
-    price: "£500/month",
-    bestFor: "Small operators needing monthly visibility.",
-    includes: [
+    id: "bronze",
+    title: "Bronze",
+    price: "£500 /mo",
+    description: "For owner-managed scrap yards that need basic visibility.",
+    features: [
       "Monthly KPI dashboard",
-      "Stock position snapshot",
-      "Basic management reporting",
-      "Short commentary",
-      "Improvement log",
+      "Stock position report",
+      "Basic management commentary",
+      "One monthly email summary",
+      "Simple improvement log"
     ],
+    isPopular: false
   },
   {
-    slug: "silver",
-    name: "Silver",
-    price: "£1,000/month",
-    bestFor: "Growing operators needing monthly business-partner rhythm.",
-    includes: [
+    id: "silver",
+    title: "Silver",
+    price: "£1,000 /mo",
+    description: "For growing operators that need finance & commercial rhythm.",
+    features: [
       "Everything in Bronze",
-      "Forecasting",
-      "Cashflow view",
+      "Forecasting & cashflow view",
       "Monthly business partner meeting",
-      "Margin and stock movement analysis",
-      "Transport/commercial KPI pack",
-      "Action tracker",
+      "Margin & stock movement analysis",
+      "Transport & commercial KPI pack",
+      "Action tracker"
     ],
-    featured: true,
+    isPopular: true
   },
   {
-    slug: "gold",
-    name: "Gold",
-    price: "£2,000+/month",
-    bestFor: "Serious operators needing outsourced FD/business partner support.",
-    includes: [
+    id: "gold",
+    title: "Gold",
+    price: "£2,000+ /mo",
+    description: "For companies that need an outsourced Finance Director.",
+    features: [
       "Everything in Silver",
-      "Board-style reporting pack",
-      "Strategic finance support",
-      "Cost-centre review",
-      "Process improvement roadmap",
-      "Systems/reporting oversight",
-      "Regular decision support",
+      "Strategic support & planning",
+      "Board-style management pack",
+      "KPI review meetings",
+      "System/process improvement roadmap",
+      "Payroll, commission & coding advisory",
+      "Direct owner decision support"
     ],
-  },
+    isPopular: false
+  }
 ];
 
-export const pricingDisclaimer =
-  "All pricing is indicative and confirmed following an initial scoping conversation. Final scope and price depend on business size, system complexity and number of sites.";
+export const sprints = [
+  {
+    id: "health-check",
+    title: "Scrap Yard Finance Health Check",
+    price: "£750 – £1,500",
+    description: "Review reporting, stock, margin, processes and systems. Deliver a red/amber/green improvement report."
+  },
+  {
+    id: "stock-accuracy",
+    title: "Stock Accuracy Sprint",
+    price: "£1,500 – £3,000",
+    description: "Investigate stock discrepancies and reporting weaknesses. Build a corrected stock visibility process."
+  },
+  {
+    id: "fred-improvement",
+    title: "Fred Reporting Improvement Sprint",
+    price: "£1,500 – £5,000",
+    description: "Improve Fred reports, stock sheets, EWC codes, new site setup and transport reporting."
+  },
+  {
+    id: "fd-setup",
+    title: "Outsourced FD Setup Month",
+    price: "£2,500 – £5,000",
+    description: "Build dashboard, reporting cadence, monthly management pack and meeting rhythm."
+  }
+];

@@ -1,25 +1,31 @@
-import { ArrowUpRight, ArrowDownRight, Minus } from "lucide-react";
-import { PremiumCard } from "./premium-card";
-import type { Kpi } from "@/data/kpis";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-export function KpiCard({ kpi }: { kpi: Kpi }) {
-  const trendColor =
-    kpi.trend === "up" ? "text-[--color-green]" : kpi.trend === "down" ? "text-[--color-amber]" : "text-[--color-blue-grey]";
-  const TrendIcon = kpi.trend === "up" ? ArrowUpRight : kpi.trend === "down" ? ArrowDownRight : Minus;
-
+export function KpiCard({ 
+  title, 
+  value, 
+  change, 
+  trend 
+}: { 
+  title: string, 
+  value: string, 
+  change?: string, 
+  trend?: 'up' | 'down' | 'neutral' 
+}) {
   return (
-    <PremiumCard>
-      <p className="text-xs uppercase tracking-wide text-[--color-blue-grey]">{kpi.label}</p>
-      <div className="mt-2 flex items-baseline gap-2">
-        <span className="text-2xl font-semibold">{kpi.value}</span>
-        {kpi.unit && <span className="text-sm text-[--color-blue-grey]">{kpi.unit}</span>}
-      </div>
-      {kpi.delta && (
-        <div className={`mt-2 flex items-center gap-1 text-sm ${trendColor}`}>
-          <TrendIcon size={14} />
-          <span>{kpi.delta}</span>
-        </div>
-      )}
-    </PremiumCard>
-  );
+    <Card>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">
+          {title}
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{value}</div>
+        {change && (
+          <p className={`text-xs ${trend === 'up' ? 'text-green-500' : trend === 'down' ? 'text-red-500' : 'text-muted-foreground'}`}>
+            {change} from last month
+          </p>
+        )}
+      </CardContent>
+    </Card>
+  )
 }
