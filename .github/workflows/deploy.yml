@@ -14,8 +14,8 @@ jobs:
       - name: Check for VERCEL_TOKEN
         id: check_token
         run: |
-          if [ -z "${{ secrets.VERCEL_TOKEN }}" ]; then
-            echo "VERCEL_TOKEN secret is missing. Skipping deployment."
+          if [ -z "${{ secrets.VERCEL }}" ]; then
+            echo "VERCEL secret is missing. Skipping deployment."
             echo "skip=true" >> $GITHUB_OUTPUT
           else
             echo "skip=false" >> $GITHUB_OUTPUT
@@ -25,10 +25,10 @@ jobs:
         run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
         if: steps.check_token.outputs.skip == 'false'
-        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL }}
       - name: Build Project Artifacts
         if: steps.check_token.outputs.skip == 'false'
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --prod --token=${{ secrets.VERCEL }}
       - name: Deploy Project Artifacts to Vercel
         if: steps.check_token.outputs.skip == 'false'
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL }}
