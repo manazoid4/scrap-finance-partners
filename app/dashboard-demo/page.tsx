@@ -74,7 +74,7 @@ export default function DashboardDemoPage() {
             <div className="space-y-6">
                 <div>
                     <div className="flex justify-between mb-1 text-sm">
-                        <span className="font-medium text-red-500">Stock Discrepancies &gt; 5%</span>
+                        <span className="font-medium text-red-500">{"Stock Discrepancies > 5%"}</span>
                         <span className="font-bold">3 sites</span>
                     </div>
                     <div className="w-full bg-muted rounded-full h-2">
