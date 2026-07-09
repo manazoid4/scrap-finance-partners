@@ -46,34 +46,34 @@ export const pricing = [
   }
 ];
 
-export const sprints = [
+export const oneOffs = [
   {
-    id: "health-check",
-    title: "Scrap Yard Finance Health Check",
+    slug: "health-check",
+    name: "Scrap Yard Finance Health Check",
     price: "£750 – £1,500",
     description: "Review reporting, stock, margin, processes and systems. Deliver a red/amber/green improvement report."
   },
   {
-    id: "stock-accuracy",
-    title: "Stock Accuracy Sprint",
+    slug: "stock-accuracy",
+    name: "Stock Accuracy Sprint",
     price: "£1,500 – £3,000",
     description: "Investigate stock discrepancies and reporting weaknesses. Build a corrected stock visibility process."
   },
   {
-    id: "fred-improvement",
-    title: "Fred Reporting Improvement Sprint",
+    slug: "fred-improvement",
+    name: "Fred Reporting Improvement Sprint",
     price: "£1,500 – £5,000",
     description: "Improve Fred reports, stock sheets, EWC codes, new site setup and transport reporting."
   },
   {
-    id: "fd-setup",
-    title: "Outsourced FD Setup Month",
+    slug: "fd-setup",
+    name: "Outsourced FD Setup Month",
     price: "£2,500 – £5,000",
     description: "Build dashboard, reporting cadence, monthly management pack and meeting rhythm."
   },
   {
-    id: "dwt-audit",
-    title: "Digital Waste Tracking (DWT) Audit",
+    slug: "dwt-audit",
+    name: "Digital Waste Tracking (DWT) Audit",
     price: "£1,500",
     description: "Prepare for the Environment Agency's 2025 mandate. Process mapping, readiness review, and integration scoping."
   }

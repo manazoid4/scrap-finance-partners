@@ -32,3 +32,15 @@ export const founder = {
     }
   ]
 };
+export interface TimelineEntry {
+  period: string;
+  role: string;
+  organisation: string;
+  highlights: string[];
+}
+
+export interface ProofPoint {
+  stat: string;
+  label: string;
+  context: string;
+}
