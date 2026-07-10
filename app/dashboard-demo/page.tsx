@@ -1,116 +1,482 @@
+"use client"
+
 import { KpiCard } from "@/components/kpi-card"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import {
+  LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
+  ResponsiveContainer, Area, AreaChart, Cell,
+} from "recharts"
+import {
+  LayoutDashboard, Package, TrendingUp, Truck, PoundSterling, ShieldCheck,
+  Download, Calendar, MapPin, ArrowUpRight, ArrowDownRight, Minus,
+  AlertTriangle, CheckCircle2, XCircle,
+} from "lucide-react"
+import { cn } from "@/lib/utils"
+
+const gridColor = "#33383f"
+const axisColor = "#7c8a99"
+const copperColor = "#b5714a"
+const greenColor = "#4c6b57"
+const amberColor = "#c99a3d"
+const redColor = "#c0392b"
+
+const throughputData = [
+  { month: "Feb", tonnes: 3820, target: 3900 },
+  { month: "Mar", tonnes: 3950, target: 3900 },
+  { month: "Apr", tonnes: 4010, target: 4000 },
+  { month: "May", tonnes: 3890, target: 4000 },
+  { month: "Jun", tonnes: 4150, target: 4100 },
+  { month: "Jul", tonnes: 4280, target: 4200 },
+]
+
+const marginData = [
+  { material: "Ferrous", margin: 14.2, fill: copperColor },
+  { material: "Non-Ferrous", margin: 24.8, fill: greenColor },
+  { material: "Cable", margin: 31.5, fill: amberColor },
+  { material: "Mixed/Skip", margin: 9.6, fill: redColor },
+]
+
+const transportData = [
+  { month: "Feb", cost: 13.10 }, { month: "Mar", cost: 13.40 },
+  { month: "Apr", cost: 13.90 }, { month: "May", cost: 13.60 },
+  { month: "Jun", cost: 13.80 }, { month: "Jul", cost: 14.20 },
+]
+
+const sidebarItems = [
+  { icon: LayoutDashboard, label: "Overview", active: true },
+  { icon: Package, label: "Stock" },
+  { icon: TrendingUp, label: "Margin" },
+  { icon: Truck, label: "Transport" },
+  { icon: PoundSterling, label: "Costs" },
+  { icon: ShieldCheck, label: "System Health" },
+]
+
+const stockDiscrepancies = [
+  { site: "Birmingham Yard", count: 3, value: "£4,200", severity: "low" },
+  { site: "Manchester Depot", count: 7, value: "£12,800", severity: "high" },
+  { site: "Leeds Hub", count: 1, value: "£900", severity: "low" },
+  { site: "Liverpool Site", count: 5, value: "£8,400", severity: "medium" },
+]
+
+const transportRoutes = [
+  { route: "Birmingham → Manchester", cost: "£16.20", trend: "down", delta: "-£0.80" },
+  { route: "Birmingham → London", cost: "£22.40", trend: "up", delta: "+£1.20" },
+  { route: "Birmingham → Leeds", cost: "£14.80", trend: "down", delta: "-£0.40" },
+  { route: "Local Collection", cost: "£8.50", trend: "neutral", delta: "£0.00" },
+]
+
+const costCentres = [
+  { centre: "Yard Operations", budget: 45, actual: 42, status: "under" },
+  { centre: "Transport", budget: 38, actual: 41, status: "over" },
+  { centre: "Maintenance", budget: 12, actual: 15, status: "over" },
+  { centre: "Admin", budget: 8, actual: 7, status: "under" },
+]
+
+const systemHealth = [
+  { system: "Fred Stock Sheets", status: "Good", score: 4, color: greenColor },
+  { system: "EWC Codes", status: "Warning", score: 2, color: amberColor },
+  { system: "Xero Product Codes", status: "Good", score: 5, color: greenColor },
+  { system: "PO Workflow", status: "Critical", score: 1, color: redColor },
+]
+
+const severityStyles: Record<string, string> = {
+  low: "bg-green-500/10 text-green-700 border-green-500/20",
+  medium: "bg-amber-500/10 text-amber-700 border-amber-500/20",
+  high: "bg-red-500/10 text-red-700 border-red-500/20",
+}
+
+const tooltipStyle = {
+  background: "#1a1d21",
+  border: `1px solid ${gridColor}`,
+  borderRadius: "8px",
+  fontSize: 12,
+  color: "#fff",
+  padding: "8px 12px",
+}
 
 export default function DashboardDemoPage() {
   return (
-    <div className="container py-8 px-4 md:px-6">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Management Dashboard</h1>
-          <p className="text-muted-foreground">Mock data for demonstration purposes.</p>
+    <div className="flex">
+      {/* Sidebar */}
+      <aside className="hidden lg:flex flex-col w-56 border-r border-hairline bg-panel min-h-[calc(100vh-3.5rem)] sticky top-14 self-start">
+        <div className="p-4 border-b border-hairline">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Dashboard</p>
         </div>
-        <div className="text-sm bg-muted px-3 py-1.5 rounded-md font-medium border">
-          Period: October 2026
+        <nav className="flex-1 p-3 space-y-1">
+          {sidebarItems.map((item) => (
+            <button
+              key={item.label}
+              className={cn(
+                "flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm font-medium transition-colors",
+                item.active
+                  ? "bg-copper/15 text-copper border border-copper/20"
+                  : "text-muted-foreground hover:text-foreground hover:bg-panel-alt"
+              )}
+            >
+              <item.icon className="h-4 w-4" />
+              {item.label}
+            </button>
+          ))}
+        </nav>
+        <div className="p-4 border-t border-hairline">
+          <div className="rounded-lg bg-panel-alt p-3">
+            <p className="text-xs font-medium text-muted-foreground mb-1">Demo Mode</p>
+            <p className="text-xs text-muted-foreground/70">Sample data for illustration</p>
+          </div>
         </div>
-      </div>
+      </aside>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
-        <KpiCard 
-          title="Monthly Throughput" 
-          value="4,250 T" 
-          change="+5.2%" 
-          trend="up" 
-        />
-        <KpiCard 
-          title="Est. Stock Value" 
-          value="£1.24M" 
-          change="-2.1%" 
-          trend="down" 
-        />
-        <KpiCard 
-          title="Avg Transport Cost" 
-          value="£18.50 /T" 
-          change="£0.50" 
-          trend="down" 
-        />
-        <KpiCard 
-          title="Debtor Days" 
-          value="42 days" 
-          change="+3 days" 
-          trend="down" 
-        />
-      </div>
+      {/* Main Content */}
+      <div className="flex-1 min-w-0">
+        {/* Filter Bar */}
+        <div className="border-b border-hairline bg-card">
+          <div className="px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <h1 className="text-lg font-bold tracking-tight">Management Dashboard</h1>
+              <span className="text-xs text-muted-foreground hidden sm:inline">Example monthly view for a mid-size scrap yard</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 rounded-lg border border-hairline px-3 py-1.5 text-sm bg-panel/50">
+                <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+                <span className="font-medium">June 2026</span>
+              </div>
+              <div className="flex items-center gap-2 rounded-lg border border-hairline px-3 py-1.5 text-sm bg-panel/50">
+                <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
+                <span className="font-medium">All Sites</span>
+              </div>
+              <Button variant="outline" size="sm" className="gap-1.5">
+                <Download className="h-3.5 w-3.5" />
+                Export
+              </Button>
+            </div>
+          </div>
+        </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 mb-8">
-        <Card className="col-span-4">
-          <CardHeader>
-            <CardTitle>Gross Margin by Category</CardTitle>
-            <CardDescription>Monthly trend analysis</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[300px] w-full bg-muted/20 rounded-md border flex items-center justify-center relative overflow-hidden">
-                {/* Mock Chart Visualization */}
-                <div className="absolute bottom-0 left-8 w-12 h-[60%] bg-blue-500/80 rounded-t-sm"></div>
-                <div className="absolute bottom-0 left-24 w-12 h-[70%] bg-blue-500/80 rounded-t-sm"></div>
-                <div className="absolute bottom-0 left-40 w-12 h-[65%] bg-blue-500/80 rounded-t-sm"></div>
-                <div className="absolute bottom-0 left-56 w-12 h-[80%] bg-blue-500/80 rounded-t-sm"></div>
-                <div className="absolute bottom-0 left-72 w-12 h-[75%] bg-blue-500/80 rounded-t-sm"></div>
-                
-                <div className="absolute bottom-0 left-10 w-8 h-[40%] bg-green-500/80 rounded-t-sm"></div>
-                <div className="absolute bottom-0 left-26 w-8 h-[50%] bg-green-500/80 rounded-t-sm"></div>
-                <div className="absolute bottom-0 left-42 w-8 h-[45%] bg-green-500/80 rounded-t-sm"></div>
-                <div className="absolute bottom-0 left-58 w-8 h-[60%] bg-green-500/80 rounded-t-sm"></div>
-                <div className="absolute bottom-0 left-74 w-8 h-[55%] bg-green-500/80 rounded-t-sm"></div>
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="col-span-3">
-          <CardHeader>
-            <CardTitle>Risk & Exceptions</CardTitle>
-            <CardDescription>Items requiring immediate attention</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-6">
-                <div>
-                    <div className="flex justify-between mb-1 text-sm">
-                        <span className="font-medium text-red-500">{"Stock Discrepancies > 5%"}</span>
-                        <span className="font-bold">3 sites</span>
-                    </div>
-                    <div className="w-full bg-muted rounded-full h-2">
-                        <div className="bg-red-500 h-2 rounded-full" style={{ width: '45%' }}></div>
-                    </div>
+        {/* Content */}
+        <div className="p-6 space-y-6">
+          {/* KPI Grid */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <KpiCard
+              title="Monthly Throughput"
+              value="4,280 T"
+              change="+3.1%"
+              trend="up"
+              sparkData={[3820, 3950, 4010, 3890, 4150, 4280]}
+            />
+            <KpiCard
+              title="Stock Value"
+              value="£1.94M"
+              change="-1.2%"
+              trend="down"
+              sparkData={[2.01, 1.98, 1.96, 1.95, 1.94, 1.94]}
+            />
+            <KpiCard
+              title="Gross Margin"
+              value="18.6%"
+              change="+0.8pp"
+              trend="up"
+              sparkData={[17.2, 17.5, 17.8, 18.0, 18.3, 18.6]}
+            />
+            <KpiCard
+              title="Transport Cost / T"
+              value="£14.20"
+              change="+£0.60"
+              trend="down"
+              sparkData={[13.1, 13.4, 13.9, 13.6, 13.8, 14.2]}
+            />
+          </div>
+
+          {/* Charts Row */}
+          <div className="grid gap-4 lg:grid-cols-7">
+            {/* Throughput Trend */}
+            <Card className="lg:col-span-4 border-hairline">
+              <CardHeader className="pb-2">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="text-base">Throughput Trend</CardTitle>
+                    <CardDescription>Monthly tonnes vs target — last 6 months</CardDescription>
+                  </div>
+                  <div className="flex items-center gap-4 text-xs">
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-2 w-2 rounded-full" style={{ background: copperColor }} />
+                      Actual
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-2 w-2 rounded-full" style={{ background: axisColor }} />
+                      Target
+                    </span>
+                  </div>
                 </div>
-                <div>
-                    <div className="flex justify-between mb-1 text-sm">
-                        <span className="font-medium text-amber-500">Unmapped Xero Codes</span>
-                        <span className="font-bold">14 items</span>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={280}>
+                  <AreaChart data={throughputData}>
+                    <defs>
+                      <linearGradient id="throughputGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stopColor={copperColor} stopOpacity={0.25} />
+                        <stop offset="100%" stopColor={copperColor} stopOpacity={0} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid stroke={gridColor} strokeDasharray="3 3" vertical={false} />
+                    <XAxis dataKey="month" stroke={axisColor} fontSize={12} tickLine={false} axisLine={false} />
+                    <YAxis stroke={axisColor} fontSize={12} tickLine={false} axisLine={false} />
+                    <Tooltip contentStyle={tooltipStyle} />
+                    <Area type="monotone" dataKey="tonnes" stroke={copperColor} strokeWidth={2} fill="url(#throughputGrad)" dot={{ r: 3, fill: copperColor }} />
+                    <Line type="monotone" dataKey="target" stroke={axisColor} strokeWidth={1.5} strokeDasharray="5 5" dot={false} />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+
+            {/* Margin by Material */}
+            <Card className="lg:col-span-3 border-hairline">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">Gross Margin by Material</CardTitle>
+                <CardDescription>Percentage margin — this month</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ResponsiveContainer width="100%" height={280}>
+                  <BarChart data={marginData} layout="vertical">
+                    <CartesianGrid stroke={gridColor} strokeDasharray="3 3" horizontal={false} />
+                    <XAxis type="number" stroke={axisColor} fontSize={12} tickLine={false} axisLine={false} unit="%" />
+                    <YAxis type="category" dataKey="material" stroke={axisColor} fontSize={12} tickLine={false} axisLine={false} width={80} />
+                    <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(255,255,255,0.03)" }} />
+                    <Bar dataKey="margin" radius={[0, 4, 4, 0]} barSize={28}>
+                      {marginData.map((entry, i) => (
+                        <Cell key={i} fill={entry.fill} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Secondary KPI Row */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <KpiCard
+              title="Debtor Days"
+              value="42 days"
+              change="-3 days"
+              trend="up"
+              sparkData={[48, 46, 45, 44, 45, 42]}
+            />
+            <KpiCard
+              title="Stock Discrepancies"
+              value="16"
+              change="-4"
+              trend="up"
+              sparkData={[22, 20, 19, 21, 18, 16]}
+            />
+            <KpiCard
+              title="PO Exceptions"
+              value="12"
+              change="+2"
+              trend="down"
+              sparkData={[8, 9, 10, 11, 10, 12]}
+            />
+            <KpiCard
+              title="EWC Code Issues"
+              value="3"
+              change="0"
+              trend="neutral"
+              sparkData={[3, 4, 3, 3, 4, 3]}
+            />
+          </div>
+
+          {/* Data Tables Row */}
+          <div className="grid gap-4 lg:grid-cols-3">
+            {/* Stock Discrepancies */}
+            <Card className="lg:col-span-1 border-hairline">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base">Stock Discrepancies</CardTitle>
+                <CardDescription>By site — this month</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2.5">
+                {stockDiscrepancies.map((site) => (
+                  <div
+                    key={site.site}
+                    className="flex items-center justify-between p-3 rounded-lg border border-hairline bg-panel/30 hover:border-copper/30 transition-colors"
+                  >
+                    <div className="min-w-0">
+                      <p className="font-medium text-sm truncate">{site.site}</p>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <span className={cn("text-xs px-1.5 py-0.5 rounded border font-medium", severityStyles[site.severity])}>
+                          {site.count} disc
+                        </span>
+                      </div>
                     </div>
-                    <div className="w-full bg-muted rounded-full h-2">
-                        <div className="bg-amber-500 h-2 rounded-full" style={{ width: '25%' }}></div>
-                    </div>
+                    <p className="font-semibold text-sm text-copper tabular-nums">{site.value}</p>
+                  </div>
+                ))}
+                <div className="flex items-center justify-between pt-2 border-t border-hairline">
+                  <span className="text-xs text-muted-foreground">Total exposure</span>
+                  <span className="text-sm font-bold text-red-600 tabular-nums">£26,300</span>
                 </div>
-                <div>
-                    <div className="flex justify-between mb-1 text-sm">
-                        <span className="font-medium text-amber-500">Manual Deal Sheets Pending</span>
-                        <span className="font-bold">28 sheets</span>
+              </CardContent>
+            </Card>
+
+            {/* Transport Cost per Tonne */}
+            <Card className="lg:col-span-1 border-hairline">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base">Transport Cost / Tonne</CardTitle>
+                <CardDescription>By route — this month</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2.5">
+                {transportRoutes.map((route) => (
+                  <div key={route.route} className="flex items-center justify-between p-3 rounded-lg border border-hairline bg-panel/30 hover:border-copper/30 transition-colors">
+                    <div className="min-w-0">
+                      <p className="text-sm text-muted-foreground truncate">{route.route}</p>
+                      <div className="flex items-center gap-1 mt-0.5">
+                        {route.trend === "down" ? (
+                          <ArrowDownRight className="h-3 w-3 text-green-600" />
+                        ) : route.trend === "up" ? (
+                          <ArrowUpRight className="h-3 w-3 text-red-600" />
+                        ) : (
+                          <Minus className="h-3 w-3 text-muted-foreground" />
+                        )}
+                        <span className={cn(
+                          "text-xs font-medium",
+                          route.trend === "down" ? "text-green-600" : route.trend === "up" ? "text-red-600" : "text-muted-foreground"
+                        )}>
+                          {route.delta}
+                        </span>
+                      </div>
                     </div>
-                    <div className="w-full bg-muted rounded-full h-2">
-                        <div className="bg-amber-500 h-2 rounded-full" style={{ width: '60%' }}></div>
-                    </div>
+                    <p className="font-semibold text-sm tabular-nums">{route.cost}</p>
+                  </div>
+                ))}
+                <div className="pt-2">
+                  <ResponsiveContainer width="100%" height={60}>
+                    <LineChart data={transportData}>
+                      <Line type="monotone" dataKey="cost" stroke={copperColor} strokeWidth={1.5} dot={false} />
+                    </LineChart>
+                  </ResponsiveContainer>
                 </div>
-                 <div>
-                    <div className="flex justify-between mb-1 text-sm">
-                        <span className="font-medium text-green-500">EWC Code Compliance</span>
-                        <span className="font-bold">98.5%</span>
+              </CardContent>
+            </Card>
+
+            {/* Cost-Centre Variance */}
+            <Card className="lg:col-span-1 border-hairline">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base">Cost-Centre Variance</CardTitle>
+                <CardDescription>Budget vs actual — this month</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {costCentres.map((centre) => {
+                  const variance = centre.actual - centre.budget
+                  const pct = (centre.actual / centre.budget) * 100
+                  return (
+                    <div key={centre.centre}>
+                      <div className="flex items-center justify-between text-sm mb-1.5">
+                        <span className="text-muted-foreground">{centre.centre}</span>
+                        <span className={cn(
+                          "font-medium tabular-nums",
+                          centre.status === "over" ? "text-red-600" : "text-green-600"
+                        )}>
+                          {centre.status === "over" ? "+" : ""}{variance}k
+                        </span>
+                      </div>
+                      <div className="h-2 rounded-full bg-panel overflow-hidden">
+                        <div
+                          className={cn(
+                            "h-full rounded-full transition-all",
+                            centre.status === "over" ? "bg-red-500/70" : "bg-green-500/70"
+                          )}
+                          style={{ width: `${Math.min(pct, 100)}%` }}
+                        />
+                      </div>
+                      <div className="flex items-center justify-between text-xs text-muted-foreground mt-1">
+                        <span>Budget: £{centre.budget}k</span>
+                        <span>Actual: £{centre.actual}k</span>
+                      </div>
                     </div>
-                    <div className="w-full bg-muted rounded-full h-2">
-                        <div className="bg-green-500 h-2 rounded-full" style={{ width: '98.5%' }}></div>
+                  )
+                })}
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* System Health + Executive Summary */}
+          <div className="grid gap-4 lg:grid-cols-5">
+            {/* System Health */}
+            <Card className="lg:col-span-2 border-hairline">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base">System Health</CardTitle>
+                <CardDescription>Data integrity across core systems</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {systemHealth.map((system) => {
+                  const StatusIcon = system.score >= 4 ? CheckCircle2 : system.score >= 2 ? AlertTriangle : XCircle
+                  const statusColor = system.score >= 4 ? "text-green-600" : system.score >= 2 ? "text-amber-600" : "text-red-600"
+                  return (
+                    <div key={system.system}>
+                      <div className="flex items-center justify-between text-sm mb-1.5">
+                        <span className="text-muted-foreground">{system.system}</span>
+                        <span className={cn("flex items-center gap-1 font-medium", statusColor)}>
+                          <StatusIcon className="h-3.5 w-3.5" />
+                          {system.status}
+                        </span>
+                      </div>
+                      <div className="h-2 rounded-full bg-panel overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all"
+                          style={{ width: `${system.score * 20}%`, background: system.color }}
+                        />
+                      </div>
                     </div>
+                  )
+                })}
+              </CardContent>
+            </Card>
+
+            {/* Executive Summary */}
+            <Card className="lg:col-span-3 border-hairline bg-panel/30">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-base">Executive Summary — June 2026</CardTitle>
+                <CardDescription>Key findings and recommended actions</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {[
+                  { label: "Throughput", text: "Up 5.2% on last month. Copper volumes strong. Steel slightly down due to reduced demolition intake.", status: "good" },
+                  { label: "Margin", text: "Gross margin stable at 18.6%. Brass margin compressed due to supplier price increase — review pricing with commercial team.", status: "warning" },
+                  { label: "Stock", text: "£1.94M stock value. 16 discrepancies across 4 sites (£26,300). Manchester depot needs investigation — 7 discrepancies, £12,800.", status: "critical" },
+                  { label: "Transport", text: "Average cost £14.20/T. London route up £1.20 due to fuel surcharge. Recommend renegotiating or shifting volume to Manchester route.", status: "warning" },
+                  { label: "Cash", text: "Debtor days at 42 — down 3 days. Two large customers still overdue. Recommend credit hold conversation.", status: "good" },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-start gap-3">
+                    <span className={cn(
+                      "mt-1.5 h-2 w-2 rounded-full flex-shrink-0",
+                      item.status === "good" ? "bg-green-500" : item.status === "warning" ? "bg-amber-500" : "bg-red-500"
+                    )} />
+                    <p className="text-sm text-muted-foreground">
+                      <strong className="text-foreground">{item.label}:</strong> {item.text}
+                    </p>
+                  </div>
+                ))}
+                <div className="pt-3 border-t border-hairline">
+                  <p className="text-sm font-medium text-foreground mb-2">Priority Actions</p>
+                  <div className="grid sm:grid-cols-2 gap-2">
+                    {[
+                      "Review brass pricing strategy",
+                      "Investigate Manchester stock discrepancies",
+                      "Renegotiate London transport route",
+                      "Credit hold on overdue accounts",
+                    ].map((action, i) => (
+                      <div key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <span className="flex-shrink-0 h-5 w-5 rounded bg-copper/10 text-copper text-xs font-bold flex items-center justify-center">
+                          {i + 1}
+                        </span>
+                        {action}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
     </div>
   )

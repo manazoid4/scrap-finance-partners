@@ -4,61 +4,145 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ============================================================
+   SCRAP FINANCE PARTNERS — DESIGN TOKENS
+   Dark industrial palette. Bloomberg terminal meets boutique
+   consultancy. Every token is intentional.
+   ============================================================ */
+
 :root {
-  --panel: #1a1d21;
-  --panel-alt: #2a2e33;
-  --copper: #b5714a;
-  --green: #4c6b57;
-  --amber: #c99a3d;
-  --blue-grey: #7c8a99;
-  --hairline: #33383f;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  /* --- Core surfaces --- */
+  --graphite: #0f1115;       /* deepest background */
+  --panel: #1a1d21;          /* card / elevated surface */
+  --panel-alt: #21252a;      /* hover / secondary surface */
+  --panel-raised: #262b31;  /* highest elevation */
+
+  /* --- Brand accent --- */
+  --copper: #b87333;         /* primary accent */
+  --copper-bright: #d48a4a;  /* hover / active */
+  --copper-dim: #8a5626;     /* muted accent */
+
+  /* --- Semantic indicators --- */
+  --green: #5b8c6f;          /* positive */
+  --amber: #d4a03d;          /* warning */
+  --red: #c45a4e;            /* destructive */
+
+  /* --- Neutrals --- */
+  --ink: #e8e6e3;            /* primary text */
+  --ink-secondary: #a8aeb5;  /* secondary text */
+  --ink-muted: #6c7278;      /* muted text */
+  --hairline: #33383f;       /* border color */
+  --hairline-bright: #3d434b;/* hover border */
+
+  /* --- Typography --- */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), "SF Mono", monospace;
+
+  /* --- Spacing scale (4px base) --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* --- Radius (minimal, industrial) --- */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  --radius-2xl: 12px;
+  --radius-3xl: 16px;
+  --radius-4xl: 20px;
+
+  /* --- Shadows (subtle elevation only) --- */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 2px 8px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  --shadow-copper: 0 0 0 1px rgba(184, 115, 51, 0.2), 0 4px 16px -4px rgba(184, 115, 51, 0.15);
+
+  /* --- Transitions --- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+
+  /* --- Z-index scale --- */
+  --z-dropdown: 1000;
+  --z-sticky: 1100;
+  --z-backdrop: 1200;
+  --z-modal: 1300;
+  --z-toast: 1400;
+  --z-tooltip: 1500;
+
+  /* --- shadcn semantic mapping (dark-first) --- */
+  --background: var(--graphite);
+  --foreground: var(--ink);
+  --card: var(--panel);
+  --card-foreground: var(--ink);
+  --popover: var(--panel);
+  --popover-foreground: var(--ink);
+  --primary: var(--copper);
+  --primary-foreground: #ffffff;
+  --secondary: var(--panel-alt);
+  --secondary-foreground: var(--ink);
+  --muted: var(--panel-alt);
+  --muted-foreground: var(--ink-secondary);
+  --accent: var(--panel-alt);
+  --accent-foreground: var(--ink);
+  --destructive: var(--red);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--copper);
+  --chart-1: var(--copper);
+  --chart-2: var(--green);
+  --chart-3: var(--amber);
+  --chart-4: var(--ink-secondary);
+  --chart-5: var(--ink-muted);
+  --sidebar: var(--panel);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--copper);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--panel-alt);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--hairline);
+  --sidebar-ring: var(--copper);
 }
+
+/* ============================================================
+   THEME INLINE — Tailwind v4 token bridge
+   ============================================================ */
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-panel: var(--panel);
   --color-panel-alt: var(--panel-alt);
+  --color-panel-raised: var(--panel-raised);
   --color-copper: var(--copper);
+  --color-copper-bright: var(--copper-bright);
+  --color-copper-dim: var(--copper-dim);
   --color-green: var(--green);
   --color-amber: var(--amber);
-  --color-blue-grey: var(--blue-grey);
+  --color-red: var(--red);
+  --color-ink: var(--ink);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-muted: var(--ink-muted);
   --color-hairline: var(--hairline);
+  --color-hairline-bright: var(--hairline-bright);
+  --color-graphite: var(--graphite);
+
   --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-mono);
   --font-heading: var(--font-sans);
+
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -88,75 +172,348 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+  --radius-4xl: var(--radius-4xl);
 }
 
-body {
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  font-variant-numeric: tabular-nums;
-}
-
-.bg-grid {
-  background-image: linear-gradient(var(--hairline) 1px, transparent 1px),
-    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: -1px -1px;
-}
-
-.glass-panel {
-  background: color-mix(in srgb, var(--panel) 70%, transparent);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--hairline);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
+/* ============================================================
+   BASE LAYER
+   ============================================================ */
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    font-variant-numeric: tabular-nums;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Typography hierarchy */
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  h2 {
+    font-size: clamp(1.625rem, 3.5vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  p {
+    line-height: 1.65;
+    text-wrap: pretty;
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(184, 115, 51, 0.25);
+    color: var(--ink);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--graphite);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--hairline);
+    border-radius: var(--radius-sm);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--hairline-bright);
+  }
+
+  /* Focus visible */
+  :focus-visible {
+    outline: 2px solid var(--copper);
+    outline-offset: 2px;
+  }
+}
+
+/* ============================================================
+   COMPONENT LAYER — Utility classes
+   ============================================================ */
+
+/* Subtle grid background for hero / section accents */
+.bg-grid {
+  background-image:
+    linear-gradient(var(--hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: -1px -1px;
+}
+
+.bg-grid-fine {
+  background-image:
+    linear-gradient(var(--hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: -1px -1px;
+  opacity: 0.5;
+}
+
+/* Glass panel — purposeful, not decorative */
+.glass-panel {
+  background: color-mix(in srgb, var(--panel) 80%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--hairline);
+}
+
+/* Copper accent text */
+.text-copper {
+  color: var(--copper);
+}
+
+/* Mono numbers — tabular, terminal feel */
+.font-mono-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* ============================================================
+   ANIMATIONS — Purposeful, subtle, CSS-only
+   ============================================================ */
+
+/* Section reveal — enhances already-visible content */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: reveal-up var(--duration-slow) var(--ease-out) both;
+}
+
+.reveal-delay-1 { animation-delay: 60ms; }
+.reveal-delay-2 { animation-delay: 120ms; }
+.reveal-delay-3 { animation-delay: 180ms; }
+.reveal-delay-4 { animation-delay: 240ms; }
+
+/* Copper line accent — grows on load */
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.line-accent {
+  transform-origin: left;
+  animation: line-grow var(--duration-slow) var(--ease-out) both;
+}
+
+/* Pulse for live indicators */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s var(--ease-in-out) infinite;
+}
+
+/* ============================================================
+   COMPONENT UTILITIES — Hero, CTA, Accordion, Cards
+   ============================================================ */
+
+/* Hero radial copper glow */
+.hero-glow {
+  background: radial-gradient(ellipse 55% 50% at 75% 35%, rgba(184, 115, 51, 0.10), transparent 70%);
+}
+
+/* Industrial diagonal stripe texture */
+.industrial-stripes {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 10px,
+    rgba(184, 115, 51, 0.025) 10px,
+    rgba(184, 115, 51, 0.025) 11px
+  );
+}
+
+/* CTA hover lift — copper */
+.cta-copper {
+  transition: transform var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out),
+              background-color var(--duration-normal);
+}
+.cta-copper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -10px rgba(184, 115, 51, 0.5);
+}
+
+/* CTA hover lift — outline */
+.cta-outline {
+  transition: transform var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal),
+              background-color var(--duration-normal);
+}
+.cta-outline:hover {
+  transform: translateY(-2px);
+  border-color: var(--copper);
+  background-color: rgba(184, 115, 51, 0.06);
+}
+
+/* Accordion — CSS grid rows technique */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-slow) var(--ease-out);
+}
+.accordion-content[data-state="open"] {
+  grid-template-rows: 1fr;
+}
+.accordion-content > .accordion-inner {
+  overflow: hidden;
+}
+
+/* Service row hover */
+.service-row {
+  transition: background-color var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal);
+}
+.service-row:hover {
+  background-color: rgba(184, 115, 51, 0.025);
+}
+
+/* Credibility card hover */
+.cred-card {
+  transition: transform var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal),
+              box-shadow var(--duration-normal);
+}
+.cred-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--copper);
+  box-shadow: var(--shadow-copper);
+}
+
+/* Bar chart grow animation */
+@keyframes bar-grow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+.bar-animate {
+  transform-origin: bottom;
+  animation: bar-grow 0.7s var(--ease-out) forwards;
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .line-accent {
+    transform: scaleX(1);
+  }
+
+  .cta-copper:hover,
+  .cta-outline:hover,
+  .cred-card:hover {
+    transform: none;
+  }
+
+  .bar-animate {
+    animation: none;
+    transform: scaleY(1);
+  }
+}
+
+/* ============================================================
+   DARK VARIANT — kept for shadcn compatibility
+   The site is dark-first; .dark is a no-op override.
+   ============================================================ */
+
+.dark {
+  --background: var(--graphite);
+  --foreground: var(--ink);
+  --card: var(--panel);
+  --card-foreground: var(--ink);
+  --popover: var(--panel);
+  --popover-foreground: var(--ink);
+  --primary: var(--copper);
+  --primary-foreground: #ffffff;
+  --secondary: var(--panel-alt);
+  --secondary-foreground: var(--ink);
+  --muted: var(--panel-alt);
+  --muted-foreground: var(--ink-secondary);
+  --accent: var(--panel-alt);
+  --accent-foreground: var(--ink);
+  --destructive: var(--red);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--copper);
+  --chart-1: var(--copper);
+  --chart-2: var(--green);
+  --chart-3: var(--amber);
+  --chart-4: var(--ink-secondary);
+  --chart-5: var(--ink-muted);
+  --sidebar: var(--panel);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--copper);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--panel-alt);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--hairline);
+  --sidebar-ring: var(--copper);
 }
