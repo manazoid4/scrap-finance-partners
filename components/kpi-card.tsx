@@ -1,4 +1,3 @@
-import { Card, CardContent } from "@/components/ui/card"
 import { ArrowUpRight, ArrowDownRight, Minus } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -49,16 +48,16 @@ export function KpiCard({
   accentColor?: string
 }) {
   const trendColor =
-    trend === "up" ? "text-green-600" : trend === "down" ? "text-red-600" : "text-muted-foreground"
+    trend === "up" ? "text-green-600" : trend === "down" ? "text-red-600" : "text-ink-tertiary"
   const sparkColor =
     accentColor ?? (trend === "up" ? "#4c6b57" : trend === "down" ? "#c0392b" : "#7c8a99")
   const TrendIcon = trend === "up" ? ArrowUpRight : trend === "down" ? ArrowDownRight : Minus
 
   return (
-    <Card className="border-hairline bg-card relative overflow-hidden transition-all hover:shadow-md hover:border-copper/40">
-      <CardContent className="p-5">
+    <div className="border border-hairline bg-panel relative overflow-hidden transition-all hover:border-copper/40">
+      <div className="p-5">
         <div className="flex items-start justify-between">
-          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{title}</p>
+          <p className="text-xs font-medium text-ink-tertiary uppercase tracking-wide">{title}</p>
           {change && (
             <div className={cn("flex items-center gap-0.5 text-xs font-semibold", trendColor)}>
               <TrendIcon className="h-3 w-3" />
@@ -67,14 +66,14 @@ export function KpiCard({
           )}
         </div>
         <div className="mt-2 flex items-end justify-between">
-          <p className="text-2xl font-bold tabular-nums tracking-tight">{value}</p>
+          <p className="text-2xl font-bold tabular-nums tracking-tight text-ink">{value}</p>
           {sparkData && sparkData.length > 1 && (
             <div className="opacity-80">
               <Sparkline data={sparkData} color={sparkColor} />
             </div>
           )}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
