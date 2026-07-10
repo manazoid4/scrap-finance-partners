@@ -1,4 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { BookOpen, Wrench, Truck, Wallet, PackageOpen, FileSpreadsheet, ShieldCheck, BarChart3, TrendingUp } from "lucide-react"
 
 const categories = [
@@ -61,41 +60,68 @@ const categories = [
 export default function KnowledgePage() {
   return (
     <div className="flex flex-col">
-      <section className="border-b border-hairline">
-        <div className="container py-12 md:py-16 px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-              Knowledge Vault
+      {/* Hero */}
+      <section className="border-b border-hairline bg-graphite">
+        <div className="container px-4 py-20 md:py-28">
+          <div className="max-w-4xl">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-copper mb-6">Knowledge Base</p>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-ink">
+              What we know
+              <br />
+              <span className="text-copper">about scrap</span>
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Internal documentation, playbooks and templates built from 26 years inside scrap yard finance.
+            <p className="mt-8 text-xl md:text-2xl text-ink-secondary max-w-3xl leading-relaxed font-light">
+              Everything we have learned about scrap yard finance — from Fred systems to transport scorecards. Written for operators, not accountants.
             </p>
           </div>
         </div>
       </section>
 
+      {/* Categories — editorial list */}
       <section className="border-b border-hairline">
-        <div className="container py-12 px-4">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-6xl">
-            {categories.map((cat) => (
-              <Card key={cat.title} className="border-hairline">
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-2">
-                    <cat.icon className="h-5 w-5 text-copper" />
-                    <CardTitle className="text-base">{cat.title}</CardTitle>
+        <div className="container px-4 py-16 md:py-20">
+          <div className="space-y-0">
+            {categories.map((cat, i) => {
+              const Icon = cat.icon
+              return (
+                <div
+                  key={i}
+                  className="group grid md:grid-cols-[1fr_1.5fr] gap-4 md:gap-8 py-8 border-t border-hairline first:border-t-0 items-start hover:bg-panel/20 transition-colors -mx-4 px-4"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="h-10 w-10 flex items-center justify-center border border-hairline bg-graphite flex-shrink-0">
+                      <Icon className="h-5 w-5 text-copper" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-ink group-hover:text-copper transition-colors">
+                        {cat.title}
+                      </h3>
+                      <p className="mt-1 text-sm text-ink-secondary leading-relaxed">{cat.desc}</p>
+                    </div>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-3">{cat.desc}</p>
-                  <div className="space-y-1">
-                    {cat.files.map((file) => (
-                      <p key={file} className="text-xs font-mono bg-panel p-1.5 rounded-sm border border-hairline">{file}</p>
-                    ))}
+                  <div className="md:pl-8 md:border-l md:border-hairline">
+                    <p className="text-xs font-mono uppercase tracking-wider text-ink-tertiary mb-2">Files</p>
+                    <div className="flex flex-wrap gap-2">
+                      {cat.files.map((f, fi) => (
+                        <span key={fi} className="text-xs font-mono text-ink-secondary bg-panel px-2 py-1 border border-hairline">
+                          {f}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              )
+            })}
           </div>
+        </div>
+      </section>
+
+      {/* Note */}
+      <section className="bg-graphite">
+        <div className="container px-4 py-12 md:py-16">
+          <p className="text-sm text-ink-tertiary max-w-2xl leading-relaxed">
+            All knowledge is stored as Markdown in the repo under <code className="text-copper font-mono">/knowledge/</code> and <code className="text-copper font-mono">/templates/</code>. They are versioned, searchable and updated as we learn more.
+          </p>
         </div>
       </section>
     </div>

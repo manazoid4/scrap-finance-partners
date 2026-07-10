@@ -1,7 +1,6 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   AlertTriangle, EyeOff, TrendingDown, Gauge, ShieldCheck, FileCheck,
   ClipboardList, Calculator, BarChart3, Table2, Lock, CheckCircle2,
@@ -78,46 +77,48 @@ const statusStyles: Record<string, { dot: string; badge: string; text: string }>
 export default function HealthCheckPage() {
   return (
     <div className="flex flex-col">
-      {/* Header */}
-      <section className="border-b border-hairline bg-panel/20">
-        <div className="container py-12 md:py-20 px-4">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-copper/10 border border-copper/20 px-3 py-1 text-xs font-medium text-copper mb-4">
+      {/* Hero */}
+      <section className="border-b border-hairline bg-graphite">
+        <div className="container px-4 py-20 md:py-28">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 bg-copper/10 border border-copper/20 px-3 py-1 text-xs font-mono uppercase tracking-wider text-copper mb-6">
               <Activity className="h-3 w-3" />
               Finance Diagnostic
             </div>
-            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-              Find out what your numbers are hiding.
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-ink">
+              Find out what your
+              <br />
+              <span className="text-copper">numbers are hiding</span>
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-8 text-xl md:text-2xl text-ink-secondary max-w-3xl leading-relaxed font-light">
               A one-off diagnostic of your reporting, stock visibility, margin control, and system accuracy. We deliver a red/amber/green report showing exactly what is broken and what it is costing you.
             </p>
-            <div className="mt-6 inline-flex items-center gap-3">
-              <span className="bg-copper/10 text-copper px-4 py-2 rounded-lg font-semibold text-sm border border-copper/20">
+            <div className="mt-8 flex items-center gap-4">
+              <span className="bg-copper/10 text-copper px-4 py-2 text-sm font-semibold border border-copper/20 font-mono">
                 £750 – £1,500
               </span>
-              <span className="text-sm text-muted-foreground">One-off · No ongoing commitment</span>
+              <span className="text-sm text-ink-secondary">One-off · No ongoing commitment</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Process Steps */}
-      <section className="border-b border-hairline">
+      <section className="border-b border-hairline bg-panel/30">
         <div className="container py-10 px-4">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {processSteps.map((step, i) => (
               <div key={step.num} className="relative">
                 {i < processSteps.length - 1 && (
                   <div className="hidden lg:block absolute top-6 left-[calc(50%+2rem)] right-0 h-px bg-hairline" />
                 )}
-                <div className="flex items-start gap-3">
-                  <span className="flex-shrink-0 h-12 w-12 rounded-xl bg-panel border border-hairline flex items-center justify-center text-sm font-bold text-copper tabular-nums">
+                <div className="flex items-start gap-4">
+                  <span className="flex-shrink-0 h-12 w-12 bg-graphite border border-hairline flex items-center justify-center text-sm font-bold text-copper font-mono tabular-nums">
                     {step.num}
                   </span>
                   <div>
-                    <p className="font-semibold text-sm">{step.label}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{step.desc}</p>
+                    <p className="font-bold text-sm text-ink">{step.label}</p>
+                    <p className="text-xs text-ink-secondary mt-0.5">{step.desc}</p>
                   </div>
                 </div>
               </div>
@@ -128,50 +129,55 @@ export default function HealthCheckPage() {
 
       {/* What We Review */}
       <section className="border-b border-hairline">
-        <div className="container py-12 px-4">
-          <h2 className="text-2xl font-bold mb-2">What we review</h2>
-          <p className="text-muted-foreground mb-8">Four core areas, eleven diagnostic categories.</p>
-          <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mb-10">
-            {reviewAreas.map((area) => {
-              const styles = statusStyles[area.status]
-              return (
-                <Card key={area.title} className="border-hairline hover:border-copper/30 transition-colors">
-                  <CardHeader className="pb-3">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2.5">
-                        <span className="flex-shrink-0 h-9 w-9 rounded-lg bg-copper/10 border border-copper/20 flex items-center justify-center">
+        <div className="container py-16 md:py-20 px-4">
+          <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 lg:gap-16">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-ink">
+                What we review
+              </h2>
+              <p className="mt-4 text-ink-secondary">Four core areas, eleven diagnostic categories.</p>
+            </div>
+            <div className="space-y-0">
+              {reviewAreas.map((area) => {
+                const styles = statusStyles[area.status]
+                return (
+                  <div
+                    key={area.title}
+                    className="py-7 border-t border-hairline first:border-t-0 group hover:bg-panel/20 transition-colors -mx-4 px-4"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-start gap-3">
+                        <span className="flex-shrink-0 h-9 w-9 bg-copper/10 border border-copper/20 flex items-center justify-center">
                           <area.icon className="h-4 w-4 text-copper" />
                         </span>
-                        <CardTitle className="text-base">{area.title}</CardTitle>
+                        <h3 className="text-base font-bold text-ink">{area.title}</h3>
                       </div>
-                      <span className={cn("text-xs px-2 py-1 rounded-full border font-medium whitespace-nowrap", styles.badge)}>
-                        <span className={cn("inline-block h-1.5 w-1.5 rounded-full mr-1.5", styles.dot)} />
+                      <span className={cn("text-xs px-2 py-1 border font-medium whitespace-nowrap flex-shrink-0", styles.badge)}>
+                        <span className={cn("inline-block h-1.5 w-1.5 mr-1.5", styles.dot)} />
                         {area.statusLabel}
                       </span>
                     </div>
-                  </CardHeader>
-                  <CardContent className="text-sm text-muted-foreground">
-                    {area.desc}
-                  </CardContent>
-                </Card>
-              )
-            })}
+                    <p className="mt-3 text-sm text-ink-secondary leading-relaxed pl-12">{area.desc}</p>
+                  </div>
+                )
+              })}
+            </div>
           </div>
 
-          {/* Diagnostic Categories Grid */}
-          <div className="max-w-4xl">
-            <p className="text-sm font-medium text-muted-foreground mb-4">Full diagnostic scope — 11 categories:</p>
+          {/* Diagnostic Categories */}
+          <div className="mt-16 pt-10 border-t border-hairline">
+            <p className="text-xs font-mono uppercase tracking-wider text-ink-tertiary mb-6">Full diagnostic scope — 11 categories</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
               {diagnosticCategories.map((cat, i) => (
                 <div
                   key={cat.label}
-                  className="flex items-center gap-2.5 p-3 rounded-lg border border-hairline bg-panel/20 hover:border-copper/30 transition-colors"
+                  className="flex items-center gap-2.5 p-3 border border-hairline bg-panel/20 hover:border-copper/30 transition-colors"
                 >
-                  <span className="flex-shrink-0 h-7 w-7 rounded-md bg-panel border border-hairline flex items-center justify-center text-xs font-bold text-muted-foreground tabular-nums">
+                  <span className="flex-shrink-0 h-7 w-7 bg-graphite border border-hairline flex items-center justify-center text-xs font-bold text-ink-tertiary font-mono tabular-nums">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <cat.icon className="h-3.5 w-3.5 text-copper/70 flex-shrink-0" />
-                  <span className="text-xs font-medium truncate">{cat.label}</span>
+                  <span className="text-xs font-medium truncate text-ink-secondary">{cat.label}</span>
                 </div>
               ))}
             </div>
@@ -180,17 +186,19 @@ export default function HealthCheckPage() {
       </section>
 
       {/* Deliverables */}
-      <section className="border-b border-hairline bg-panel/20">
-        <div className="container py-12 px-4">
+      <section className="border-b border-hairline bg-graphite">
+        <div className="container px-4 py-16 md:py-20">
           <div className="max-w-3xl">
-            <h2 className="text-2xl font-bold mb-6">What you get</h2>
-            <div className="space-y-3">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-ink mb-10">
+              What you get
+            </h2>
+            <div className="space-y-0">
               {deliverables.map((item, i) => (
-                <div key={i} className="flex items-start gap-3 p-3 rounded-lg bg-card border border-hairline">
-                  <span className="flex-shrink-0 h-6 w-6 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                <div key={i} className="flex items-start gap-4 py-5 border-t border-hairline first:border-t-0">
+                  <span className="flex-shrink-0 h-6 w-6 bg-green-500/10 border border-green-500/20 flex items-center justify-center mt-0.5">
                     <CheckCircle2 className="h-3.5 w-3.5 text-green-600" />
                   </span>
-                  <span className="text-sm text-muted-foreground pt-0.5">{item}</span>
+                  <span className="text-ink-secondary leading-relaxed">{item}</span>
                 </div>
               ))}
             </div>
@@ -199,82 +207,79 @@ export default function HealthCheckPage() {
       </section>
 
       {/* Form */}
-      <section>
-        <div className="container py-12 px-4">
+      <section className="bg-panel/30">
+        <div className="container px-4 py-16 md:py-20">
           <div className="max-w-2xl mx-auto">
-            <Card className="border-hairline shadow-lg">
-              <CardHeader className="border-b border-hairline">
-                <div className="flex items-center gap-2.5">
-                  <span className="flex-shrink-0 h-10 w-10 rounded-xl bg-copper/10 border border-copper/20 flex items-center justify-center">
+            <div className="border border-hairline bg-graphite">
+              <div className="p-6 border-b border-hairline">
+                <div className="flex items-center gap-3">
+                  <span className="flex-shrink-0 h-10 w-10 bg-copper/10 border border-copper/20 flex items-center justify-center">
                     <ClipboardList className="h-5 w-5 text-copper" />
                   </span>
                   <div>
-                    <CardTitle>Request a Health Check</CardTitle>
-                    <CardDescription>Fill out this brief form and we will be in touch within 24 hours to schedule a preliminary call.</CardDescription>
+                    <h3 className="text-lg font-bold text-ink">Request a Health Check</h3>
+                    <p className="text-sm text-ink-secondary">Fill out this brief form and we will be in touch within 24 hours to schedule a preliminary call.</p>
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent className="pt-6">
+              </div>
+              <div className="p-6">
                 <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label htmlFor="name" className="text-sm font-medium">Your Name</label>
+                      <label htmlFor="name" className="text-sm font-medium text-ink">Your Name</label>
                       <input
                         id="name"
-                        className="flex h-11 w-full rounded-lg border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-muted-foreground/50"
+                        className="flex h-11 w-full border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-tertiary/50"
                         placeholder="Full name"
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label htmlFor="company" className="text-sm font-medium">Company Name</label>
+                      <label htmlFor="company" className="text-sm font-medium text-ink">Company Name</label>
                       <input
                         id="company"
-                        className="flex h-11 w-full rounded-lg border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-muted-foreground/50"
+                        className="flex h-11 w-full border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-tertiary/50"
                         placeholder="Scrap yard or recycling business name"
                       />
                     </div>
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label htmlFor="email" className="text-sm font-medium">Email</label>
+                      <label htmlFor="email" className="text-sm font-medium text-ink">Email</label>
                       <input
                         id="email"
                         type="email"
-                        className="flex h-11 w-full rounded-lg border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-muted-foreground/50"
-                        placeholder="you@example.com"
+                        className="flex h-11 w-full border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-tertiary/50"
+                        placeholder="your@email.com"
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label htmlFor="phone" className="text-sm font-medium">Phone</label>
+                      <label htmlFor="phone" className="text-sm font-medium text-ink">Phone</label>
                       <input
                         id="phone"
                         type="tel"
-                        className="flex h-11 w-full rounded-lg border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-muted-foreground/50"
-                        placeholder="Contact number"
+                        className="flex h-11 w-full border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-tertiary/50"
+                        placeholder="+44..."
                       />
                     </div>
                   </div>
                   <div className="space-y-1.5">
-                    <label htmlFor="message" className="text-sm font-medium">What is your biggest finance frustration right now?</label>
+                    <label htmlFor="message" className="text-sm font-medium text-ink">Tell us about your biggest finance headache</label>
                     <textarea
                       id="message"
-                      className="flex min-h-[120px] w-full rounded-lg border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-muted-foreground/50 resize-none"
-                      placeholder="Stock discrepancies? Late reporting? Fred not giving real numbers?"
+                      rows={4}
+                      className="flex w-full border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-tertiary/50 resize-none"
+                      placeholder="e.g. 'Our month-end takes 7 days and nobody trusts the numbers...'"
                     />
                   </div>
-                  <Button type="submit" className="w-full bg-copper hover:bg-copper/90 text-white h-11 gap-2">
-                    Request My Health Check
-                    <ArrowRight className="h-4 w-4" />
+                  <Button className="w-full bg-copper hover:bg-copper-bright text-white border-0 rounded-sm h-11">
+                    Request Health Check <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
+                  <p className="text-xs text-ink-tertiary text-center">
+                    No spam. No sales pressure. We will reply within 24 hours.
+                  </p>
                 </form>
-              </CardContent>
-            </Card>
-            <p className="mt-6 text-center text-sm text-muted-foreground">
-              Or email directly:{" "}
-              <a href="mailto:hello@scrapfinancepartners.co.uk" className="text-copper hover:underline font-medium">
-                hello@scrapfinancepartners.co.uk
-              </a>
-            </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
