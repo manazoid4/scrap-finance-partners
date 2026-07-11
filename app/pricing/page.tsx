@@ -154,7 +154,7 @@ export default function PricingPage() {
           <div className="mb-12">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-ink uppercase">One-off Sprints</h2>
             <p className="mt-4 text-ink-secondary max-w-2xl text-lg font-light">
-              Don't need a monthly service? We run targeted diagnostic and fix projects.
+              Don&apos;t need a monthly service? We run targeted diagnostic and fix projects.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-px bg-hairline border border-hairline">

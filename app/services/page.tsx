@@ -178,7 +178,7 @@ export default function ServicesPage() {
               What you get
             </h1>
             <p className="mt-6 text-lg md:text-xl text-ink-secondary max-w-2xl">
-              Not a menu of "services". These are the specific fixes we deliver to yards that are leaking margin through bad numbers.
+              Not a menu of &quot;services&quot;. These are the specific fixes we deliver to yards that are leaking margin through bad numbers.
             </p>
           </div>
         </div>

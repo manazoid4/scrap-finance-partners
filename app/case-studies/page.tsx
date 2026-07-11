@@ -56,7 +56,7 @@ export default function CaseStudiesPage() {
               <span className="text-copper">Real numbers.</span>
             </h1>
             <p className="text-xl text-ink-secondary leading-relaxed font-light">
-              We don't sell software. We sell clarity. Here is what happens when you fix the gap between the weighbridge and the balance sheet.
+              We don&apos;t sell software. We sell clarity. Here is what happens when you fix the gap between the weighbridge and the balance sheet.
             </p>
           </div>
         </div>

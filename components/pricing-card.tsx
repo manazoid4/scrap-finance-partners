@@ -1,4 +1,4 @@
-import { Check, Minus } from "lucide-react"
+import { Check } from "lucide-react"
 import { Button } from "./ui/button"
 
 interface PricingCardProps {
