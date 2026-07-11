@@ -1,137 +1,134 @@
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { ArrowRight, FileSpreadsheet, ShieldCheck, Search, TrendingUp, Server } from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 
-interface CaseStudy {
-  tag: string
-  icon: React.ComponentType<{ className?: string }>
-  title: string
-  problem: string
-  action: string
-  impact: string
-}
-
-const studies: CaseStudy[] = [
+const caseStudies = [
   {
-    tag: "Manual Reporting Reduction",
-    icon: FileSpreadsheet,
-    title: "£120k saved by killing redundant spreadsheets",
-    problem: "A multi-site scrap operator was running 40+ manual spreadsheets to produce monthly management accounts. Three people spent a week each month copying, pasting and reconciling. Errors were common. Nobody trusted the numbers.",
-    action: "Audited every spreadsheet, identified redundant data flows, and digitised reporting into a single connected system. Built automated feeds from Fred and Xero directly into management packs.",
-    impact: "£120,000 annual saving in labour cost. Reporting time dropped from 7 days to 2 days. Errors reduced by 80%. The finance team started focusing on analysis instead of copy-paste.",
+    title: "The Missing £20k",
+    type: "Audit & Recovery",
+    yardSize: "Medium (2 sites)",
+    problem: "The yard felt busy, tonnage was up, but cash flow was tight. Month-end accounts showed a margin drop that nobody could explain. The owner suspected theft or scale issues.",
+    action: "We audited the purchasing ledger against Fred weighbridge tickets. By digitising the supplier reconciliation process, we found a recurring manual input error on high-grade non-ferrous purchases.",
+    result: "Caught and recovered £20k in supplier overpayments within 3 weeks. Implemented a 3-way match control that prevents the error permanently.",
+    metrics: [
+      { label: "RECOVERED", value: "£20k" },
+      { label: "TIME TO FIX", value: "3 Weeks" },
+    ]
   },
   {
-    tag: "Audit Validation Control",
-    icon: ShieldCheck,
-    title: "£20k overpayment caught before it left",
-    problem: "During a routine month-end review, a duplicate invoice was spotted — same supplier, same amount, two weeks apart. The second invoice had been approved and was queued for payment.",
-    action: "Stopped the payment immediately. Traced the root cause to a broken PO workflow where approvals were happening without invoice matching. Implemented validation controls and a three-way match process.",
-    impact: "£20,000 overpayment prevented. New controls caught three further duplicates in the next six months. The supplier relationship improved because the yard was seen as precise, not chaotic.",
+    title: "Stock Reporting Overhaul",
+    type: "Process & Systems",
+    yardSize: "Large (Multi-site)",
+    problem: "It took the finance team 7 days every month to produce the management accounts. By the time the directors saw the margin, the data was too old to act on. Stock sheets were manipulated in Excel for hours.",
+    action: "We mapped the flow of data from the weighbridge to Xero. We cleaned the EWC codes in Fred, built a direct Power BI feed, and eliminated 4 manual spreadsheets.",
+    result: "Reduced the reporting cycle from 7 days to 2 days. The board now reviews true stock positions by day 3, with zero manual spreadsheet massaging.",
+    metrics: [
+      { label: "CYCLE CUT", value: "7→2 Days" },
+      { label: "ADMIN SAVED", value: "£120k/yr" },
+    ]
   },
   {
-    tag: "Supplier Reconciliation",
-    icon: Search,
-    title: "£90k recovered from 250+ suppliers",
-    problem: "A large scrap processor had not reconciled supplier statements in 18 months. Credits, rebates and overpayments were sitting on supplier accounts unclaimed. The finance team did not have time to chase them.",
-    action: "Systematically reconciled 250+ supplier accounts over a six-week sprint. Identified unclaimed credits, duplicate payments and pricing errors. Built a monthly reconciliation rhythm to prevent recurrence.",
-    impact: "£90,000 recovered and reinvested into the business. Monthly reconciliation process now takes 2 hours instead of being ignored. Supplier terms improved because statements were accurate.",
-  },
-  {
-    tag: "Transport Scorecards",
-    icon: TrendingUp,
-    title: "Transport cost visibility the board finally trusted",
-    problem: "A recycling group with 50+ vehicles had no consolidated view of transport costs. Fuel, maintenance, driver wages and VOR were scattered across five systems. Directors made pricing decisions without knowing true transport cost per tonne.",
-    action: "Built monthly transport scorecards consolidating fuel (Jigsaw Fuel/Geotab), maintenance (MRO), wages and VOR data. Added trend commentary and route-level cost-per-tonne analysis.",
-    impact: "Board-level visibility for the first time. Identified two routes that were loss-making and renegotiated. Transport P&L accuracy improved from estimated to within 3% of actual.",
-  },
-  {
-    tag: "Systems Integration",
-    icon: Server,
-    title: "Sage to D365 migration — data preserved, reporting rebuilt",
-    problem: "A £40m scrap group was migrating from Sage Line 50 to Microsoft D365. The project was six months behind. Supplier records were corrupted. P&L balances did not match. The finance team was working on both systems simultaneously and morale was low.",
-    action: "Led data validation and reconciliation workstream. Reconciled supplier and debtor balances between systems. Built P&L mapping and variance analysis. Supported machine-level fuel posting setup across 800+ assets. Trained the team on new reporting structures.",
-    impact: "Migration completed on revised timeline. No material balances lost. Month-one reporting in D365 matched Sage within 1%. Fuel posting automated for trucks, balers, shredders and forklifts. User adoption exceeded targets.",
-  },
+    title: "The Hidden Margin Leak",
+    type: "Diagnostic Sprint",
+    yardSize: "Small (Owner-managed)",
+    problem: "The yard was trading well but the owner didn't know which materials were actually making money. Pricing decisions were made on gut feel. Ferrous looked profitable, non-ferrous felt tight.",
+    action: "We ran a 2-week Finance Health Check. We built a gross margin model by material category, factoring in accurate transport and processing costs per tonne.",
+    result: "Revealed that transport costs were eating 40% of the ferrous margin on specific routes. The owner renegotiated haulage rates and dropped three unprofitable collection routes.",
+    metrics: [
+      { label: "MARGIN LIFT", value: "+4.5%" },
+      { label: "ROUTES CUT", value: "3" },
+    ]
+  }
 ]
 
 export default function CaseStudiesPage() {
   return (
-    <div className="flex flex-col">
-      {/* Hero */}
-      <section className="border-b border-hairline bg-graphite">
-        <div className="container px-4 py-20 md:py-28">
-          <div className="max-w-4xl">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-copper mb-6">Case Studies</p>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-ink">
-              Real results from
-              <br />
-              <span className="text-copper">real yards</span>
+    <div className="flex flex-col min-h-screen">
+      <section className="relative border-b border-hairline bg-graphite overflow-hidden">
+        <div className="absolute inset-0 bg-grid-fine opacity-40 pointer-events-none" />
+        <div className="absolute inset-0 noise opacity-20 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] hero-glow pointer-events-none" />
+        
+        <div className="container px-4 py-24 md:py-32 relative">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1] text-ink uppercase mb-8">
+              Real yards.<br />
+              <span className="text-copper">Real numbers.</span>
             </h1>
-            <p className="mt-8 text-xl md:text-2xl text-ink-secondary max-w-3xl leading-relaxed font-light">
-              These are anonymised examples from over two decades inside scrap and recycling finance. Every figure is real. Every outcome is measurable.
+            <p className="text-xl text-ink-secondary leading-relaxed font-light">
+              We don't sell software. We sell clarity. Here is what happens when you fix the gap between the weighbridge and the balance sheet.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Studies — stacked editorial rows */}
-      <section>
-        {studies.map((study, i) => {
-          const Icon = study.icon
-          const isDark = i % 2 === 1
-          return (
-            <div key={i} className={`border-b border-hairline ${isDark ? 'bg-panel/50' : ''}`}>
-              <div className="container px-4 py-16 md:py-20">
-                <div className="grid lg:grid-cols-[1fr_1.5fr] gap-10 lg:gap-16">
-                  {/* Left: tag + title */}
-                  <div>
-                    <div className="flex items-center gap-2 mb-6">
-                      <Icon className="h-5 w-5 text-copper" />
-                      <span className="text-sm font-mono uppercase tracking-wider text-copper">{study.tag}</span>
-                    </div>
-                    <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-[1.15] text-ink">
-                      {study.title}
-                    </h2>
+      <section className="bg-panel">
+        {caseStudies.map((study, index) => (
+          <div key={index} className="border-b border-hairline group">
+            <div className="container px-4 py-16 md:py-24">
+              <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-24">
+                
+                {/* Meta Column */}
+                <div>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-graphite border border-hairline mb-6 font-mono text-[10px] uppercase tracking-widest text-copper">
+                    {study.type}
                   </div>
-
-                  {/* Right: problem → action → impact */}
-                  <div className="space-y-0">
-                    <div className="py-5 border-t border-hairline first:border-t-0">
-                      <p className="text-xs font-mono uppercase tracking-wider text-ink-tertiary mb-2">Problem</p>
-                      <p className="text-ink-secondary leading-relaxed">{study.problem}</p>
-                    </div>
-                    <div className="py-5 border-t border-hairline">
-                      <p className="text-xs font-mono uppercase tracking-wider text-copper mb-2">Action</p>
-                      <p className="text-ink-secondary leading-relaxed">{study.action}</p>
-                    </div>
-                    <div className="py-5 border-t border-hairline">
-                      <p className="text-xs font-mono uppercase tracking-wider text-green mb-2">Impact</p>
-                      <p className="text-ink leading-relaxed font-medium">{study.impact}</p>
+                  <h2 className="text-3xl font-bold uppercase tracking-tight text-ink mb-8">
+                    {study.title}
+                  </h2>
+                  <div className="border border-hairline bg-graphite p-6">
+                    <p className="font-mono text-[10px] text-ink-muted uppercase tracking-widest mb-4">Profile</p>
+                    <p className="text-sm text-ink font-medium">{study.yardSize}</p>
+                    
+                    <div className="mt-6 pt-6 border-t border-hairline grid grid-cols-2 gap-4">
+                      {study.metrics.map((metric, i) => (
+                        <div key={i}>
+                          <p className="font-mono text-xl text-copper font-bold">{metric.value}</p>
+                          <p className="font-mono text-[9px] text-ink-muted uppercase mt-1">{metric.label}</p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
+
+                {/* Narrative Column */}
+                <div className="space-y-12">
+                  <div className="relative pl-6 md:pl-8 border-l-2 border-hairline group-hover:border-copper transition-colors">
+                    <h3 className="font-mono text-xs text-ink-muted uppercase tracking-widest mb-4">The Pain</h3>
+                    <p className="text-lg text-ink-secondary font-light leading-relaxed">
+                      {study.problem}
+                    </p>
+                  </div>
+                  
+                  <div className="relative pl-6 md:pl-8 border-l-2 border-hairline group-hover:border-copper transition-colors">
+                    <h3 className="font-mono text-xs text-ink-muted uppercase tracking-widest mb-4">The Fix</h3>
+                    <p className="text-lg text-ink-secondary font-light leading-relaxed">
+                      {study.action}
+                    </p>
+                  </div>
+
+                  <div className="relative pl-6 md:pl-8 border-l-2 border-copper bg-copper/5 py-4 pr-4">
+                    <h3 className="font-mono text-xs text-copper uppercase tracking-widest mb-4">The Control</h3>
+                    <p className="text-lg text-ink font-medium leading-relaxed">
+                      {study.result}
+                    </p>
+                  </div>
+                </div>
+
               </div>
             </div>
-          )
-        })}
+          </div>
+        ))}
       </section>
 
-      {/* CTA */}
-      <section className="bg-graphite">
-        <div className="container px-4 py-20 md:py-28">
-          <div className="max-w-3xl">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] text-ink mb-6">
-              Want results like these?
-            </h2>
-            <p className="text-lg text-ink-secondary leading-relaxed mb-8 max-w-2xl">
-              Every yard is different. The health check tells us exactly where your gaps are — and what fixing them is worth.
-            </p>
-            <Button asChild size="lg" className="bg-copper hover:bg-copper-bright text-white border-0 rounded-sm">
-              <Link href="/health-check">
-                Book a Health Check <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
+      <section className="bg-graphite py-24">
+        <div className="container px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-ink uppercase mb-8">
+            Stop losing margin to bad data.
+          </h2>
+          <Button asChild size="lg" className="bg-copper hover:bg-copper-bright text-white border-0 rounded-none text-base px-12 uppercase font-mono tracking-wide">
+            <Link href="/health-check">Get a Health Check <ArrowRight className="ml-2 w-4 h-4" /></Link>
+          </Button>
         </div>
       </section>
     </div>
