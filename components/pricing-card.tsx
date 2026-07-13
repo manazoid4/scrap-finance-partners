@@ -1,5 +1,5 @@
+import Link from "next/link"
 import { Check } from "lucide-react"
-import { Button } from "./ui/button"
 
 interface PricingCardProps {
   title: string
@@ -36,7 +36,7 @@ export function PricingCard({
         <div className="flex items-baseline gap-2 mb-4">
           <span className="text-4xl font-bold font-mono tracking-tight text-ink">{price}</span>
         </div>
-        <p className="text-sm text-ink-secondary leading-relaxed h-16">{description}</p>
+        <p className="text-sm text-ink-secondary leading-relaxed">{description}</p>
       </div>
       <div className="flex-1 px-8 pb-8">
         <ul className="space-y-4">
@@ -49,14 +49,14 @@ export function PricingCard({
         </ul>
       </div>
       <div className="p-8 pt-0 mt-auto">
-        <Button 
-          className={`w-full rounded-none font-mono uppercase tracking-wide text-xs ${
+        <Link
+          href="/contact"
+          className={`inline-flex w-full items-center justify-center h-11 font-semibold text-sm transition-colors ${
             isPopular ? 'bg-copper text-white hover:bg-copper-bright' : 'bg-panel-alt text-ink hover:bg-copper hover:text-white border border-hairline'
-          }`} 
-          variant={isPopular ? "default" : "outline"}
+          }`}
         >
-          Select {title}
-        </Button>
+          Start with {title}
+        </Link>
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/react";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
 
@@ -17,8 +18,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://scrap-finance-partners.vercel.app"),
   title: {
-    default: "Scrap Finance Partners — Finance clarity for UK scrap metal yards",
+    default: "Scrap Finance Partners — Know your margin per tonne",
     template: "%s — Scrap Finance Partners",
   },
   description:
@@ -59,6 +61,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <SiteFooter />
         </div>
+        <Analytics />
       </body>
     </html>
   );

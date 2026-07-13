@@ -135,6 +135,7 @@
   --color-ink: var(--ink);
   --color-ink-secondary: var(--ink-secondary);
   --color-ink-muted: var(--ink-muted);
+  --color-ink-tertiary: var(--ink-muted);
   --color-hairline: var(--hairline);
   --color-hairline-bright: var(--hairline-bright);
   --color-graphite: var(--graphite);
