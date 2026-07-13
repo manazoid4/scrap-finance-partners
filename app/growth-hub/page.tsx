@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function GrowthHubPage() {
   return (
@@ -25,7 +25,7 @@ export default function GrowthHubPage() {
               <CardTitle className="text-sm">Create Lead Magnet</CardTitle>
             </CardHeader>
             <CardContent className="p-4 pt-0 text-xs text-muted-foreground">
-              Draft the "Scrap Yard Finance Health Check" PDF.
+              Draft the Scrap Yard Finance Health Check PDF.
             </CardContent>
           </Card>
           <Card className="border-l-4 border-l-blue-500">

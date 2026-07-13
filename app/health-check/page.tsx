@@ -9,7 +9,10 @@ export default function HealthCheckPage() {
       <div className="text-center mb-10">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Scrap Yard Finance Health Check</h1>
         <p className="mt-4 text-muted-foreground text-lg">
-          A rapid diagnostic of your reporting, stock visibility, margin control, and system accuracy.
+          A fixed-price £2,500 diagnostic of your reporting, stock visibility, margin control, and system accuracy.
+        </p>
+        <p className="mt-3 text-sm font-medium text-copper">
+          One week. Written findings. Recoverable-value estimate. 30-day action plan.
         </p>
       </div>
 
@@ -53,7 +56,7 @@ export default function HealthCheckPage() {
               <CardTitle className="text-base">DWT Readiness</CardTitle>
             </CardHeader>
             <CardContent className="text-sm text-muted-foreground">
-              Are your systems and processes prepared for the Environment Agency's 2025 Digital Waste Tracking mandate?
+              Are your systems and processes prepared for the Environment Agency&apos;s 2025 Digital Waste Tracking mandate?
             </CardContent>
           </Card>
           <Card>
@@ -69,8 +72,8 @@ export default function HealthCheckPage() {
 
       <Card className="bg-muted/50 border-primary/20">
         <CardHeader>
-          <CardTitle>Request a Diagnostic</CardTitle>
-          <CardDescription>Fill out this brief form and we'll be in touch to schedule a preliminary call.</CardDescription>
+          <CardTitle>Request the £2,500 Health Check</CardTitle>
+          <CardDescription>Fill out this brief form and we&apos;ll be in touch to schedule a preliminary call.</CardDescription>
         </CardHeader>
         <CardContent>
           <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
