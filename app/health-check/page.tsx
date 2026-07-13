@@ -63,6 +63,7 @@ const diagnosticCategories = [
 const deliverables = [
   "Red/amber/green scoring across all four areas",
   "Specific issues identified — not generic 'opportunities for improvement'",
+  "Recoverable-value estimate: what leaked, what it may be worth, and what to fix first",
   "Costed priority list: what to fix first, what it costs, and what you gain",
   "Recommended next steps: whether that is fixed monthly support, a sprint, or internal fixes",
   "A 60-minute walkthrough call where we explain every finding",
@@ -91,13 +92,15 @@ export default function HealthCheckPage() {
               <span className="text-copper">numbers are hiding</span>
             </h1>
             <p className="mt-8 text-xl md:text-2xl text-ink-secondary max-w-3xl leading-relaxed font-light">
-              A one-off diagnostic of your reporting, stock visibility, margin control, and system accuracy. We deliver a red/amber/green report showing exactly what is broken and what it is costing you.
+              A fixed-price diagnostic of your reporting, stock visibility,
+              margin control, and system accuracy. We deliver written findings,
+              a recoverable-value estimate, and a 30-day action plan.
             </p>
             <div className="mt-8 flex items-center gap-4">
               <span className="bg-copper/10 text-copper px-4 py-2 text-sm font-semibold border border-copper/20 font-mono">
-                £750 – £1,500
+                £2,500 fixed
               </span>
-              <span className="text-sm text-ink-secondary">One-off · No ongoing commitment</span>
+              <span className="text-sm text-ink-secondary">One week · No ongoing commitment</span>
             </div>
           </div>
         </div>
