@@ -1,10 +1,10 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import LeadForm from "@/components/lead-form"
 import {
   AlertTriangle, EyeOff, TrendingDown, Gauge, ShieldCheck, FileCheck,
   ClipboardList, Calculator, BarChart3, Table2, Lock, CheckCircle2,
-  ArrowRight, Activity,
+  Activity,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -21,7 +21,7 @@ const reviewAreas = [
     title: "Stock Visibility",
     desc: "Are your stock sheets accurate? Do you trust your monthly stock position reporting? We check stock by category, location, and system alignment.",
     status: "red",
-    statusLabel: "Common issue",
+    statusLabel: "What we usually find",
   },
   {
     icon: TrendingDown,
@@ -64,14 +64,14 @@ const deliverables = [
   "Red/amber/green scoring across all four areas",
   "Specific issues identified — not generic 'opportunities for improvement'",
   "Costed priority list: what to fix first, what it costs, and what you gain",
-  "Recommended next steps: whether that is a monthly retainer, a sprint, or internal fixes",
+  "Recommended next steps: whether that is fixed monthly support, a sprint, or internal fixes",
   "A 60-minute walkthrough call where we explain every finding",
 ]
 
 const statusStyles: Record<string, { dot: string; badge: string; text: string }> = {
-  red: { dot: "bg-red-500", badge: "bg-red-500/10 text-red-700 border-red-500/20", text: "text-red-600" },
-  amber: { dot: "bg-amber-500", badge: "bg-amber-500/10 text-amber-700 border-amber-500/20", text: "text-amber-600" },
-  green: { dot: "bg-green-500", badge: "bg-green-500/10 text-green-700 border-green-500/20", text: "text-green-600" },
+  red: { dot: "bg-red", badge: "bg-red/10 text-red border-red/20", text: "text-red" },
+  amber: { dot: "bg-amber", badge: "bg-amber/10 text-amber border-amber/20", text: "text-amber" },
+  green: { dot: "bg-green", badge: "bg-green/10 text-green border-green/20", text: "text-green" },
 }
 
 export default function HealthCheckPage() {
@@ -223,61 +223,12 @@ export default function HealthCheckPage() {
                 </div>
               </div>
               <div className="p-6">
-                <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label htmlFor="name" className="text-sm font-medium text-ink">Your Name</label>
-                      <input
-                        id="name"
-                        className="flex h-11 w-full border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-tertiary/50"
-                        placeholder="Full name"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label htmlFor="company" className="text-sm font-medium text-ink">Company Name</label>
-                      <input
-                        id="company"
-                        className="flex h-11 w-full border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-tertiary/50"
-                        placeholder="Scrap yard or recycling business name"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label htmlFor="email" className="text-sm font-medium text-ink">Email</label>
-                      <input
-                        id="email"
-                        type="email"
-                        className="flex h-11 w-full border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-tertiary/50"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                    <div className="space-y-1.5">
-                      <label htmlFor="phone" className="text-sm font-medium text-ink">Phone</label>
-                      <input
-                        id="phone"
-                        type="tel"
-                        className="flex h-11 w-full border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-tertiary/50"
-                        placeholder="+44..."
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-1.5">
-                    <label htmlFor="message" className="text-sm font-medium text-ink">Tell us about your biggest finance headache</label>
-                    <textarea
-                      id="message"
-                      rows={4}
-                      className="flex w-full border border-hairline bg-panel/30 px-3 py-2 text-sm transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-tertiary/50 resize-none"
-                      placeholder="e.g. 'Our month-end takes 7 days and nobody trusts the numbers...'"
-                    />
-                  </div>
-                  <Button className="w-full bg-copper hover:bg-copper-bright text-white border-0 rounded-sm h-11">
-                    Request Health Check <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <p className="text-xs text-ink-tertiary text-center">
-                    No spam. No sales pressure. We will reply within 24 hours.
-                  </p>
-                </form>
+                <LeadForm
+                  source="health-check"
+                  messageLabel="Tell us about your biggest finance headache"
+                  messagePlaceholder="e.g. 'Our month-end takes 7 days and nobody trusts the numbers...'"
+                  submitLabel="Request Health Check"
+                />
               </div>
             </div>
           </div>

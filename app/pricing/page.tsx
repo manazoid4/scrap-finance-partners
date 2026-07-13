@@ -6,7 +6,7 @@ import { ArrowRight, Check, Minus } from "lucide-react"
 const comparisonRows = [
   { feature: "Monthly numbers matching your yard", l1: true, l2: true, l3: true },
   { feature: "Stock position report", l1: true, l2: true, l3: true },
-  { feature: "Plain-English management commentary", l1: true, l2: true, l3: true },
+  { feature: "What the numbers mean, in plain English", l1: true, l2: true, l3: true },
   { feature: "Monthly email summary", l1: true, l2: true, l3: true },
   { feature: "Improvement tracker", l1: true, l2: true, l3: true },
   { feature: "Cash flow forecast", l1: false, l2: true, l3: true },
@@ -53,12 +53,30 @@ export default function PricingPage() {
         <div className="absolute inset-0 noise opacity-20 pointer-events-none" />
         <div className="container px-4 py-24 md:py-32 relative">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1] text-ink uppercase mb-8">
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight text-ink mb-8">
               Fixed monthly pricing.
             </h1>
             <p className="text-xl text-ink-secondary leading-relaxed font-light">
               No hourly rates. No surprise invoices. No scope creep. You pay a fixed monthly fee and get the full service. Cancel any time.
             </p>
+          </div>
+          <div className="mt-8 grid md:grid-cols-2 gap-6">
+            <div className="border border-hairline bg-graphite p-6">
+              <p className="font-mono text-xs uppercase tracking-wider text-copper mb-2">What this replaces</p>
+              <p className="text-ink-secondary text-sm leading-relaxed">
+                A full-time finance director costs £80k+ a year before pension,
+                car and bonus. Level 3 is £24k a year — same numbers, same
+                decisions, no salary, no notice period.
+              </p>
+            </div>
+            <div className="border border-hairline bg-graphite p-6">
+              <p className="font-mono text-xs uppercase tracking-wider text-copper mb-2">Want software instead?</p>
+              <p className="text-ink-secondary text-sm leading-relaxed">
+                YardLedger turns your Fred and Xero exports into the same
+                reports, self-serve, from £149/month.{" "}
+                <a href="/software" className="text-copper hover:text-copper-bright">See YardLedger pricing →</a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -121,7 +139,7 @@ export default function PricingPage() {
             <table className="w-full text-sm text-left border-collapse border border-hairline bg-panel">
               <thead className="bg-panel-alt border-b border-hairline font-mono text-[10px] uppercase tracking-widest text-ink-muted">
                 <tr>
-                  <th className="px-6 py-4 font-normal border-r border-hairline">Deliverable</th>
+                  <th className="px-6 py-4 font-normal border-r border-hairline">What you get</th>
                   <th className="px-6 py-4 font-normal text-center border-r border-hairline">Level 1</th>
                   <th className="px-6 py-4 font-normal text-center border-r border-hairline text-copper">Level 2</th>
                   <th className="px-6 py-4 font-normal text-center">Level 3</th>

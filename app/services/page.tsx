@@ -31,7 +31,7 @@ const services: Service[] = [
   {
     num: "01",
     icon: BarChart3,
-    title: "KPI Dashboards & Management Reporting",
+    title: "Numbers That Matter, Monthly",
     description: "Monthly reporting that matches your yard. Not generic dashboards.",
     items: [
       "Monthly dashboards with trend commentary",
@@ -258,7 +258,7 @@ export default function ServicesPage() {
 
             {/* Helper text */}
             <p className="text-sm text-ink-muted mt-6 text-center">
-              Click any service to see exactly what is included.
+              Open any item to see exactly what is included.
             </p>
           </div>
         </div>
