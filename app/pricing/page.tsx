@@ -9,21 +9,21 @@ export const metadata: Metadata = {
 }
 
 const comparisonRows = [
-  { feature: "Monthly numbers matching your yard", l1: true, l2: true, l3: true },
-  { feature: "Stock position report", l1: true, l2: true, l3: true },
-  { feature: "What the numbers mean, in plain English", l1: true, l2: true, l3: true },
-  { feature: "Monthly email summary", l1: true, l2: true, l3: true },
-  { feature: "Improvement tracker", l1: true, l2: true, l3: true },
-  { feature: "Cash flow forecast", l1: false, l2: true, l3: true },
+  { feature: "Monthly yard finance pack", l1: true, l2: true, l3: true },
+  { feature: "Stock position by grade", l1: true, l2: true, l3: true },
+  { feature: "Gross margin by material category", l1: true, l2: true, l3: true },
+  { feature: "Fred/Xero data quality log", l1: true, l2: true, l3: true },
+  { feature: "Monthly owner action list", l1: true, l2: true, l3: true },
+  { feature: "Cash flow forecast and debtor pressure list", l1: false, l2: true, l3: true },
   { feature: "Monthly business partner meeting", l1: false, l2: true, l3: true },
-  { feature: "Margin & stock movement analysis", l1: false, l2: true, l3: true },
-  { feature: "Transport & commercial KPI pack", l1: false, l2: true, l3: true },
-  { feature: "Action tracker (what to do, by when)", l1: false, l2: true, l3: true },
-  { feature: "Strategic support & planning", l1: false, l2: false, l3: true },
+  { feature: "Margin per tonne by grade", l1: false, l2: true, l3: true },
+  { feature: "Transport cost per tonne", l1: false, l2: true, l3: true },
+  { feature: "Loss-making grade and route flags", l1: false, l2: true, l3: true },
   { feature: "Board-style management pack", l1: false, l2: false, l3: true },
-  { feature: "KPI review & challenge meetings", l1: false, l2: false, l3: true },
-  { feature: "System & process improvement roadmap", l1: false, l2: false, l3: true },
-  { feature: "Payroll, commission & coding advisory", l1: false, l2: false, l3: true },
+  { feature: "Quarterly bank/accountant pack", l1: false, l2: false, l3: true },
+  { feature: "Forecast, budget and scenario model", l1: false, l2: false, l3: true },
+  { feature: "KPI review and challenge meetings", l1: false, l2: false, l3: true },
+  { feature: "Payroll, commission and coding advisory", l1: false, l2: false, l3: true },
   { feature: "Direct owner decision support", l1: false, l2: false, l3: true },
 ]
 
@@ -142,9 +142,8 @@ export default function PricingPage() {
             <div>
               <p className="font-mono text-xs uppercase tracking-wider text-copper mb-2">What this replaces</p>
               <p className="text-ink-secondary text-sm leading-relaxed">
-                A full-time finance director costs £80k+ a year before pension,
-                car and bonus. Level 3 is £24k a year — same numbers, same
-                decisions, no salary, no notice period.
+                Not a bookkeeper. A finance operator who understands Fred, stock,
+                transport and margin.
               </p>
             </div>
             <div>
