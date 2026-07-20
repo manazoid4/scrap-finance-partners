@@ -3,7 +3,6 @@ import { Check } from "lucide-react"
 
 interface PricingCardProps {
   title: string
-  level: number
   price: string
   description: string
   features: string[]
@@ -12,7 +11,6 @@ interface PricingCardProps {
 
 export function PricingCard({
   title,
-  level,
   price,
   description,
   features,
