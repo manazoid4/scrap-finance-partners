@@ -6,38 +6,43 @@
 
 /* ============================================================
    SCRAP FINANCE PARTNERS — DESIGN TOKENS
-   Industrial brutalist. Dark ground, flat panels, hard 2px
-   borders instead of shadows. No glass, no blur, no soft glow —
-   copper is the one accent color, everything else is edges.
+   UK advisory. Light paper ground, deep ink, navy depth,
+   copper reserved as the single industry-heritage accent.
+   Serif authority display, generous whitespace, quiet rules.
+   NOTE: legacy var names kept (graphite/panel/ink/hairline)
+   so every existing utility class flips to the light system.
    ============================================================ */
 
 :root {
-  /* --- Core surfaces --- */
-  --graphite: #0f1115;       /* deepest background */
-  --panel: #1a1d21;          /* elevated surface (used sparingly, no card boxes) */
-  --panel-alt: #21252a;      /* hover / secondary surface */
-  --panel-raised: #262b31;  /* highest elevation */
+  /* --- Core surfaces (light-first) --- */
+  --graphite: #f7f6f3;       /* page ground — warm paper white */
+  --panel: #ffffff;          /* card / elevated surface */
+  --panel-alt: #f1efeb;      /* hover / secondary surface */
+  --panel-raised: #eceae4;   /* highest elevation */
+  --navy: #182433;           /* deep inverted blocks (footer, proof) */
+  --navy-ink: #e9ecf1;       /* text on navy */
 
   /* --- Brand accent --- */
-  --copper: #b87333;         /* the one accent — links, CTAs, numerals, active state */
-  --copper-bright: #d48a4a;  /* hover / active */
-  --copper-dim: #8a5626;     /* muted accent */
+  --copper: #a65e2e;         /* the one accent — heritage copper */
+  --copper-bright: #c1743d;  /* hover / active */
+  --copper-dim: #7d4622;     /* muted accent */
 
   /* --- Semantic indicators --- */
-  --green: #5b8c6f;          /* positive */
-  --amber: #d4a03d;          /* warning */
-  --red: #c45a4e;            /* destructive */
+  --green: #2f6b45;          /* positive */
+  --amber: #9a6700;          /* warning */
+  --red: #a3372c;            /* destructive */
 
   /* --- Neutrals --- */
-  --ink: #e8e6e3;            /* primary text */
-  --ink-secondary: #a8aeb5;  /* secondary text */
-  --ink-muted: #6c7278;      /* muted text */
-  --hairline: #4b525c;       /* border color — hard, visible line */
-  --hairline-bright: #626a74;/* hover border */
+  --ink: #16181d;            /* primary text */
+  --ink-secondary: #4a5160;  /* secondary text */
+  --ink-muted: #7a8090;      /* muted text */
+  --hairline: #e3e1db;       /* border color — quiet rule */
+  --hairline-bright: #c9c6bd;/* hover border */
 
   /* --- Typography --- */
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), "SF Mono", monospace;
+  --font-serif: Georgia, "Times New Roman", "Source Serif 4", serif;
 
   /* --- Spacing scale (4px base) --- */
   --space-1: 4px;
@@ -208,20 +213,22 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Typography hierarchy */
+  /* Typography hierarchy — serif authority display */
   h1 {
+    font-family: var(--font-serif);
     font-size: clamp(2.25rem, 5vw, 3.75rem);
     font-weight: 700;
     line-height: 1.08;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
   h2 {
+    font-family: var(--font-serif);
     font-size: clamp(1.625rem, 3.5vw, 2.25rem);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.15;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
@@ -321,13 +328,31 @@
   letter-spacing: -0.02em;
 }
 
-/* Display scale — homepage hero only. Bigger than h1, still capped at 6rem. */
+/* Display scale — homepage hero only. Serif broadsheet authority. */
 .display-xl {
-  font-size: clamp(2.75rem, 7.5vw, 6.5rem);
-  font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: -0.04em;
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   text-wrap: balance;
+}
+
+/* Navy inverted block — footer, proof sections */
+.bg-navy {
+  background: var(--navy);
+  color: var(--navy-ink);
+}
+.bg-navy .text-ink { color: var(--navy-ink); }
+.bg-navy .text-ink-secondary { color: rgba(233, 236, 241, 0.72); }
+.bg-navy .text-ink-muted { color: rgba(233, 236, 241, 0.5); }
+.bg-navy .border-hairline { border-color: rgba(233, 236, 241, 0.16); }
+
+/* Quiet card — light advisory surface */
+.advisory-card {
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  box-shadow: 0 1px 2px rgba(22, 24, 29, 0.04);
 }
 
 /* Outcome ticker — full-bleed marquee of brand claims. Pauses on hover. */
