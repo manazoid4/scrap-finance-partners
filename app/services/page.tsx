@@ -209,7 +209,7 @@ export default function ServicesPage() {
                       </span>
 
                       {/* Icon */}
-                      <span className={`flex-shrink-0 p-2.5 rounded-sm border transition-colors ${isOpen ? "border-copper/40 bg-copper/10" : "border-hairline bg-panel"}`}>
+                      <span className={`flex-shrink-0 p-2.5 rounded-none border transition-colors ${isOpen ? "border-copper/40 bg-copper/10" : "border-hairline bg-panel"}`}>
                         <service.icon className={`h-5 w-5 md:h-6 md:w-6 ${isOpen ? "text-copper" : "text-ink-secondary"}`} />
                       </span>
 
@@ -278,7 +278,7 @@ export default function ServicesPage() {
             </p>
 
             {/* Price card */}
-            <div className="inline-block border border-hairline bg-panel rounded-md p-8 mb-8">
+            <div className="inline-block border-2 border-hairline bg-panel rounded-none p-8 mb-8">
               <p className="text-3xl font-bold font-mono text-copper">£750 – £1,500</p>
               <p className="text-sm text-ink-muted mt-2">One-off diagnostic. No ongoing commitment.</p>
             </div>

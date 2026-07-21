@@ -6,8 +6,9 @@
 
 /* ============================================================
    SCRAP FINANCE PARTNERS — DESIGN TOKENS
-   Dark industrial palette. Bloomberg terminal meets boutique
-   consultancy. Every token is intentional.
+   Industrial brutalist. Dark ground, flat panels, hard 2px
+   borders instead of shadows. No glass, no blur, no soft glow —
+   copper is the one accent color, everything else is edges.
    ============================================================ */
 
 :root {
@@ -31,8 +32,8 @@
   --ink: #e8e6e3;            /* primary text */
   --ink-secondary: #a8aeb5;  /* secondary text */
   --ink-muted: #6c7278;      /* muted text */
-  --hairline: #33383f;       /* border color */
-  --hairline-bright: #3d434b;/* hover border */
+  --hairline: #4b525c;       /* border color — hard, visible line */
+  --hairline-bright: #626a74;/* hover border */
 
   /* --- Typography --- */
   --font-sans: var(--font-geist-sans), system-ui, sans-serif;
@@ -52,20 +53,23 @@
   --space-20: 80px;
   --space-24: 96px;
 
-  /* --- Radius (minimal, industrial) --- */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
-  --radius-xl: 8px;
-  --radius-2xl: 12px;
-  --radius-3xl: 16px;
-  --radius-4xl: 20px;
+  /* --- Radius: zero, everywhere. Edges are sharp on purpose. --- */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
 
-  /* --- Shadows (subtle elevation only) --- */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 2px 8px -2px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
-  --shadow-copper: 0 0 0 1px rgba(184, 115, 51, 0.2), 0 4px 16px -4px rgba(184, 115, 51, 0.15);
+  /* --- Depth: none. Borders carry structure, not shadows. --- */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-copper: none;
+
+  /* --- Border weight: hard, structural lines --- */
+  --border-w: 2px;
 
   /* --- Transitions --- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -302,12 +306,20 @@
   opacity: 0.5;
 }
 
-/* Glass panel — purposeful, not decorative */
+/* Flat panel — hard border, no blur, no transparency */
 .glass-panel {
-  background: color-mix(in srgb, var(--panel) 80%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--hairline);
+  background: var(--panel);
+  border: var(--border-w) solid var(--hairline);
+}
+
+/* Flagship block — one solid flat copper block per page, the loud move */
+.flagship-block {
+  background: var(--copper);
+  border: var(--border-w) solid var(--copper);
+  color: #100b06;
+}
+.flagship-block .flagship-label {
+  color: rgba(16, 11, 6, 0.7);
 }
 
 /* Copper accent text */
@@ -320,6 +332,29 @@
   font-family: var(--font-mono);
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.02em;
+}
+
+/* Display scale — homepage hero only. Bigger than h1, still capped at 6rem. */
+.display-xl {
+  font-size: clamp(2.75rem, 7.5vw, 6.5rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+/* Outcome ticker — full-bleed marquee of brand claims. Pauses on hover. */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 45s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
 }
 
 /* ============================================================
@@ -372,9 +407,9 @@
    COMPONENT UTILITIES — Hero, CTA, Accordion, Cards
    ============================================================ */
 
-/* Hero radial copper glow */
+/* Hero accent — flat, no soft glow */
 .hero-glow {
-  background: radial-gradient(ellipse 55% 50% at 75% 35%, rgba(184, 115, 51, 0.10), transparent 70%);
+  background: none;
 }
 
 /* Industrial diagonal stripe texture */
@@ -388,25 +423,20 @@
   );
 }
 
-/* CTA hover lift — copper */
+/* CTA hover — flat color swap, no shadow lift */
 .cta-copper {
-  transition: transform var(--duration-normal) var(--ease-out),
-              box-shadow var(--duration-normal) var(--ease-out),
-              background-color var(--duration-normal);
+  transition: background-color var(--duration-normal);
 }
 .cta-copper:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px -10px rgba(184, 115, 51, 0.5);
+  background-color: var(--copper-bright);
 }
 
-/* CTA hover lift — outline */
+/* CTA hover — outline, flat */
 .cta-outline {
-  transition: transform var(--duration-normal) var(--ease-out),
-              border-color var(--duration-normal),
+  transition: border-color var(--duration-normal),
               background-color var(--duration-normal);
 }
 .cta-outline:hover {
-  transform: translateY(-2px);
   border-color: var(--copper);
   background-color: rgba(184, 115, 51, 0.06);
 }
@@ -433,16 +463,12 @@
   background-color: rgba(184, 115, 51, 0.025);
 }
 
-/* Credibility card hover */
+/* Credibility card hover — border only, no lift, no shadow */
 .cred-card {
-  transition: transform var(--duration-normal) var(--ease-out),
-              border-color var(--duration-normal),
-              box-shadow var(--duration-normal);
+  transition: border-color var(--duration-normal);
 }
 .cred-card:hover {
-  transform: translateY(-3px);
   border-color: var(--copper);
-  box-shadow: var(--shadow-copper);
 }
 
 /* Bar chart grow animation */

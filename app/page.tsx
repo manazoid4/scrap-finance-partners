@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Know your margin per tonne | Scrap Finance Partners",
@@ -35,7 +35,7 @@ export default function Home() {
           <p className="font-mono text-xs uppercase tracking-widest text-copper mb-6">
             26 years in scrap. Fred inside out.
           </p>
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight max-w-3xl text-balance">
+          <h1 className="display-xl max-w-4xl">
             Your stock figures are wrong. We find where the margin went.
           </h1>
           <p className="mt-6 text-lg md:text-xl text-ink-secondary max-w-2xl leading-relaxed">
@@ -58,9 +58,9 @@ export default function Home() {
             </Link>
           </div>
           <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-mono text-xs text-ink-muted">
-            <span className="flex items-center gap-2"><Check className="h-4 w-4 text-copper" /> Month-end: 7 days down to 2</span>
-            <span className="flex items-center gap-2"><Check className="h-4 w-4 text-copper" /> No full-time FD salary</span>
-            <span className="flex items-center gap-2"><Check className="h-4 w-4 text-copper" /> Built for UK yards</span>
+            <span className="flex items-center gap-2"><span className="text-copper font-bold">→</span> Month-end: 7 days down to 2</span>
+            <span className="flex items-center gap-2"><span className="text-copper font-bold">→</span> No full-time FD salary</span>
+            <span className="flex items-center gap-2"><span className="text-copper font-bold">→</span> Built for UK yards</span>
           </div>
         </div>
       </section>
@@ -88,14 +88,14 @@ export default function Home() {
                 "Debtor days and cash flow you see coming",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <Check className="h-5 w-5 text-copper shrink-0 mt-0.5" />
+                  <span className="text-copper font-bold font-mono shrink-0">→</span>
                   <span className="text-ink">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="bg-graphite border border-hairline p-6">
+          <div className="bg-graphite border-2 border-hairline p-6">
             <div className="flex items-center justify-between border-b border-hairline pb-4 mb-6">
               <span className="font-mono text-xs text-ink-muted uppercase tracking-wider">
                 Example monthly report
@@ -138,7 +138,7 @@ export default function Home() {
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             {pains.map((p) => (
-              <div key={p.title} className="border border-hairline bg-panel p-6">
+              <div key={p.title} className="border-2 border-hairline bg-panel p-6">
                 <h3 className="text-lg font-semibold text-ink mb-3">{p.title}</h3>
                 <p className="text-sm text-ink-secondary leading-relaxed mb-4">{p.body}</p>
                 <p className="text-sm text-ink leading-relaxed border-t border-hairline pt-4">
@@ -173,13 +173,13 @@ export default function Home() {
                 See YardLedger <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </div>
-            <div className="border border-hairline bg-graphite p-6">
-              <p className="font-mono text-xs uppercase tracking-wider text-ink-muted mb-4">The guarantee</p>
-              <p className="text-xl font-semibold text-ink leading-snug">
+            <div className="flagship-block p-6">
+              <p className="flagship-label font-mono text-xs uppercase tracking-wider mb-4">The guarantee</p>
+              <p className="text-xl font-bold leading-snug">
                 3 months. If it hasn&apos;t saved you more than it cost, full
                 money back.
               </p>
-              <p className="mt-4 text-sm text-ink-secondary">
+              <p className="mt-4 text-sm opacity-80">
                 And 13% of every subscription goes to charity. Stated plainly,
                 because that&apos;s how we do everything else.
               </p>

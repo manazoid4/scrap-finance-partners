@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Yard Health Check — Scrap Finance Partners</title>
+<style>
+  :root{--graphite:#0f1115;--panel:#1a1d21;--copper:#b87333;--ink:#e8e6e3;--ink2:#a8aeb5;--muted:#6c7278;--line:#4b525c;--green:#5b8c6f;--red:#c45a4e;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--graphite);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+  .page{max-width:820px;margin:0 auto;padding:48px 32px}
+  .eyebrow{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--copper);margin-bottom:16px}
+  h1{font-size:clamp(30px,6vw,52px);font-weight:800;line-height:1.02;letter-spacing:-.03em;margin-bottom:16px}
+  .sub{color:var(--ink2);font-size:17px;max-width:56ch;margin-bottom:32px}
+  h2{font-size:13px;font-family:"Cascadia Mono",Consolas,monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--copper);margin:28px 0 12px}
+  .steps{border-top:2px solid var(--line)}
+  .step{display:grid;grid-template-columns:56px 1fr;gap:16px;padding:16px 0;border-bottom:2px solid var(--line)}
+  .step .n{font-family:"Cascadia Mono",Consolas,monospace;font-size:22px;font-weight:800;color:var(--copper)}
+  .step h3{font-size:16px;margin-bottom:4px}
+  .step p{font-size:13px;color:var(--ink2)}
+  ul{list-style:none;margin:0 0 8px}
+  li{padding-left:22px;position:relative;margin:7px 0}
+  li::before{content:"→";position:absolute;left:0;color:var(--copper);font-weight:700;font-family:"Cascadia Mono",Consolas,monospace}
+  .flag{background:var(--copper);color:#100b06;padding:20px 22px;margin:32px 0;border:2px solid var(--copper)}
+  .flag .k{font-family:"Cascadia Mono",Consolas,monospace;font-size:11px;text-transform:uppercase;letter-spacing:.12em;opacity:.7;margin-bottom:6px}
+  .flag p{font-size:18px;font-weight:700;line-height:1.3}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .card{border:2px solid var(--line);background:var(--panel);padding:16px}
+  .card h3{font-size:14px;margin-bottom:8px;font-family:"Cascadia Mono",Consolas,monospace;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  footer{margin-top:36px;padding-top:16px;border-top:2px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:"Cascadia Mono",Consolas,monospace;font-size:12px;color:var(--muted)}
+  footer b{color:var(--ink)}
+  @media(max-width:640px){.twocol{grid-template-columns:1fr}}
+  @media print{body{background:#fff;color:#111}.card,.steps .step{border-color:#111}.card{background:#fff}.card p,.sub,.step p{color:#444}footer{color:#444;border-color:#111}footer b{color:#111}}
+</style>
+</head>
+<body>
+<div class="page">
+  <p class="eyebrow">The Yard Health Check · Fixed price · One week</p>
+  <h1>Find out what your numbers are hiding.</h1>
+  <p class="sub">One week inside your figures. Stock, margin, VAT, cash. You get written findings, in plain English, with the leaks ranked by cost. No obligation to go further.</p>
+
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="step"><span class="n">01</span><div><h3>Send the exports</h3><p>Fred reports, weighbridge tickets, last VAT quarter, bank statements. CSV or PDF — we take what you have.</p></div></div>
+    <div class="step"><span class="n">02</span><div><h3>We reconcile</h3><p>Stock by grade vs book. Margin per tonne by material. Self-bill paperwork vs HMRC requirements. Debtor days vs terms.</p></div></div>
+    <div class="step"><span class="n">03</span><div><h3>You get the findings</h3><p>Written report: what's leaking, what it costs you a month, what to fix first. One call to walk it through.</p></div></div>
+  </div>
+
+  <h2>What we look at</h2>
+  <div class="twocol">
+    <div class="card"><h3>Stock</h3>
+      <ul><li>Weighbridge vs Fred vs accounts variance</li><li>Grade misclassification patterns</li><li>Shrinkage hotspots</li></ul>
+    </div>
+    <div class="card"><h3>Margin</h3>
+      <ul><li>Gross margin per tonne, by material</li><li>Loss-making grades and routes</li><li>Buy-price discipline vs LME</li></ul>
+    </div>
+    <div class="card"><h3>VAT &amp; compliance</h3>
+      <ul><li>Self-billing paperwork check</li><li>SMDA record-keeping</li><li>Input VAT exposure</li></ul>
+    </div>
+    <div class="card"><h3>Cash</h3>
+      <ul><li>Debtor days vs agreed terms</li><li>Cash flow 8-week view</li><li>Month-end speed check</li></ul>
+    </div>
+  </div>
+
+  <div class="flag">
+    <div class="k">The deal</div>
+    <p>Fixed price. One week. Written findings you keep either way. If we find nothing worth fixing, you've bought peace of mind.</p>
+  </div>
+
+  <footer>
+    <span><b>scrapfinancepartners</b> · fix the gaps</span>
+    <span>Book it → /health-check</span>
+  </footer>
+</div>
+</body>
+</html>

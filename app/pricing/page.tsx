@@ -50,7 +50,6 @@ export default function PricingPage() {
     <div className="flex flex-col min-h-screen">
       <section className="relative border-b border-hairline bg-graphite overflow-hidden">
         <div className="absolute inset-0 bg-grid-fine opacity-40 pointer-events-none" />
-        <div className="absolute inset-0 noise opacity-20 pointer-events-none" />
         <div className="container px-4 py-24 md:py-32 relative">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight text-ink mb-8">
