@@ -6,7 +6,6 @@ import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "/services", label: "What You Get" },
-  { href: "/software", label: "Software" },
   { href: "/case-studies", label: "Results" },
   { href: "/pricing", label: "Pricing" },
   { href: "/founder", label: "Founder" },
@@ -17,7 +16,7 @@ export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-hairline bg-graphite">
+    <header className="sticky top-0 z-50 w-full border-b border-hairline bg-panel/95 backdrop-blur-sm">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2.5 group" onClick={() => setOpen(false)}>
           <span className="h-3 w-3 bg-copper group-hover:bg-copper-bright transition-colors" />
@@ -53,7 +52,7 @@ export default function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="lg:hidden border-t border-hairline bg-graphite">
+        <nav className="lg:hidden border-t border-hairline bg-panel">
           <ul className="container mx-auto max-w-7xl px-4 py-2">
             {navLinks.map((l) => (
               <li key={l.href}>

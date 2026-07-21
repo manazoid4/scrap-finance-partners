@@ -151,39 +151,80 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SOFTWARE TEASER */}
+      {/* HOW WORKING WITH US GOES */}
       <section className="border-b border-hairline bg-panel py-20 md:py-24">
         <div className="container mx-auto max-w-7xl px-4">
-          <p className="font-mono text-xs uppercase tracking-widest text-copper mb-4">New — YardLedger</p>
-          <div className="grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight mb-5">
-                The same numbers, without waiting for us.
-              </h2>
-              <p className="text-lg text-ink-secondary leading-relaxed mb-6">
-                YardLedger turns your Fred and Xero exports into verified stock
-                positions, margin per tonne by grade, and a month-end pack the
-                bank actually reads. Upload a CSV. Get answers. No integrations,
-                no IT project.
-              </p>
-              <Link
-                href="/software"
-                className="inline-flex items-center justify-center h-12 px-6 bg-copper hover:bg-copper-bright text-white font-semibold transition-colors"
-              >
-                See YardLedger <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </div>
-            <div className="flagship-block p-6">
-              <p className="flagship-label font-mono text-xs uppercase tracking-wider mb-4">The guarantee</p>
-              <p className="text-xl font-bold leading-snug">
-                3 months. If it hasn&apos;t saved you more than it cost, full
-                money back.
-              </p>
-              <p className="mt-4 text-sm opacity-80">
-                And 13% of every subscription goes to charity. Stated plainly,
-                because that&apos;s how we do everything else.
-              </p>
-            </div>
+          <p className="font-mono text-xs uppercase tracking-widest text-copper mb-4">How it works</p>
+          <h2 className="mb-12 max-w-2xl">
+            No retained mystery. Three steps, priced up front.
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                n: "01",
+                title: "Health Check",
+                body: "One week inside your numbers. Stock, margin, VAT, cash — a written red/amber/green report showing what's broken and what it costs you a month.",
+                price: "£750 – £1,500, fixed",
+              },
+              {
+                n: "02",
+                title: "Fix the gaps",
+                body: "Targeted sprints on what the Health Check found: stock accuracy, Fred setup, margin reporting. Each priced and scoped before we start.",
+                price: "From £1,000 per sprint",
+              },
+              {
+                n: "03",
+                title: "Numbers every month",
+                body: "Month-end in days, margin per tonne by grade, and someone who tells you what the numbers mean — without a full-time FD salary.",
+                price: "From £500/month, cancel anytime",
+              },
+            ].map((s) => (
+              <div key={s.n} className="advisory-card p-8">
+                <p className="font-mono text-2xl font-bold text-copper mb-4">{s.n}</p>
+                <h3 className="text-xl font-semibold text-ink mb-3">{s.title}</h3>
+                <p className="text-sm text-ink-secondary leading-relaxed mb-5">{s.body}</p>
+                <p className="font-mono text-sm text-ink border-t border-hairline pt-4">{s.price}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOUNDER CREDIBILITY */}
+      <section className="border-b border-hairline bg-navy py-20 md:py-24">
+        <div className="container mx-auto max-w-7xl px-4 grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-widest text-copper mb-4">Who you&apos;re dealing with</p>
+            <h2 className="text-ink mb-6">
+              26 years in scrap metal finance. Started on the weighbridge.
+            </h2>
+            <p className="text-lg text-ink-secondary leading-relaxed mb-8 max-w-2xl">
+              Not a generalist accountant learning your industry on your time.
+              Fred inside out, LME pricing, grade margins, self-billing VAT —
+              the specific problems of UK yards, seen dozens of times before
+              they land on your desk.
+            </p>
+            <Link
+              href="/founder"
+              className="inline-flex items-center text-copper hover:text-copper-bright font-semibold"
+            >
+              Read the full background <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </div>
+          <div className="border border-hairline p-8">
+            <ul className="space-y-4">
+              {[
+                "18 years specialising in UK scrap metal",
+                "Fred system specialist — setup to reporting",
+                "Month-end cut from 7 days to 2, repeatedly",
+                "Stock recoveries of £20k–£100k found in sprints",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3 text-ink-secondary">
+                  <span className="text-copper font-bold font-mono shrink-0">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>

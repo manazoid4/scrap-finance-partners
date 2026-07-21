@@ -23,7 +23,7 @@ const footerSections = [
 
 export default function SiteFooter() {
   return (
-    <footer className="border-t border-hairline bg-graphite">
+    <footer className="border-t border-hairline bg-navy">
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-1 gap-10 py-12 md:grid-cols-4">
           <div className="md:col-span-2">
