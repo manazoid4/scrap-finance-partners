@@ -1,6 +1,7 @@
 {
   "name": "scrap-finance-partners",
   "version": "0.1.0",
+  "description": "Marketing site for Scrap Finance Partners — a UK consultancy for scrap metal and recycling businesses, plus the YardLedger product page.",
   "private": true,
   "scripts": {
     "dev": "next dev",

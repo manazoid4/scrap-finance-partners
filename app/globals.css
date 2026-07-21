@@ -14,12 +14,12 @@
 :root {
   /* --- Core surfaces --- */
   --graphite: #0f1115;       /* deepest background */
-  --panel: #1a1d21;          /* card / elevated surface */
+  --panel: #1a1d21;          /* elevated surface (used sparingly, no card boxes) */
   --panel-alt: #21252a;      /* hover / secondary surface */
   --panel-raised: #262b31;  /* highest elevation */
 
   /* --- Brand accent --- */
-  --copper: #b87333;         /* primary accent */
+  --copper: #b87333;         /* the one accent — links, CTAs, numerals, active state */
   --copper-bright: #d48a4a;  /* hover / active */
   --copper-dim: #8a5626;     /* muted accent */
 
@@ -75,8 +75,7 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --duration-slow: 400ms;
+  --duration-normal: 200ms;
 
   /* --- Z-index scale --- */
   --z-dropdown: 1000;
@@ -198,7 +197,6 @@
 
   html {
     @apply font-sans;
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -261,7 +259,6 @@
   }
   ::-webkit-scrollbar-thumb {
     background: var(--hairline);
-    border-radius: var(--radius-sm);
   }
   ::-webkit-scrollbar-thumb:hover {
     background: var(--hairline-bright);
@@ -272,16 +269,6 @@
     outline: 2px solid var(--copper);
     outline-offset: 2px;
   }
-}
-
-/* ============================================================
-    NOISE / GRAIN TEXTURE
-    ============================================================ */
-
-.noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 200px 200px;
 }
 
 /* ============================================================
@@ -445,7 +432,7 @@
 .accordion-content {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows var(--duration-slow) var(--ease-out);
+  transition: grid-template-rows var(--duration-normal) var(--ease-out);
 }
 .accordion-content[data-state="open"] {
   grid-template-rows: 1fr;
@@ -454,14 +441,11 @@
   overflow: hidden;
 }
 
-/* Service row hover */
-.service-row {
-  transition: background-color var(--duration-normal) var(--ease-out),
-              border-color var(--duration-normal);
-}
-.service-row:hover {
-  background-color: rgba(184, 115, 51, 0.025);
-}
+/* ============================================================
+   TICKER — continuous horizontal marquee
+   Used once, on /services, as a highlight strip beneath the
+   hero. Pauses on hover, respects prefers-reduced-motion.
+   ============================================================ */
 
 /* Credibility card hover — border only, no lift, no shadow */
 .cred-card {
@@ -471,14 +455,13 @@
   border-color: var(--copper);
 }
 
-/* Bar chart grow animation */
-@keyframes bar-grow {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
+.ticker-track:hover {
+  animation-play-state: paused;
 }
-.bar-animate {
-  transform-origin: bottom;
-  animation: bar-grow 0.7s var(--ease-out) forwards;
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* ============================================================
@@ -492,27 +475,10 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
-
-  .line-accent {
-    transform: scaleX(1);
-  }
-
-  .cta-copper:hover,
-  .cta-outline:hover,
-  .cred-card:hover {
-    transform: none;
-  }
-
-  .bar-animate {
+  .ticker-track {
     animation: none;
-    transform: scaleY(1);
   }
 }
 
