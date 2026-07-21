@@ -68,14 +68,6 @@ const levels = [
   },
 ]
 
-const improvementProjectAreas = [
-  "Stock Accuracy",
-  "Margin Reporting",
-  "Transport cost visibility",
-  "Systems reporting",
-  "Finance Processes",
-]
-
 const sprintData = [
   {
     title: "Scrap Yard Finance Health Check",

@@ -8,17 +8,6 @@ export const metadata: Metadata = {
     "26 years' finance experience. 18 years specialising in UK scrap metal. Built for yards, not boardrooms — 10 specific fixes for stock, margin, transport, reporting and systems.",
 }
 
-const tickerPhrases = [
-  "STOCK RECONCILED",
-  "MARGIN BY GRADE",
-  "26 YEARS IN SCRAP",
-  "MONTH-END IN DAYS NOT WEEKS",
-  "NO CORPORATE FLUFF",
-  "KNOW YOUR NUMBERS",
-  "BUILT FOR YARDS",
-  "FROM YARD TO BALANCE SHEET",
-]
-
 const howWeHelp = [
   {
     title: "Understanding your current setup",
@@ -195,77 +184,41 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Accordion */}
+      {/* The 10 fixes — static hard-grid list */}
       <section className="border-b border-hairline">
-        <div className="container py-12 md:py-16 px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="border border-hairline rounded-md overflow-hidden">
-              {services.map((service, i) => {
-                const isOpen = openIndex === i
-                const isLast = i === services.length - 1
-                return (
-                  <div
-                    key={i}
-                    className={`service-row ${!isLast ? "border-b border-hairline" : ""}`}
-                  >
-                    {/* Accordion header */}
-                    <button
-                      onClick={() => setOpenIndex(isOpen ? null : i)}
-                      className="w-full flex items-center gap-4 md:gap-6 p-5 md:p-6 text-left group"
-                      aria-expanded={isOpen}
-                    >
-                      {/* Number */}
-                      <span className={`text-2xl md:text-3xl font-bold font-mono flex-shrink-0 transition-colors ${isOpen ? "text-copper" : "text-hairline-bright group-hover:text-ink-muted"}`}>
-                        {service.num}
-                      </span>
-
-                      {/* Icon */}
-                      <span className={`flex-shrink-0 p-2.5 rounded-none border transition-colors ${isOpen ? "border-copper/40 bg-copper/10" : "border-hairline bg-panel"}`}>
-                        <service.icon className={`h-5 w-5 md:h-6 md:w-6 ${isOpen ? "text-copper" : "text-ink-secondary"}`} />
-                      </span>
-
-                      {/* Title + description */}
-                      <div className="flex-1 min-w-0">
-                        <h3 className={`font-bold text-base md:text-lg transition-colors ${isOpen ? "text-copper" : "text-ink"}`}>
-                          {service.title}
-                        </h3>
-                        <p className="text-sm text-ink-secondary mt-1 hidden md:block">
-                          {service.description}
-                        </p>
-                      </div>
-
-                      {/* Chevron */}
-                      <ChevronDown
-                        className={`h-5 w-5 flex-shrink-0 text-ink-muted transition-transform duration-300 ${isOpen ? "rotate-180 text-copper" : ""}`}
-                      />
-                    </button>
-
-                    {/* Accordion content */}
-                    <div
-                      className="accordion-content"
-                      data-state={isOpen ? "open" : "closed"}
-                    >
-                      <div className="accordion-inner">
-                        <div className="px-5 md:px-6 pb-6 pl-16 md:pl-24">
-                          {/* Mobile description */}
-                          <p className="text-sm text-ink-secondary mb-4 md:hidden">
-                            {service.description}
-                          </p>
-                          <ul className="space-y-2.5">
-                            {service.items.map((item, j) => (
-                              <li key={j} className="flex items-start gap-3 text-sm text-ink-secondary">
-                                <span className="mt-1.5 h-1.5 w-1.5 bg-copper/60 rounded-full flex-shrink-0" />
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+        <div className="container mx-auto max-w-4xl px-4 py-12 md:py-16">
+          <div className="border-2 border-hairline">
+            {services.map((service, i) => (
+              <div
+                key={service.num}
+                className={`service-row p-5 md:p-6 ${i !== services.length - 1 ? "border-b-2 border-hairline" : ""}`}
+              >
+                <div className="flex items-start gap-4 md:gap-6">
+                  <span className="text-2xl md:text-3xl font-bold font-mono text-copper flex-shrink-0">
+                    {service.num}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-base md:text-lg text-ink">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm text-ink-secondary mt-1 mb-4">
+                      {service.summary}
+                    </p>
+                    <ul className="space-y-2.5">
+                      {service.items.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-sm text-ink-secondary">
+                          <span className="text-copper font-bold font-mono flex-shrink-0">→</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                )
-              })}
-            </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* How We Help — intro */}
       <section className="border-b border-hairline">
@@ -293,36 +246,6 @@ export default function ServicesPage() {
           <p className="mt-10 pt-6 border-t border-hairline text-lg text-ink leading-relaxed">
             Our goal is simple: give owners clearer visibility, stronger controls and confidence in the numbers behind their business.
           </p>
-        </div>
-      </section>
-
-      {/* Health Check CTA — prominent, industrial */}
-      <section className="bg-graphite relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-20" />
-        <div className="absolute inset-0 hero-glow" />
-        <div className="container relative py-16 md:py-24 px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-4xl font-bold text-ink mb-4">
-              Not sure where the leak is?
-            </h2>
-            <p className="text-lg text-ink-secondary mb-10 max-w-2xl mx-auto">
-              The Scrap Yard Finance Health Check reviews your reporting, stock, margin, processes and systems. We deliver a red/amber/green report showing exactly what is broken and what it is costing you.
-            </p>
-
-            {/* Price card */}
-            <div className="inline-block border-2 border-hairline bg-panel rounded-none p-8 mb-8">
-              <p className="text-3xl font-bold font-mono text-copper">£750 – £1,500</p>
-              <p className="text-sm text-ink-muted mt-2">One-off diagnostic. No ongoing commitment.</p>
-            </div>
-
-            <div>
-              <Button asChild size="lg" className="cta-copper bg-copper hover:bg-copper-bright text-white border-0">
-                <Link href="/health-check">
-                  Book a Health Check <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
         </div>
       </section>
 
