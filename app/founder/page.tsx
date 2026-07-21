@@ -62,24 +62,16 @@ const selectedImpact = [
 export default function FounderPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="border-b border-hairline">
-        <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
-          <p className="font-mono text-xs uppercase tracking-widest text-copper mb-6">Founder</p>
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight text-ink">
-            Built from real yard experience, not theory.
-          </h1>
-          <div className="mt-10 space-y-5 text-lg text-ink-secondary leading-relaxed max-w-2xl">
-            <p>
-              I founded Scrap Finance Partners to help recycling businesses improve visibility, strengthen controls and make better commercial decisions. I have spent over 25 years working in finance, including 18 years supporting UK scrap metal and recycling businesses.
-            </p>
-            <p>
-              Throughout my career, I have seen the same challenge repeatedly: businesses often have plenty of data, but not always the right visibility to understand what is happening and act quickly.
-            </p>
-            <p>
-              Recycling is a fast-moving industry. Stock changes daily, material prices move, transport costs fluctuate and commercial decisions need to be made quickly. When reporting is delayed or disconnected from operations, opportunities can be missed and margins can be lost.
-            </p>
-            <p>
-              That is where Scrap Finance Partners helps. My experience covers finance, operations, transport, commercial reporting and business systems. I understand that good finance is not just about producing reports — it is about understanding the operation behind the numbers and helping owners make better decisions.
+      <section className="relative border-b border-hairline bg-graphite overflow-hidden">
+        <div className="absolute inset-0 bg-grid-fine opacity-40 pointer-events-none" />
+        
+        <div className="container px-4 py-24 md:py-32 relative">
+          <div className="max-w-4xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1] text-ink uppercase mb-8">
+              I have seen this exact problem 40 times.
+            </h1>
+            <p className="text-xl text-ink-secondary leading-relaxed font-light mb-8 max-w-3xl">
+              I know the reality of scrap businesses: fast-moving yards, stock pressure, manual workarounds, transport issues, commercial urgency and finance that arrives six weeks too late to do anything about it.
             </p>
           </div>
         </div>

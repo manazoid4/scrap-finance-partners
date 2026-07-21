@@ -8,7 +8,7 @@ export function PremiumCard({
   className?: string;
 }) {
   return (
-    <div className={`border border-hairline bg-panel p-6 ${className}`}>
+    <div className={`glass-panel rounded-none p-6 ${className}`}>
       {children}
     </div>
   );

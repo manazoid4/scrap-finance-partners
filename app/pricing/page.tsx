@@ -102,40 +102,16 @@ const sprintData = [
 export default function PricingPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="border-b border-hairline">
-        <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight text-ink">
-            Flexible support designed around your business
-          </h1>
-          <p className="mt-6 text-lg md:text-xl text-ink-secondary leading-relaxed">
-            Every recycling business operates differently. The level of support depends on your current challenges, systems and objectives. We support yards through:
-          </p>
-
-          <div className="mt-12 space-y-10">
-            <div className="border-t border-hairline pt-8">
-              <h2 className="font-mono text-xs uppercase tracking-widest text-copper mb-3">
-                Diagnostic Reviews
-              </h2>
-              <p className="text-ink-secondary leading-relaxed">
-                A focused review of your current processes, reporting, stock controls and margin visibility — leading into Improvement Projects covering:
-              </p>
-              <ul className="mt-4 space-y-2">
-                {improvementProjectAreas.map((area) => (
-                  <li key={area} className="text-ink-secondary pl-4 border-l border-hairline">
-                    {area}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="border-t border-hairline pt-8">
-              <h2 className="font-mono text-xs uppercase tracking-widest text-copper mb-3">
-                Ongoing Finance Business Partner Support
-              </h2>
-              <p className="text-ink-secondary leading-relaxed">
-                Regular support for owners who want better visibility, stronger controls and clearer decision-making without the cost of a full-time senior finance resource.
-              </p>
-            </div>
+      <section className="relative border-b border-hairline bg-graphite overflow-hidden">
+        <div className="absolute inset-0 bg-grid-fine opacity-40 pointer-events-none" />
+        <div className="container px-4 py-24 md:py-32 relative">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight text-ink mb-8">
+              Fixed monthly pricing.
+            </h1>
+            <p className="text-xl text-ink-secondary leading-relaxed font-light">
+              No hourly rates. No surprise invoices. No scope creep. You pay a fixed monthly fee and get the full service. Cancel any time.
+            </p>
           </div>
 
           <div className="mt-12 grid md:grid-cols-2 gap-8 border-t border-hairline pt-8">

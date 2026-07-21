@@ -55,20 +55,19 @@ const caseStudies = [
 export default function CaseStudiesPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="border-b border-hairline">
-        <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight text-ink">
-            Real yards. Real numbers.
-          </h1>
-          <p className="mt-6 text-xl text-ink-secondary leading-relaxed">
-            We don&apos;t sell software. We create clarity.
-          </p>
-          <p className="mt-4 text-lg text-ink-secondary leading-relaxed max-w-2xl">
-            We help recycling businesses understand what is really happening across their operation — connecting operational data, finance and commercial performance to uncover opportunities, improve control and protect margins.
-          </p>
-          <p className="mt-6 font-mono text-xs uppercase tracking-widest text-copper">
-            Below are examples of types of improvements we deliver
-          </p>
+      <section className="relative border-b border-hairline bg-graphite overflow-hidden">
+        <div className="absolute inset-0 bg-grid-fine opacity-40 pointer-events-none" />
+        
+        <div className="container px-4 py-24 md:py-32 relative">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1] text-ink uppercase mb-8">
+              Real yards.<br />
+              <span className="text-copper">Real numbers.</span>
+            </h1>
+            <p className="text-xl text-ink-secondary leading-relaxed font-light">
+              We don&apos;t sell software. We sell clarity. Here is what happens when you fix the gap between the weighbridge and the balance sheet.
+            </p>
+          </div>
         </div>
       </section>
 

@@ -98,10 +98,16 @@ Use these exact words and themes where possible:
 
 ## Design Principles
 
-- Dark, industrial feel (copper, steel, dark panels)
-- No rounded corners on everything — some edges should feel sharp
-- No generic gradients or soft pastels
-- Typography: bold headlines, readable body, monospace for numbers
+**System: industrial brutalist.** Dark ground stays (this audience trusts terminal, not hobby-project cream), but structure comes from hard edges, not soft depth.
+
+- Dark graphite ground (#0f1115), flat panels, copper (#b87333) as the ONE accent
+- Zero border-radius, everywhere. Edges are sharp on purpose
+- 2px solid borders carry structure. No shadows, no blur, no glass, no glow
+- One flat solid-copper "flagship block" per page maximum — the loud move, earned not decorated
+- Display type: oversized (up to 6.5rem), weight 800, tight tracking (.display-xl)
+- Arrow bullets (→) over check icons where copy voice allows
+- Monospace for numbers, labels, and status tags — tabular figures always
+- Hard internal dividers inside cards (border-top/border-left), not spacing alone
 - Space between sections should feel intentional, not like padding
 - Every component must feel like it has a PURPOSE, not decoration
 
