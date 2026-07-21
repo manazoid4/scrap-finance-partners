@@ -1,8 +1,12 @@
-import { PricingCard } from "@/components/pricing-card"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { ArrowRight, Check, Minus } from "lucide-react"
-import { featureScaffold, pricing, sprints } from "@/data/pricing"
+import type { Metadata } from "next"
+import { ArrowRight } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Pricing | Scrap Finance Partners",
+  description:
+    "Flexible support designed around your business. Diagnostic reviews, improvement projects and ongoing finance business partner support — no one-size-fits-all packages.",
+}
 
 const comparisonRows = [
   { feature: "Monthly yard finance pack", l1: true, l2: true, l3: true },
@@ -23,39 +27,126 @@ const comparisonRows = [
   { feature: "Direct owner decision support", l1: false, l2: false, l3: true },
 ]
 
+const levels = [
+  {
+    title: "Level 1",
+    price: "£500 /mo",
+    description: "For owner-managed yards that need to see their numbers clearly for the first time.",
+    features: [
+      "Monthly numbers that match your yard",
+      "Stock position report — ground truth",
+      "What the numbers mean — in plain English",
+      "One monthly email summary",
+      "Improvement tracker — what we fixed and what is next",
+    ],
+  },
+  {
+    title: "Level 2",
+    price: "£1,000 /mo",
+    description: "For growing yards that need margin control, transport analysis, and active cash management.",
+    features: [
+      "Everything in Level 1",
+      "Margin & stock movement analysis",
+      "Transport & commercial KPI pack",
+      "Cash flow forecast",
+      "Monthly business partner meeting",
+      "Action tracker (what to do, by when)",
+    ],
+  },
+  {
+    title: "Level 3",
+    price: "£2,000 /mo",
+    description: "For multi-site groups needing strategic financial direction and board-level reporting.",
+    features: [
+      "Everything in Level 2",
+      "Board-style management pack",
+      "Strategic support & planning",
+      "KPI review & challenge meetings",
+      "System & process improvement roadmap",
+      "Direct owner decision support",
+    ],
+  },
+]
+
+const improvementProjectAreas = [
+  "Stock Accuracy",
+  "Margin Reporting",
+  "Transport cost visibility",
+  "Systems reporting",
+  "Finance Processes",
+]
+
+const sprintData = [
+  {
+    title: "Scrap Yard Finance Health Check",
+    price: "£750 – £1,500",
+    description: "Review reporting, stock, margin, processes and systems. Deliver a red/amber/green improvement report with priorities and costed fixes.",
+  },
+  {
+    title: "Stock Accuracy Sprint",
+    price: "£1,500 – £3,000",
+    description: "Deep dive into stock discrepancies. Find what is missing, why it is missing, and how to stop it happening. Typically recovers £20k–£100k in lost stock value.",
+  },
+  {
+    title: "Fred System Setup",
+    price: "£1,000 – £2,500",
+    description: "New site configuration, EWC code overhaul, transport module activation, stock sheet build. Done properly so it works from day one.",
+  },
+  {
+    title: "Commission Model Fix",
+    price: "£750 – £1,500",
+    description: "Audit existing commission calculations, fix errors, build a model that matches your deal sheets, and train your team to run it.",
+  },
+]
+
 export default function PricingPage() {
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="relative border-b border-hairline bg-graphite overflow-hidden">
-        <div className="absolute inset-0 bg-grid-fine opacity-40 pointer-events-none" />
-        <div className="absolute inset-0 noise opacity-20 pointer-events-none" />
-        <div className="container px-4 py-24 md:py-32 relative">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight text-ink mb-8">
-              Priced like margin recovery, not admin support.
-            </h1>
-            <p className="text-xl text-ink-secondary leading-relaxed font-light">
-              Scrap Finance Partners is priced against stock accuracy, margin
-              control, cash visibility and owner decisions. If the yard needs
-              cheap bookkeeping, this is the wrong offer.
-            </p>
-          </div>
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
-            <div className="border border-hairline bg-graphite p-6">
-              <p className="font-mono text-xs uppercase tracking-wider text-copper mb-2">Value anchor</p>
-              <p className="text-ink-secondary text-sm leading-relaxed">
-                Recover one mispriced load, supplier error or stock variance and
-                the work can pay for itself.
+      <section className="border-b border-hairline">
+        <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-tight text-ink">
+            Flexible support designed around your business
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-ink-secondary leading-relaxed">
+            Every recycling business operates differently. The level of support depends on your current challenges, systems and objectives. We support yards through:
+          </p>
+
+          <div className="mt-12 space-y-10">
+            <div className="border-t border-hairline pt-8">
+              <h2 className="font-mono text-xs uppercase tracking-widest text-copper mb-3">
+                Diagnostic Reviews
+              </h2>
+              <p className="text-ink-secondary leading-relaxed">
+                A focused review of your current processes, reporting, stock controls and margin visibility — leading into Improvement Projects covering:
+              </p>
+              <ul className="mt-4 space-y-2">
+                {improvementProjectAreas.map((area) => (
+                  <li key={area} className="text-ink-secondary pl-4 border-l border-hairline">
+                    {area}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="border-t border-hairline pt-8">
+              <h2 className="font-mono text-xs uppercase tracking-widest text-copper mb-3">
+                Ongoing Finance Business Partner Support
+              </h2>
+              <p className="text-ink-secondary leading-relaxed">
+                Regular support for owners who want better visibility, stronger controls and clearer decision-making without the cost of a full-time senior finance resource.
               </p>
             </div>
-            <div className="border border-hairline bg-graphite p-6">
+          </div>
+
+          <div className="mt-12 grid md:grid-cols-2 gap-8 border-t border-hairline pt-8">
+            <div>
               <p className="font-mono text-xs uppercase tracking-wider text-copper mb-2">What this replaces</p>
               <p className="text-ink-secondary text-sm leading-relaxed">
                 Not a bookkeeper. A finance operator who understands Fred, stock,
                 transport and margin.
               </p>
             </div>
-            <div className="border border-hairline bg-graphite p-6">
+            <div>
               <p className="font-mono text-xs uppercase tracking-wider text-copper mb-2">Want software instead?</p>
               <p className="text-ink-secondary text-sm leading-relaxed">
                 YardLedger turns your Fred and Xero exports into the same
@@ -67,104 +158,25 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="border-b border-hairline bg-panel relative">
-        <div className="container px-4 py-24">
-          <div className="grid lg:grid-cols-3 gap-0 border border-hairline bg-graphite">
-            {pricing.map((tier, index) => (
-              <PricingCard
-                key={tier.id}
-                title={tier.title}
-                level={index + 1}
-                price={tier.price}
-                isPopular={tier.isPopular}
-                description={tier.description}
-                features={tier.features}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-hairline bg-graphite">
-        <div className="container px-4 py-24">
-          <div className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-ink uppercase">Compare Features</h2>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm text-left border-collapse border border-hairline bg-panel">
-              <thead className="bg-panel-alt border-b border-hairline font-mono text-[10px] uppercase tracking-widest text-ink-muted">
-                <tr>
-                  <th className="px-6 py-4 font-normal border-r border-hairline">What you get</th>
-                  <th className="px-6 py-4 font-normal text-center border-r border-hairline">Control</th>
-                  <th className="px-6 py-4 font-normal text-center border-r border-hairline text-copper">Margin</th>
-                  <th className="px-6 py-4 font-normal text-center">Board</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-hairline bg-graphite">
-                {comparisonRows.map((row, i) => (
-                  <tr key={i} className="hover:bg-panel transition-colors">
-                    <td className="px-6 py-4 font-medium text-ink border-r border-hairline">{row.feature}</td>
-                    <td className="px-6 py-4 text-center border-r border-hairline">
-                      {row.l1 ? <Check className="w-4 h-4 mx-auto text-copper" /> : <Minus className="w-4 h-4 mx-auto text-hairline-bright" />}
-                    </td>
-                    <td className="px-6 py-4 text-center border-r border-hairline">
-                      {row.l2 ? <Check className="w-4 h-4 mx-auto text-copper" /> : <Minus className="w-4 h-4 mx-auto text-hairline-bright" />}
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      {row.l3 ? <Check className="w-4 h-4 mx-auto text-copper" /> : <Minus className="w-4 h-4 mx-auto text-hairline-bright" />}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-hairline bg-panel relative overflow-hidden">
-        <div className="absolute inset-y-0 right-0 w-1/3 industrial-stripes opacity-20 pointer-events-none" />
-        <div className="container px-4 py-24 relative">
-          <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-ink uppercase">One-off Sprints</h2>
-            <p className="mt-4 text-ink-secondary max-w-2xl text-lg font-light">
-              Don&apos;t need a monthly service? We run targeted diagnostic and fix projects.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-px bg-hairline border border-hairline">
-            {sprints.map((sprint) => (
-              <div key={sprint.id} className="bg-graphite p-8 hover:bg-panel-alt transition-colors group relative">
-                <div className="absolute top-0 left-0 w-full h-1 bg-copper scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-                <h3 className="text-xl font-bold text-ink uppercase mb-2">{sprint.title}</h3>
-                <p className="font-mono text-copper text-lg mb-6">{sprint.price}</p>
-                <p className="text-ink-secondary leading-relaxed">{sprint.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-hairline bg-graphite">
-        <div className="container px-4 py-24">
-          <div className="mb-12 max-w-3xl">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-ink uppercase">
-              Feature scaffold
-            </h2>
-            <p className="mt-4 text-ink-secondary text-lg font-light">
-              The capability map for YardLedger, diagnostic packs and monthly
-              client reports. Scaffolded now; productised as demand proves it.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-hairline border border-hairline">
-            {featureScaffold.map((module) => (
-              <div key={module.title} className="bg-panel p-6">
-                <p className="font-mono text-[10px] uppercase tracking-widest text-copper mb-2">
-                  {module.status}
-                </p>
-                <h3 className="text-lg font-bold text-ink uppercase mb-5">{module.title}</h3>
+      <section className="border-b border-hairline">
+        <div className="container mx-auto max-w-5xl px-4 py-16 md:py-24">
+          <div className="space-y-16">
+            {levels.map((level) => (
+              <div key={level.title} className="border-t border-hairline pt-10 grid md:grid-cols-[1fr_2fr] gap-8">
+                <div>
+                  <h3 className="font-mono text-sm uppercase tracking-widest text-copper mb-2">{level.title}</h3>
+                  <p className="text-3xl font-semibold font-mono text-ink">{level.price}</p>
+                  <p className="mt-4 text-sm text-ink-secondary leading-relaxed">{level.description}</p>
+                  <Link
+                    href="/contact"
+                    className="mt-6 inline-flex items-center text-sm text-copper hover:text-copper-bright"
+                  >
+                    Start with {level.title} <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
                 <ul className="space-y-3">
-                  {module.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm text-ink-secondary">
-                      <Check className="h-4 w-4 text-copper flex-shrink-0 mt-0.5" />
+                  {level.features.map((feature) => (
+                    <li key={feature} className="text-sm text-ink-secondary pl-4 border-l border-hairline">
                       {feature}
                     </li>
                   ))}
@@ -174,13 +186,68 @@ export default function PricingPage() {
           </div>
         </div>
       </section>
-      
-      <section className="bg-graphite py-24">
-        <div className="container px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-ink uppercase mb-8">Not sure which offer you need?</h2>
-          <Button asChild size="lg" className="bg-copper hover:bg-copper-bright text-white border-0 rounded-none text-base px-12 uppercase font-mono tracking-wide">
-            <Link href="/health-check">Get a Health Check <ArrowRight className="ml-2 w-4 h-4" /></Link>
-          </Button>
+
+      <section className="border-b border-hairline">
+        <div className="container mx-auto max-w-5xl px-4 py-16 md:py-24">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-ink mb-10">Compare what you get</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left border-collapse">
+              <thead className="font-mono text-[10px] uppercase tracking-widest text-ink-muted border-b border-hairline">
+                <tr>
+                  <th className="py-4 font-normal">What you get</th>
+                  <th className="py-4 font-normal text-center">Level 1</th>
+                  <th className="py-4 font-normal text-center text-copper">Level 2</th>
+                  <th className="py-4 font-normal text-center">Level 3</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-hairline">
+                {comparisonRows.map((row) => (
+                  <tr key={row.feature}>
+                    <td className="py-4 pr-4 text-ink">{row.feature}</td>
+                    <td className="py-4 text-center text-copper">{row.l1 ? "✓" : "—"}</td>
+                    <td className="py-4 text-center text-copper">{row.l2 ? "✓" : "—"}</td>
+                    <td className="py-4 text-center text-copper">{row.l3 ? "✓" : "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-hairline">
+        <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-ink mb-2">One-off Sprints</h2>
+          <p className="text-ink-secondary max-w-2xl mb-10">
+            Don&apos;t need a monthly service? We run targeted diagnostic and fix projects.
+          </p>
+          <div className="space-y-10">
+            {sprintData.map((sprint) => (
+              <div key={sprint.title} className="border-t border-hairline pt-8">
+                <h3 className="text-lg font-semibold text-ink mb-1">{sprint.title}</h3>
+                <p className="font-mono text-copper mb-3">{sprint.price}</p>
+                <p className="text-ink-secondary leading-relaxed max-w-xl">{sprint.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container mx-auto max-w-3xl px-4 py-16 md:py-24">
+          <p className="text-xl font-semibold text-ink mb-4">No one-size-fits-all packages.</p>
+          <p className="text-lg text-ink-secondary leading-relaxed mb-2">
+            We tailor our support around your business, focusing on the areas that improve visibility, control and profitability.
+          </p>
+          <p className="text-lg text-ink-secondary leading-relaxed mb-10">
+            Contact us to discuss how we can help.
+          </p>
+          <Link
+            href="/health-check"
+            className="inline-flex items-center justify-center h-12 px-6 bg-copper hover:bg-copper-bright text-white font-semibold transition-colors"
+          >
+            Get a Health Check <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
         </div>
       </section>
     </div>

@@ -132,16 +132,16 @@ export default function Home() {
 
       {/* PAINS */}
       <section className="border-b border-hairline py-20 md:py-24">
-        <div className="container mx-auto max-w-7xl px-4">
+        <div className="container mx-auto max-w-3xl px-4">
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-12">
             Three ways yards lose money without seeing it
           </h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="space-y-12">
             {pains.map((p) => (
-              <div key={p.title} className="border border-hairline bg-panel p-6">
+              <div key={p.title} className="border-t border-hairline pt-8">
                 <h3 className="text-lg font-semibold text-ink mb-3">{p.title}</h3>
-                <p className="text-sm text-ink-secondary leading-relaxed mb-4">{p.body}</p>
-                <p className="text-sm text-ink leading-relaxed border-t border-hairline pt-4">
+                <p className="text-sm text-ink-secondary leading-relaxed mb-4 max-w-xl">{p.body}</p>
+                <p className="text-sm text-ink leading-relaxed max-w-xl">
                   <span className="font-mono text-xs uppercase tracking-wider text-copper block mb-1">The fix</span>
                   {p.fix}
                 </p>

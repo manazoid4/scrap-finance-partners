@@ -1,5 +1,7 @@
 # Scrap Finance Partners
 
+Live site: [scrap-finance-partners.vercel.app](https://scrap-finance-partners.vercel.app)
+
 ## Local Setup
 
 ```bash
@@ -15,8 +17,14 @@ Built around 26 years of UK scrap metal accountancy, finance, operations, and co
 
 ## Repo Structure
 
-- `app/`: Next.js frontend pages (marketing, services, pricing, founder profile, health check).
-- `app/growth-hub/`: Internal strategic command centre.
+- `app/`: Next.js frontend pages (marketing homepage, services, pricing, founder profile).
+- `app/services/`: "How We Help" — the numbered What We Fix service list.
+- `app/pricing/`: Diagnostic reviews, monthly levels, one-off sprints.
+- `app/founder/`: Founder credibility page.
+- `app/case-studies/`: Client results / case study write-ups.
+- `app/contact/`: Lead form and contact details.
+- `app/health-check/`: Scrap Yard Finance Health Check landing page.
+- `app/software/`: YardLedger product page (separate SaaS product, not the consultancy).
 - `app/dashboard-demo/`: Mock KPI dashboard for prospect demonstration.
 - `agents/`: Markdown prompts for specialised AI agent roles.
 - `knowledge/`: Internal knowledge vault files.

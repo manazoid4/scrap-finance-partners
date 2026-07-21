@@ -6,19 +6,19 @@
 
 /* ============================================================
    SCRAP FINANCE PARTNERS — DESIGN TOKENS
-   Dark industrial palette. Bloomberg terminal meets boutique
-   consultancy. Every token is intentional.
+   Dark graphite + copper. Brutalist-minimal: hierarchy comes
+   from type size, weight and spacing — not decoration.
    ============================================================ */
 
 :root {
   /* --- Core surfaces --- */
   --graphite: #0f1115;       /* deepest background */
-  --panel: #1a1d21;          /* card / elevated surface */
+  --panel: #1a1d21;          /* elevated surface (used sparingly, no card boxes) */
   --panel-alt: #21252a;      /* hover / secondary surface */
   --panel-raised: #262b31;  /* highest elevation */
 
   /* --- Brand accent --- */
-  --copper: #b87333;         /* primary accent */
+  --copper: #b87333;         /* the one accent — links, CTAs, numerals, active state */
   --copper-bright: #d48a4a;  /* hover / active */
   --copper-dim: #8a5626;     /* muted accent */
 
@@ -31,7 +31,7 @@
   --ink: #e8e6e3;            /* primary text */
   --ink-secondary: #a8aeb5;  /* secondary text */
   --ink-muted: #6c7278;      /* muted text */
-  --hairline: #33383f;       /* border color */
+  --hairline: #33383f;       /* the only divider technique — 1px borders */
   --hairline-bright: #3d434b;/* hover border */
 
   /* --- Typography --- */
@@ -52,27 +52,20 @@
   --space-20: 80px;
   --space-24: 96px;
 
-  /* --- Radius (minimal, industrial) --- */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
-  --radius-xl: 8px;
-  --radius-2xl: 12px;
-  --radius-3xl: 16px;
-  --radius-4xl: 20px;
+  /* --- Radius — always zero. Sharp edges everywhere. --- */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
 
-  /* --- Shadows (subtle elevation only) --- */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 2px 8px -2px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
-  --shadow-copper: 0 0 0 1px rgba(184, 115, 51, 0.2), 0 4px 16px -4px rgba(184, 115, 51, 0.15);
-
-  /* --- Transitions --- */
+  /* --- Transitions — color only, near-zero motion --- */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --duration-slow: 400ms;
+  --duration-normal: 200ms;
 
   /* --- Z-index scale --- */
   --z-dropdown: 1000;
@@ -194,7 +187,6 @@
 
   html {
     @apply font-sans;
-    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -257,7 +249,6 @@
   }
   ::-webkit-scrollbar-thumb {
     background: var(--hairline);
-    border-radius: var(--radius-sm);
   }
   ::-webkit-scrollbar-thumb:hover {
     background: var(--hairline-bright);
@@ -271,44 +262,8 @@
 }
 
 /* ============================================================
-    NOISE / GRAIN TEXTURE
-    ============================================================ */
-
-.noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 200px 200px;
-}
-
-/* ============================================================
    COMPONENT LAYER — Utility classes
    ============================================================ */
-
-/* Subtle grid background for hero / section accents */
-.bg-grid {
-  background-image:
-    linear-gradient(var(--hairline) 1px, transparent 1px),
-    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: -1px -1px;
-}
-
-.bg-grid-fine {
-  background-image:
-    linear-gradient(var(--hairline) 1px, transparent 1px),
-    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
-  background-size: 20px 20px;
-  background-position: -1px -1px;
-  opacity: 0.5;
-}
-
-/* Glass panel — purposeful, not decorative */
-.glass-panel {
-  background: color-mix(in srgb, var(--panel) 80%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--hairline);
-}
 
 /* Copper accent text */
 .text-copper {
@@ -322,109 +277,7 @@
   letter-spacing: -0.02em;
 }
 
-/* ============================================================
-   ANIMATIONS — Purposeful, subtle, CSS-only
-   ============================================================ */
-
-/* Section reveal — enhances already-visible content */
-@keyframes reveal-up {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.reveal {
-  animation: reveal-up var(--duration-slow) var(--ease-out) both;
-}
-
-.reveal-delay-1 { animation-delay: 60ms; }
-.reveal-delay-2 { animation-delay: 120ms; }
-.reveal-delay-3 { animation-delay: 180ms; }
-.reveal-delay-4 { animation-delay: 240ms; }
-
-/* Copper line accent — grows on load */
-@keyframes line-grow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-.line-accent {
-  transform-origin: left;
-  animation: line-grow var(--duration-slow) var(--ease-out) both;
-}
-
-/* Pulse for live indicators */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.pulse-dot {
-  animation: pulse-dot 2s var(--ease-in-out) infinite;
-}
-
-/* ============================================================
-   COMPONENT UTILITIES — Hero, CTA, Accordion, Cards
-   ============================================================ */
-
-/* Hero radial copper glow */
-.hero-glow {
-  background: radial-gradient(ellipse 55% 50% at 75% 35%, rgba(184, 115, 51, 0.10), transparent 70%);
-}
-
-/* Industrial diagonal stripe texture */
-.industrial-stripes {
-  background-image: repeating-linear-gradient(
-    135deg,
-    transparent,
-    transparent 10px,
-    rgba(184, 115, 51, 0.025) 10px,
-    rgba(184, 115, 51, 0.025) 11px
-  );
-}
-
-/* CTA hover lift — copper */
-.cta-copper {
-  transition: transform var(--duration-normal) var(--ease-out),
-              box-shadow var(--duration-normal) var(--ease-out),
-              background-color var(--duration-normal);
-}
-.cta-copper:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px -10px rgba(184, 115, 51, 0.5);
-}
-
-/* CTA hover lift — outline */
-.cta-outline {
-  transition: transform var(--duration-normal) var(--ease-out),
-              border-color var(--duration-normal),
-              background-color var(--duration-normal);
-}
-.cta-outline:hover {
-  transform: translateY(-2px);
-  border-color: var(--copper);
-  background-color: rgba(184, 115, 51, 0.06);
-}
-
-/* Accordion — CSS grid rows technique */
-.accordion-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows var(--duration-slow) var(--ease-out);
-}
-.accordion-content[data-state="open"] {
-  grid-template-rows: 1fr;
-}
-.accordion-content > .accordion-inner {
-  overflow: hidden;
-}
-
-/* Service row hover */
+/* Service / list row hover — colour only, no lift */
 .service-row {
   transition: background-color var(--duration-normal) var(--ease-out),
               border-color var(--duration-normal);
@@ -433,26 +286,38 @@
   background-color: rgba(184, 115, 51, 0.025);
 }
 
-/* Credibility card hover */
-.cred-card {
-  transition: transform var(--duration-normal) var(--ease-out),
-              border-color var(--duration-normal),
-              box-shadow var(--duration-normal);
+/* Accordion — CSS grid rows technique */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--duration-normal) var(--ease-out);
 }
-.cred-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--copper);
-  box-shadow: var(--shadow-copper);
+.accordion-content[data-state="open"] {
+  grid-template-rows: 1fr;
+}
+.accordion-content > .accordion-inner {
+  overflow: hidden;
 }
 
-/* Bar chart grow animation */
-@keyframes bar-grow {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
+/* ============================================================
+   TICKER — continuous horizontal marquee
+   Used once, on /services, as a highlight strip beneath the
+   hero. Pauses on hover, respects prefers-reduced-motion.
+   ============================================================ */
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 32s linear infinite;
 }
-.bar-animate {
-  transform-origin: bottom;
-  animation: bar-grow 0.7s var(--ease-out) forwards;
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* ============================================================
@@ -466,27 +331,10 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 
-  .reveal {
-    opacity: 1;
-    transform: none;
-  }
-
-  .line-accent {
-    transform: scaleX(1);
-  }
-
-  .cta-copper:hover,
-  .cta-outline:hover,
-  .cred-card:hover {
-    transform: none;
-  }
-
-  .bar-animate {
+  .ticker-track {
     animation: none;
-    transform: scaleY(1);
   }
 }
 
