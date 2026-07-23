@@ -281,7 +281,7 @@ export default function Home() {
             </span>
             <h2 style={{ fontSize: "clamp(26px,2.8vw,34px)", marginBottom: 16 }}>Operator-grade finance knowledge, not consultancy theory</h2>
             <p style={{ fontSize: 16, lineHeight: 1.6, color: "color-mix(in srgb, var(--color-text) 80%, transparent)", marginBottom: 20, maxWidth: "52ch" }}>
-              Majid Ahmed has spent 26 years inside Finance, Operations, Commercial, Transport and Systems at real scrap and recycling businesses &mdash; building the reports, fixing the stock sheets, sitting in the transport performance meetings.
+              26 years inside Finance, Operations, Commercial, Transport and Systems at real scrap and recycling businesses &mdash; building the reports, fixing the stock sheets, sitting in the transport performance meetings.
             </p>
             <Link href="/founder" className="btn btn-secondary">Meet the founder</Link>
           </div>
