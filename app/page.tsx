@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import NocturneNav from "@/components/nocturne-nav";
 import "./nocturne.css";
 
 export const metadata: Metadata = {
@@ -40,35 +41,10 @@ const caseStudies = [
 export default function Home() {
   return (
     <div className="nocturne" style={{ minHeight: "100vh" }}>
-      <nav
-        className="nav"
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 50,
-          backdropFilter: "blur(10px)",
-          background: "color-mix(in srgb, var(--color-bg) 86%, transparent)",
-          borderBottom: "1px solid var(--color-divider)",
-          padding: "14px clamp(20px,5vw,72px)",
-          gap: "clamp(10px,2vw,28px)",
-          flexWrap: "wrap",
-        }}
-      >
-        <Link href="/" className="nav-brand" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "var(--color-text)", whiteSpace: "nowrap" }}>
-          <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-accent)", boxShadow: "0 0 12px var(--color-accent)", flex: "none" }} />
-          Scrap Finance Partners
-        </Link>
-        <Link href="/services" style={{ whiteSpace: "nowrap" }}>Services</Link>
-        <Link href="/health-check" style={{ whiteSpace: "nowrap" }}>Health Check</Link>
-        <Link href="/software" style={{ whiteSpace: "nowrap" }}>YardLedger</Link>
-        <Link href="/pricing" style={{ whiteSpace: "nowrap" }}>Pricing</Link>
-        <Link href="/founder" style={{ whiteSpace: "nowrap" }}>Founder</Link>
-        <Link href="/contact" style={{ whiteSpace: "nowrap" }}>Contact</Link>
-        <Link href="/health-check" className="btn btn-primary" style={{ whiteSpace: "nowrap" }}>Book a Health Check</Link>
-      </nav>
+      <NocturneNav />
 
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)" }}>
-        <section style={{ padding: "88px 0 64px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(420px,1fr))", gap: 56, alignItems: "center" }}>
+        <section style={{ padding: "88px 0 64px", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(420px,100%),1fr))", gap: 56, alignItems: "center" }}>
           <div>
             <span style={{ display: "block", position: "relative", paddingLeft: 56, fontSize: 13, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--color-accent)", marginBottom: 20 }}>
               <span style={{ position: "absolute", left: 0, top: "50%", width: 44, height: 1, background: "var(--color-accent)" }} />
@@ -136,7 +112,7 @@ export default function Home() {
             The problem
           </span>
           <h2 style={{ fontSize: "clamp(28px,3vw,38px)", maxWidth: "20ch", marginBottom: 40 }}>Why the numbers stop being trusted</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 16 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(280px,100%),1fr))", gap: 16 }}>
             {problems.map((p) => (
               <div className="card" key={p.title}>
                 <div className="card-title">{p.title}</div>
@@ -154,7 +130,7 @@ export default function Home() {
         }}
       >
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(180px,100%),1fr))", gap: 32 }}>
             {stats.map((s) => (
               <div key={s.label}>
                 <div style={{ fontSize: "clamp(32px,3.4vw,48px)", marginBottom: 6 }}>{s.value}</div>
@@ -202,7 +178,7 @@ export default function Home() {
             Two ways to work with us
           </span>
           <h2 style={{ fontSize: "clamp(28px,3vw,38px)", maxWidth: "24ch", marginBottom: 40 }}>Hands-on consultancy, or software that does it for you</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(360px,1fr))", gap: 24 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(360px,100%),1fr))", gap: 24 }}>
             <div className="card elev-md" style={{ padding: 28, gap: 16 }}>
               <span className="tag tag-outline" style={{ alignSelf: "flex-start" }}>Consultancy</span>
               <div className="card-title" style={{ fontSize: 24 }}>Scrap Finance Partners</div>
@@ -240,7 +216,7 @@ export default function Home() {
             Proven results
           </span>
           <h2 style={{ fontSize: "clamp(28px,3vw,38px)", marginBottom: 40 }}>Real yards, real numbers</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 16, marginBottom: 32 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(300px,100%),1fr))", gap: 16, marginBottom: 32 }}>
             {caseStudies.map((c) => (
               <div className="card" key={c.kicker}>
                 <div className="card-kicker">{c.kicker}</div>
@@ -255,7 +231,7 @@ export default function Home() {
 
         <hr className="hr" style={{ margin: "8px 0 64px" }} />
 
-        <section style={{ paddingBottom: 80, display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(280px,1fr))", gap: 48, alignItems: "center" }}>
+        <section style={{ paddingBottom: 80, display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(280px,100%),1fr))", gap: 48, alignItems: "center" }}>
           <div>
             <span style={{ display: "block", position: "relative", paddingLeft: 56, fontSize: 13, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--color-accent)", marginBottom: 16 }}>
               <span style={{ position: "absolute", left: 0, top: "50%", width: 44, height: 1, background: "var(--color-accent)" }} />
@@ -278,7 +254,7 @@ export default function Home() {
           borderBottom: "1px solid var(--color-divider)",
         }}
       >
-        <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(360px,1fr))", gap: 40, alignItems: "center" }}>
+        <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(360px,100%),1fr))", gap: 40, alignItems: "center" }}>
           <div>
             <span style={{ display: "block", position: "relative", paddingLeft: 56, fontSize: 13, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--color-accent)", marginBottom: 16 }}>
               <span style={{ position: "absolute", left: 0, top: "50%", width: 44, height: 1, background: "var(--color-accent)" }} />
@@ -298,7 +274,7 @@ export default function Home() {
 
       <footer style={{ padding: "56px 0 32px" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 clamp(20px,5vw,72px)" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))", gap: 32, marginBottom: 40 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(200px,100%),1fr))", gap: 32, marginBottom: 40 }}>
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 16, marginBottom: 12 }}>
                 <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-accent)", boxShadow: "0 0 12px var(--color-accent)" }} />

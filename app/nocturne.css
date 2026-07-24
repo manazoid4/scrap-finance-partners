@@ -6,6 +6,10 @@
   the nocturne design-system bundle's styles.css.
 */
 
+html, body {
+  overflow-x: hidden;
+}
+
 .nocturne {
   --color-bg: #161826;
   --color-surface: #232532;
