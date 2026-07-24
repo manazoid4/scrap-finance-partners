@@ -9,37 +9,19 @@ export const metadata: Metadata = {
 }
 
 const proofPoints = [
-  { num: "£120k", label: "SAVED FROM REPORTING" },
-  { num: "£20k", label: "OVERPAYMENT CAUGHT" },
-  { num: "£21k", label: "SUPPLIER RECOVERY" },
-  { num: "7→2 DAYS", label: "REPORTING CYCLE CUT" },
+  { num: "25+", label: "YEARS IN FINANCE" },
+  { num: "18", label: "YEARS IN UK SCRAP" },
+  { num: "£21k", label: "SUPPLIER OVERPAYMENT RECOVERED" },
+  { num: "6→3 DAYS", label: "TRANSPORT REPORTING CUT" },
 ]
 
-const timeline = [
-  {
-    period: "1998–2005",
-    title: "Ground Floor",
-    org: "Countrywide Metals Ltd",
-    desc: "Started in the thick of UK scrap yard finance. Learned month-end, year-end, VAT, and management accounts for yards doing £5m–£50m turnover. Counted stock in the rain.",
-  },
-  {
-    period: "2005–2015",
-    title: "Commercial & Transport",
-    org: "European Metal Recycling Ltd",
-    desc: "Deep exposure to transport finance, haulage data, depot reporting, and commercial reporting. Built monthly transport scorecards. Translated manual deal sheets into commercial data.",
-  },
-  {
-    period: "2015–2020",
-    title: "Systems & Scale",
-    org: "Multi-Site Scrap Group",
-    desc: "Supported a Sage to D365 migration. Machine-level fuel posting across 800+ assets. Built in-house financial reporting tools. Single point of contact across Operations, Commercial, Transport and Finance.",
-  },
-  {
-    period: "2020–Present",
-    title: "Scrap Finance Partners",
-    org: "Founder & Lead Consultant",
-    desc: "Started this because good operators were losing money to bad numbers. Finance was too slow, too generic, and too far from the yard. We fix that.",
-  },
+const founderStory = [
+  "I founded Scrap Finance Partners to help recycling businesses improve visibility, strengthen controls and make better commercial decisions.",
+  "I have spent over 25 years working in finance, including 18 years supporting UK scrap metal and recycling businesses.",
+  "Throughout my career, I have seen the same challenge repeatedly: businesses often have plenty of data, but not always the right visibility to understand what is happening and act quickly.",
+  "Recycling is a fast-moving industry. Stock changes daily, material prices move, transport costs fluctuate and commercial decisions need to be made quickly. When reporting is delayed or disconnected from operations, opportunities can be missed and margins can be lost.",
+  "That is where Scrap Finance Partners helps.",
+  "My experience covers finance, operations, transport, commercial reporting and business systems. I understand that good finance is not just about producing reports — it is about understanding the operation behind the numbers and helping owners make better decisions.",
 ]
 
 const experienceAreas = [
@@ -113,16 +95,11 @@ export default function FounderPage() {
             My experience has given me a practical understanding of the link between what happens on the yard and what appears in the financial results.
           </p>
 
-          <div className="space-y-12">
-            {timeline.map((item) => (
-              <div key={item.period} className="border-t border-hairline pt-8">
-                <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4 mb-2">
-                  <span className="font-mono text-copper text-sm">{item.period}</span>
-                  <h3 className="text-xl font-semibold text-ink">{item.title}</h3>
-                </div>
-                <p className="text-sm font-mono text-ink-muted mb-3 uppercase tracking-widest">{item.org}</p>
-                <p className="text-ink-secondary leading-relaxed max-w-xl">{item.desc}</p>
-              </div>
+          <div className="space-y-6 border-t border-hairline pt-8">
+            {founderStory.map((para) => (
+              <p key={para} className="text-ink-secondary leading-relaxed max-w-2xl">
+                {para}
+              </p>
             ))}
           </div>
         </div>

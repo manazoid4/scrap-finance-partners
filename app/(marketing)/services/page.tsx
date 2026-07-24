@@ -243,9 +243,24 @@ export default function ServicesPage() {
               </div>
             ))}
           </div>
-          <p className="mt-10 pt-6 border-t border-hairline text-lg text-ink leading-relaxed">
-            Our goal is simple: give owners clearer visibility, stronger controls and confidence in the numbers behind their business.
-          </p>
+        </div>
+      </section>
+
+      {/* Goal statement — copper ticker, pauses on hover, static under reduced-motion */}
+      <section className="border-b border-hairline bg-copper overflow-hidden">
+        <div className="ticker-track py-5">
+          {[0, 1].map((rep) => (
+            <div key={rep} className="flex items-center flex-shrink-0" aria-hidden={rep === 1}>
+              {Array.from({ length: 4 }).map((_, i) => (
+                <span
+                  key={i}
+                  className="text-lg md:text-xl font-bold uppercase tracking-tight text-white px-8 whitespace-nowrap"
+                >
+                  Our goal is simple: give owners clearer visibility, stronger controls and confidence in the numbers behind their business.
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -258,7 +273,7 @@ export default function ServicesPage() {
           <p className="text-lg text-ink-secondary mb-8 max-w-2xl leading-relaxed">
             The Scrap Yard Finance Health Check reviews your reporting, stock, margin, processes and systems. We deliver a red/amber/green report showing exactly what is broken and what it is costing you.
           </p>
-          <p className="font-mono text-2xl text-copper mb-8">£750 – £1,500</p>
+          <p className="font-mono text-2xl text-copper mb-8">£2,500 fixed</p>
           <Link
             href="/health-check"
             className="inline-flex items-center justify-center h-12 px-6 bg-copper hover:bg-copper-bright text-white font-semibold transition-colors"
