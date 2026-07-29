@@ -1,84 +1,24 @@
 import Link from "next/link";
 
-const footerSections = [
-  {
-    title: "Services",
-    links: [
-      { href: "/services", label: "What You Get" },
-      { href: "/health-check", label: "Health Check" },
-      { href: "/software", label: "YardLedger Software" },
-      { href: "/pricing", label: "Pricing" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { href: "/founder", label: "Founder" },
-      { href: "/case-studies", label: "Results" },
-      { href: "/contact", label: "Contact" },
-      { href: "/privacy", label: "Privacy" },
-    ],
-  },
+const sections = [
+  { title: "Work with us", links: [["/health-check", "Finance Health Check"], ["/services", "Services"], ["/pricing", "Ways to work together"], ["/case-studies", "Case study"]] },
+  { title: "Explore", links: [["/insights", "Insights"], ["/updates", "Updates"], ["/software", "YardLedger — exploring"], ["/contact", "Contact"], ["/privacy", "Privacy"]] },
 ];
 
 export default function SiteFooter() {
   return (
     <footer className="border-t border-hairline bg-navy">
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-1 gap-10 py-12 md:grid-cols-4">
-          <div className="md:col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <span className="h-2 w-2 bg-copper transition-colors group-hover:bg-copper-bright" />
-              <span className="font-semibold text-sm tracking-tight text-ink">
-                Scrap Finance Partners
-              </span>
-            </Link>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-secondary">
-              26 years in UK scrap metal finance. Built for yards, not
-              boardrooms. We fix the gap between what your system reports and
-              what is actually happening.
-            </p>
-            <p className="mt-4 text-sm text-ink-secondary">
-              <a href="mailto:hello@scrapfinancepartners.co.uk" className="hover:text-copper">
-                hello@scrapfinancepartners.co.uk
-              </a>
-              <span className="block mt-1 text-ink-muted">Based in the Midlands. UK-wide.</span>
-            </p>
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
+        <div className="grid min-w-0 grid-cols-1 gap-10 py-12 md:grid-cols-4">
+          <div className="min-w-0 md:col-span-2">
+            <Link href="/" className="group flex items-center gap-2.5"><span className="h-2 w-2 shrink-0 bg-copper" /><span className="text-sm font-semibold tracking-tight text-ink">Scrap Finance Partners</span></Link>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-secondary">Commercial finance insight for UK scrap and recycling businesses. We connect trading, stock, transport and finance so owners can make better-informed decisions.</p>
           </div>
-
-          {footerSections.map((section) => (
-            <div key={section.title}>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-ink-muted">
-                {section.title}
-              </h4>
-              <ul className="mt-4 space-y-2.5">
-                {section.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-ink-secondary transition-colors duration-200 hover:text-copper"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {sections.map((section) => <div key={section.title} className="min-w-0"><h2 className="font-sans text-xs font-semibold uppercase tracking-wider text-ink-muted">{section.title}</h2><ul className="mt-4 space-y-2.5">{section.links.map(([href, label]) => <li key={href}><Link href={href} className="text-sm text-ink-secondary transition-colors hover:text-copper">{label}</Link></li>)}</ul></div>)}
         </div>
-
         <div className="border-t border-hairline py-6">
-          <p className="text-xs leading-relaxed text-ink-muted text-balance">
-            This website is for consultancy positioning and does not provide
-            legal, tax, audit or regulated financial advice. Formal
-            accountancy, tax, audit, AML or compliance services should be
-            provided only through appropriately qualified and supervised
-            professionals.
-          </p>
-          <p className="mt-3 text-xs text-ink-muted">
-            &copy; {new Date().getFullYear()} Scrap Finance Partners. All rights
-            reserved. {/* TODO before trading: registered company name, number and registered office (Companies (Trading Disclosures) Regulations 2015). */}
-          </p>
+          <p className="max-w-4xl text-xs leading-relaxed text-ink-muted">This website describes commercial consultancy and does not provide legal, tax, audit or regulated financial advice. Formal accountancy, tax, audit, AML or compliance work should be handled by appropriately qualified professionals.</p>
+          <p className="mt-3 text-xs text-ink-muted">&copy; {new Date().getFullYear()} Scrap Finance Partners. All rights reserved.</p>
         </div>
       </div>
     </footer>

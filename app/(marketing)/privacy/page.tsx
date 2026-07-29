@@ -10,7 +10,7 @@ export default function PrivacyPage() {
     <div className="container mx-auto max-w-3xl px-4 py-16 text-ink">
       <h1 className="text-3xl md:text-4xl font-semibold tracking-tight mb-8">Privacy Policy</h1>
       <div className="space-y-6 text-ink-secondary leading-relaxed text-base">
-        <p className="font-mono text-xs text-ink-muted">Last updated: 13 July 2026</p>
+        <p className="font-mono text-xs text-ink-muted">Last updated: 29 July 2026</p>
 
         <h2 className="text-xl font-semibold text-ink pt-4">Who we are</h2>
         <p>
@@ -23,10 +23,7 @@ export default function PrivacyPage() {
 
         <h2 className="text-xl font-semibold text-ink pt-4">What we collect</h2>
         <p>
-          When you use our contact or health check forms we collect the details
-          you give us: your name, company name, email address, phone number and
-          your message. Nothing else. We do not buy data about you and we do
-          not use marketing cookies.
+          When you use our contact or health check forms we collect the details you give us: your name, company name, email address, optional phone number, selected business challenge and any context you provide. We also attach the current page, referring domain and campaign parameters to help route and understand the enquiry. We do not buy data about you and we do not use marketing cookies.
         </p>
 
         <h2 className="text-xl font-semibold text-ink pt-4">Why we collect it</h2>

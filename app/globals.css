@@ -81,6 +81,7 @@
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 150ms;
   --duration-normal: 200ms;
+  --duration-slow: 450ms;
 
   /* --- Z-index scale --- */
   --z-dropdown: 1000;
@@ -545,3 +546,9 @@
   --sidebar-border: var(--hairline);
   --sidebar-ring: var(--copper);
 }
+
+/* Responsive containment: fix intrinsic-width leaks locally instead of masking them. */
+html, body { min-width: 0; }
+body { overflow-wrap: anywhere; }
+main, section, article, div { min-width: 0; }
+img, svg, video, canvas { max-width: 100%; }

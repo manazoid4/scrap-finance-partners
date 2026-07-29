@@ -1,22 +1,3 @@
 import type { MetadataRoute } from "next";
-
-const base = "https://scrap-finance-partners.vercel.app";
-
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    "",
-    "/services",
-    "/software",
-    "/pricing",
-    "/founder",
-    "/case-studies",
-    "/health-check",
-    "/contact",
-    "/privacy",
-  ].map((path) => ({
-    url: `${base}${path}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: path === "" ? 1 : 0.7,
-  }));
-}
+const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://scrap-finance-partners.vercel.app";
+export default function sitemap(): MetadataRoute.Sitemap { return ["", "/services", "/pricing", "/founder", "/case-studies", "/health-check", "/insights", "/updates", "/contact", "/privacy"].map((path) => ({ url: `${base}${path}`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: path === "" ? 1 : path === "/health-check" ? 0.9 : 0.7 })); }
