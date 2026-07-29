@@ -1,36 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
-const inputClass =
-  "flex h-11 w-full border border-hairline bg-panel/30 px-3 py-2 text-base transition-colors focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30 placeholder:text-ink-muted/60";
+const inputClass = "flex min-h-11 w-full min-w-0 border border-hairline bg-panel px-3 py-2 text-base transition-colors placeholder:text-ink-muted focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper/30";
 
-export default function LeadForm({
-  source,
-  messageLabel = "What is your biggest frustration right now?",
-  messagePlaceholder = "Stock not matching? Margin unclear? Fred giving you headaches?",
-  submitLabel = "Start the Conversation",
-}: {
-  source: string;
-  messageLabel?: string;
-  messagePlaceholder?: string;
-  submitLabel?: string;
-}) {
+export default function LeadForm({ source, intent = "health-check", submitLabel = "Request a Health Check" }: { source: string; intent?: string; submitLabel?: string }) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const startedAt = useRef<number | null>(null);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (status === "sending") return;
+    const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
+    const params = new URLSearchParams(window.location.search);
+    const context = { page: window.location.pathname, referrerDomain: document.referrer ? new URL(document.referrer).hostname : "", utmSource: params.get("utm_source") ?? "", utmMedium: params.get("utm_medium") ?? "", utmCampaign: params.get("utm_campaign") ?? "", utmContent: params.get("utm_content") ?? "", utmTerm: params.get("utm_term") ?? "", startedAt: String(startedAt.current ?? 0) };
     setStatus("sending");
     try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, source }),
-      });
-      if (!res.ok) throw new Error();
+      const response = await fetch("/api/lead", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...data, ...context, source, intent }) });
+      if (!response.ok) throw new Error("Submission failed");
       setStatus("sent");
       form.reset();
     } catch {
@@ -38,75 +27,29 @@ export default function LeadForm({
     }
   }
 
-  if (status === "sent") {
-    return (
-      <div className="border border-copper/40 bg-copper/5 p-6 text-center">
-        <p className="text-lg font-semibold text-ink">Got it. We reply within 24 hours.</p>
-        <p className="mt-2 text-sm text-ink-secondary">
-          Or email us directly:{" "}
-          <a href="mailto:hello@scrapfinancepartners.co.uk" className="text-copper">
-            hello@scrapfinancepartners.co.uk
-          </a>
-        </p>
-      </div>
-    );
-  }
+  if (status === "sent") return <div className="border border-copper bg-copper/5 p-6" role="status" aria-live="polite"><p className="text-lg font-semibold text-ink">Thank you. Your request has been sent.</p><p className="mt-2 text-sm text-ink-secondary">We will review the context and respond using the details you provided.</p></div>;
 
   return (
-    <form className="space-y-5" onSubmit={handleSubmit}>
-      {/* Honeypot — hidden from real users */}
+    <form className="min-w-0 space-y-5" onFocusCapture={() => { startedAt.current ??= Date.now(); }} onSubmit={handleSubmit}>
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div className="space-y-1.5">
-          <label htmlFor={`${source}-name`} className="text-sm font-medium text-ink">Your Name</label>
-          <input id={`${source}-name`} name="name" required className={inputClass} placeholder="Full name" />
-        </div>
-        <div className="space-y-1.5">
-          <label htmlFor={`${source}-company`} className="text-sm font-medium text-ink">Company</label>
-          <input id={`${source}-company`} name="company" className={inputClass} placeholder="Yard or recycling business name" />
-        </div>
+      <div className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2">
+        <label className="min-w-0 space-y-1.5 text-sm font-medium text-ink">Your name<input name="name" required maxLength={100} autoComplete="name" className={inputClass} /></label>
+        <label className="min-w-0 space-y-1.5 text-sm font-medium text-ink">Company<input name="company" required maxLength={120} autoComplete="organization" className={inputClass} /></label>
       </div>
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div className="space-y-1.5">
-          <label htmlFor={`${source}-email`} className="text-sm font-medium text-ink">Email</label>
-          <input id={`${source}-email`} name="email" type="email" required className={inputClass} placeholder="you@example.com" />
-        </div>
-        <div className="space-y-1.5">
-          <label htmlFor={`${source}-phone`} className="text-sm font-medium text-ink">Phone</label>
-          <input id={`${source}-phone`} name="phone" type="tel" className={inputClass} placeholder="Contact number" />
-        </div>
+      <div className="grid min-w-0 grid-cols-1 gap-4 sm:grid-cols-2">
+        <label className="min-w-0 space-y-1.5 text-sm font-medium text-ink">Work email<input name="email" type="email" required maxLength={254} autoComplete="email" className={inputClass} /></label>
+        <label className="min-w-0 space-y-1.5 text-sm font-medium text-ink">Phone <span className="font-normal text-ink-muted">(optional)</span><input name="phone" type="tel" maxLength={40} autoComplete="tel" className={inputClass} /></label>
       </div>
-      <div className="space-y-1.5">
-        <label htmlFor={`${source}-message`} className="text-sm font-medium text-ink">{messageLabel}</label>
-        <textarea
-          id={`${source}-message`}
-          name="message"
-          required
-          rows={4}
-          className={`${inputClass} h-auto min-h-[120px] resize-none`}
-          placeholder={messagePlaceholder}
-        />
-      </div>
-      <button
-        type="submit"
-        disabled={status === "sending"}
-        className="inline-flex w-full items-center justify-center h-12 bg-copper hover:bg-copper-bright disabled:opacity-60 text-white font-semibold transition-colors"
-      >
-        {status === "sending" ? "Sending…" : submitLabel}
-        {status !== "sending" && <ArrowRight className="ml-2 h-4 w-4" />}
-      </button>
-      {status === "error" && (
-        <p className="text-sm text-red">
-          Something went wrong. Email us instead:{" "}
-          <a href="mailto:hello@scrapfinancepartners.co.uk" className="text-copper">
-            hello@scrapfinancepartners.co.uk
-          </a>
-        </p>
-      )}
-      <p className="text-xs text-ink-muted text-center">
-        No spam. No sales pressure. We reply within 24 hours.{" "}
-        <a href="/privacy" className="underline hover:text-copper">Privacy</a>
-      </p>
+      <label className="block min-w-0 space-y-1.5 text-sm font-medium text-ink">What needs attention first?
+        <select name="challenge" required className={inputClass} defaultValue=""><option value="" disabled>Select one</option><option>Trading margin</option><option>Stock confidence</option><option>Haulage and transport cost</option><option>Reporting and month-end</option><option>Cash and working capital</option><option>Something else</option></select>
+      </label>
+      <label className="block min-w-0 space-y-1.5 text-sm font-medium text-ink">When are you looking to act?
+        <select name="timing" required className={inputClass} defaultValue=""><option value="" disabled>Select one</option><option>As soon as practical</option><option>Within three months</option><option>Exploring for later</option></select>
+      </label>
+      <label className="block min-w-0 space-y-1.5 text-sm font-medium text-ink">Useful context <span className="font-normal text-ink-muted">(optional)</span><textarea name="message" maxLength={2000} rows={4} className={`${inputClass} min-h-28 resize-y`} /></label>
+      <button type="submit" disabled={status === "sending"} className="inline-flex min-h-12 w-full items-center justify-center bg-copper px-5 font-semibold text-white transition-colors hover:bg-copper-bright disabled:opacity-60">{status === "sending" ? "Sending…" : submitLabel}{status !== "sending" && <ArrowRight className="ml-2 h-4 w-4" />}</button>
+      <div aria-live="polite">{status === "error" && <p className="text-sm text-red" role="alert">The form could not be sent. Your answers are still here, so you can try again.</p>}</div>
+      <p className="text-center text-xs text-ink-muted">Your details are used only to respond to this enquiry. <a href="/privacy" className="underline hover:text-copper">Privacy</a></p>
     </form>
   );
 }

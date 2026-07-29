@@ -1,70 +1,55 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "/services", label: "What You Get" },
-  { href: "/case-studies", label: "Results" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/founder", label: "Founder" },
-  { href: "/contact", label: "Contact" },
+  { href: "/services", label: "Services" },
+  { href: "/health-check", label: "Health Check" },
+  { href: "/case-studies", label: "Case Study" },
+  { href: "/insights", label: "Insights" },
+  { href: "/founder", label: "About" },
 ];
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    firstLinkRef.current?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-hairline bg-panel/95 backdrop-blur-sm">
-      <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2.5 group" onClick={() => setOpen(false)}>
-          <span className="h-3 w-3 bg-copper group-hover:bg-copper-bright transition-colors" />
-          <span className="font-semibold text-lg tracking-tight text-ink">
-            Scrap Finance <span className="text-ink-secondary font-normal">Partners</span>
-          </span>
+      <div className="mx-auto flex h-16 w-full max-w-7xl min-w-0 items-center justify-between gap-3 px-4 sm:px-6">
+        <Link href="/" className="group flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
+          <span className="h-3 w-3 shrink-0 bg-copper transition-colors group-hover:bg-copper-bright" />
+          <span className="truncate text-sm font-semibold tracking-tight text-ink sm:text-lg">Scrap Finance <span className="hidden font-normal text-ink-secondary sm:inline">Partners</span></span>
         </Link>
-
-        <nav className="hidden lg:flex items-center gap-7 text-sm">
-          {navLinks.map((l) => (
-            <Link key={l.href} href={l.href} className="text-ink-secondary hover:text-copper transition-colors">
-              {l.label}
-            </Link>
-          ))}
+        <nav className="hidden items-center gap-6 text-sm lg:flex" aria-label="Primary navigation">
+          {navLinks.map((link) => <Link key={link.href} href={link.href} className="text-ink-secondary transition-colors hover:text-copper">{link.label}</Link>)}
         </nav>
-
-        <div className="flex items-center gap-3">
-          <Link
-            href="/health-check"
-            className="inline-flex items-center justify-center h-10 px-4 sm:px-5 bg-copper hover:bg-copper-bright text-white font-semibold text-sm transition-colors"
-          >
-            Get a Health Check
-          </Link>
-          <button
-            className="lg:hidden inline-flex items-center justify-center h-11 w-11 text-ink-secondary hover:text-ink"
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+        <div className="flex shrink-0 items-center gap-2">
+          <Link href="/health-check" className="hidden h-11 items-center justify-center bg-copper px-5 text-sm font-semibold text-white transition-colors hover:bg-copper-bright sm:inline-flex">Request a Health Check</Link>
+          <button ref={triggerRef} className="inline-flex h-11 w-11 items-center justify-center text-ink-secondary hover:text-ink lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen((value) => !value)}>{open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}</button>
         </div>
       </div>
-
       {open && (
-        <nav className="lg:hidden border-t border-hairline bg-panel">
-          <ul className="container mx-auto max-w-7xl px-4 py-2">
-            {navLinks.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="block py-3 text-base text-ink-secondary hover:text-copper border-b border-hairline last:border-0"
-                  onClick={() => setOpen(false)}
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
+        <nav id="mobile-navigation" className="border-t border-hairline bg-panel lg:hidden" aria-label="Mobile navigation">
+          <ul className="mx-auto w-full max-w-7xl px-4 py-2 sm:px-6">
+            {navLinks.map((link, index) => <li key={link.href}><Link ref={index === 0 ? firstLinkRef : undefined} href={link.href} className="block min-h-11 border-b border-hairline py-3 text-base text-ink-secondary last:border-0 hover:text-copper" onClick={() => setOpen(false)}>{link.label}</Link></li>)}
+            <li className="py-3 sm:hidden"><Link href="/health-check" className="flex min-h-11 items-center justify-center bg-copper px-4 font-semibold text-white" onClick={() => setOpen(false)}>Request a Health Check</Link></li>
           </ul>
         </nav>
       )}
