@@ -4,6 +4,17 @@ All notable public-facing changes are recorded here.
 
 ## [Unreleased]
 
+## [0.2.1] — 2026-07-29
+
+### Changed
+- Rebuilt the visual system as restrained industrial editorial design with a graphite, neutral paper and copper palette.
+- Replaced generic landing-page cards and decorative grid treatments with hard editorial rules, indexed content and purposeful density.
+- Introduced a high-contrast serif and utilitarian sans-serif typographic system.
+- Reworked the homepage, Health Check, service, case study, engagement, insights, updates, contact, privacy and YardLedger surfaces.
+
+### Fixed
+- Preserved mobile containment from 320px upward while increasing information density and typographic impact.
+- Kept the Health Check enquiry accessible, qualified and human-reviewed without a permanently obstructive mobile CTA.
 ## [0.2.0] — 2026-07-29
 
 ### Changed

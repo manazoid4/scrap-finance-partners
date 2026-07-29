@@ -4,130 +4,59 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ============================================================
-   SCRAP FINANCE PARTNERS — DESIGN TOKENS
-   UK advisory. Light paper ground, deep ink, navy depth,
-   copper reserved as the single industry-heritage accent.
-   Serif authority display, generous whitespace, quiet rules.
-   NOTE: legacy var names kept (graphite/panel/ink/hairline)
-   so every existing utility class flips to the light system.
-   ============================================================ */
-
 :root {
-  /* --- Core surfaces (light-first) --- */
-  --graphite: #f7f6f3;       /* page ground — warm paper white */
-  --panel: #ffffff;          /* card / elevated surface */
-  --panel-alt: #f1efeb;      /* hover / secondary surface */
-  --panel-raised: #eceae4;   /* highest elevation */
-  --navy: #182433;           /* deep inverted blocks (footer, proof) */
-  --navy-ink: #e9ecf1;       /* text on navy */
-
-  /* --- Brand accent --- */
-  --copper: #a65e2e;         /* the one accent — heritage copper */
-  --copper-bright: #c1743d;  /* hover / active */
-  --copper-dim: #7d4622;     /* muted accent */
-
-  /* --- Semantic indicators --- */
-  --green: #2f6b45;          /* positive */
-  --amber: #9a6700;          /* warning */
-  --red: #a3372c;            /* destructive */
-
-  /* --- Neutrals --- */
-  --ink: #16181d;            /* primary text */
-  --ink-secondary: #4a5160;  /* secondary text */
-  --ink-muted: #7a8090;      /* muted text */
-  --hairline: #e3e1db;       /* border color — quiet rule */
-  --hairline-bright: #c9c6bd;/* hover border */
-
-  /* --- Typography --- */
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), "SF Mono", monospace;
-  --font-serif: Georgia, "Times New Roman", "Source Serif 4", serif;
-
-  /* --- Spacing scale (4px base) --- */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  --space-16: 64px;
-  --space-20: 80px;
-  --space-24: 96px;
-
-  /* --- Radius: zero, everywhere. Edges are sharp on purpose. --- */
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
-  --radius-2xl: 0px;
-  --radius-3xl: 0px;
-  --radius-4xl: 0px;
-
-  /* --- Depth: none. Borders carry structure, not shadows. --- */
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: none;
-  --shadow-copper: none;
-
-  /* --- Border weight: hard, structural lines --- */
-  --border-w: 2px;
-
-  /* --- Transitions --- */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --duration-fast: 150ms;
-  --duration-normal: 200ms;
-  --duration-slow: 450ms;
-
-  /* --- Z-index scale --- */
-  --z-dropdown: 1000;
-  --z-sticky: 1100;
-  --z-backdrop: 1200;
-  --z-modal: 1300;
-  --z-toast: 1400;
-  --z-tooltip: 1500;
-
-  /* --- shadcn semantic mapping (dark-first) --- */
-  --background: var(--graphite);
+  --paper: #f0f0ed;
+  --paper-raised: #fafaf7;
+  --graphite: #171a18;
+  --graphite-raised: #222622;
+  --copper: #c66a35;
+  --copper-bright: #dc7a3f;
+  --copper-dim: #8f4825;
+  --ink: #131513;
+  --ink-secondary: #444944;
+  --ink-muted: #686e68;
+  --line: #202420;
+  --line-soft: #b9bdb7;
+  --green: #2d6244;
+  --amber: #8a6100;
+  --red: #9b342c;
+  --font-sans: var(--font-archivo), Arial, sans-serif;
+  --font-serif: var(--font-libre-baskerville), Georgia, serif;
+  --font-mono: var(--font-geist-mono), monospace;
+  --background: var(--paper);
   --foreground: var(--ink);
+  --panel: var(--paper-raised);
+  --panel-alt: #e3e4df;
+  --panel-raised: var(--paper-raised);
+  --navy: var(--graphite);
+  --navy-ink: #f4f4ef;
+  --hairline: var(--line-soft);
+  --hairline-bright: var(--line);
   --card: var(--panel);
   --card-foreground: var(--ink);
   --popover: var(--panel);
   --popover-foreground: var(--ink);
   --primary: var(--copper);
-  --primary-foreground: #ffffff;
+  --primary-foreground: var(--graphite);
   --secondary: var(--panel-alt);
   --secondary-foreground: var(--ink);
   --muted: var(--panel-alt);
   --muted-foreground: var(--ink-secondary);
-  --accent: var(--panel-alt);
-  --accent-foreground: var(--ink);
+  --accent: var(--copper);
+  --accent-foreground: var(--graphite);
   --destructive: var(--red);
-  --border: var(--hairline);
-  --input: var(--hairline);
+  --border: var(--line-soft);
+  --input: var(--line);
   --ring: var(--copper);
-  --chart-1: var(--copper);
-  --chart-2: var(--green);
-  --chart-3: var(--amber);
-  --chart-4: var(--ink-secondary);
-  --chart-5: var(--ink-muted);
-  --sidebar: var(--panel);
-  --sidebar-foreground: var(--ink);
-  --sidebar-primary: var(--copper);
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: var(--panel-alt);
-  --sidebar-accent-foreground: var(--ink);
-  --sidebar-border: var(--hairline);
-  --sidebar-ring: var(--copper);
+  --radius: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
+  --radius-4xl: 0;
 }
-
-/* ============================================================
-   THEME INLINE — Tailwind v4 token bridge
-   ============================================================ */
 
 @theme inline {
   --color-background: var(--background);
@@ -148,407 +77,76 @@
   --color-hairline: var(--hairline);
   --color-hairline-bright: var(--hairline-bright);
   --color-graphite: var(--graphite);
-
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
-  --font-heading: var(--font-sans);
-
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  --font-heading: var(--font-serif);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted-foreground: var(--muted-foreground);
   --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
+  --color-primary-foreground: var(--primary-foreground);
   --color-card: var(--card);
-
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-  --radius-xl: var(--radius-xl);
-  --radius-2xl: var(--radius-2xl);
-  --radius-3xl: var(--radius-3xl);
-  --radius-4xl: var(--radius-4xl);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
 }
-
-/* ============================================================
-   BASE LAYER
-   ============================================================ */
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  html {
-    @apply font-sans;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-sans);
-    font-variant-numeric: tabular-nums;
-    text-rendering: optimizeLegibility;
-  }
-
-  /* Typography hierarchy — serif authority display */
-  h1 {
-    font-family: var(--font-serif);
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
-    font-weight: 700;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
-  }
-
-  h2 {
-    font-family: var(--font-serif);
-    font-size: clamp(1.625rem, 3.5vw, 2.25rem);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    text-wrap: balance;
-  }
-
-  h3 {
-    font-size: clamp(1.25rem, 2vw, 1.5rem);
-    font-weight: 600;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-  }
-
-  h4 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.3;
-  }
-
-  p {
-    line-height: 1.65;
-    text-wrap: pretty;
-  }
-
-  /* Selection */
-  ::selection {
-    background: rgba(184, 115, 51, 0.25);
-    color: var(--ink);
-  }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--graphite);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--hairline);
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--hairline-bright);
-  }
-
-  /* Focus visible */
-  :focus-visible {
-    outline: 2px solid var(--copper);
-    outline-offset: 2px;
-  }
+  * { box-sizing: border-box; border-color: var(--border); }
+  html { min-width: 0; scroll-behavior: smooth; }
+  body { min-width: 0; margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; -webkit-font-smoothing: antialiased; }
+  main, section, article, div { min-width: 0; }
+  img, svg, video, canvas { max-width: 100%; }
+  h1, h2, h3 { font-family: var(--font-serif); text-wrap: balance; }
+  h1 { font-size: clamp(2.5rem, 7.2vw, 6rem); font-weight: 700; line-height: .96; letter-spacing: -.035em; }
+  h2 { font-size: clamp(1.8rem, 3.7vw, 3.7rem); font-weight: 700; line-height: 1.02; letter-spacing: -.028em; }
+  h3 { font-size: clamp(1.2rem, 2vw, 1.65rem); font-weight: 700; line-height: 1.15; letter-spacing: -.015em; }
+  p { line-height: 1.58; text-wrap: pretty; }
+  a, button { transition: none; }
+  ::selection { background: var(--copper); color: var(--graphite); }
+  :focus-visible { outline: 3px solid var(--copper); outline-offset: 3px; }
 }
 
-/* ============================================================
-   COMPONENT LAYER — Utility classes
-   ============================================================ */
+.bg-grid, .industrial-stripes { background-image: none; }
+.bg-navy { background: var(--graphite); color: #f4f4ef; }
+.bg-navy .text-ink, .bg-navy .text-white { color: #f4f4ef; }
+.bg-navy .text-ink-secondary { color: #c6cbc5; }
+.bg-navy .text-ink-muted { color: #9ea49e; }
+.bg-navy .border-hairline { border-color: #4d534e; }
+.display-xl { font-family: var(--font-serif); font-size: clamp(2.5rem, 7.2vw, 6rem); font-weight: 700; line-height: .96; letter-spacing: -.035em; text-wrap: balance; }
+.font-mono-num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
-/* Subtle grid background for hero / section accents */
-.bg-grid {
-  background-image:
-    linear-gradient(var(--hairline) 1px, transparent 1px),
-    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: -1px -1px;
-}
+.editorial-shell { width: min(100%, 90rem); margin-inline: auto; border-inline: 2px solid var(--line); }
+.editorial-rule { border-color: var(--line); }
+.editorial-label { font-family: var(--font-mono); font-size: .72rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+.editorial-intro { max-width: 67ch; font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1.5; color: var(--ink-secondary); }
+.editorial-action { display: inline-flex; min-height: 3.25rem; align-items: center; justify-content: center; border: 2px solid var(--line); background: var(--copper); padding: .8rem 1.15rem; color: var(--graphite); font-weight: 750; line-height: 1.15; }
+.editorial-action:hover { background: var(--graphite); color: #fff; }
+.editorial-action-dark { background: var(--graphite); color: #fff; }
+.editorial-action-dark:hover { background: var(--copper); color: var(--graphite); }
+.editorial-link { display: inline-flex; min-height: 2.75rem; align-items: center; border-bottom: 2px solid currentColor; font-weight: 700; }
+.editorial-link:hover { color: var(--copper-dim); }
+.editorial-index { border-top: 2px solid var(--line); }
+.editorial-index > * { border-bottom: 1px solid var(--line); }
+.editorial-index > *:hover { background: var(--graphite); color: #fff; }
+.editorial-index > *:hover .text-ink-secondary, .editorial-index > *:hover .text-ink-muted { color: #c6cbc5; }
+.editorial-index > *:hover .text-copper { color: var(--copper-bright); }
+.editorial-field { width: 100%; min-height: 3rem; border: 2px solid var(--line); background: var(--paper-raised); padding: .7rem .8rem; color: var(--ink); }
+.editorial-field::placeholder { color: #595f59; }
+.editorial-field:focus { border-color: var(--copper-dim); outline: 2px solid var(--copper-dim); outline-offset: 1px; }
 
-.bg-grid-fine {
-  background-image:
-    linear-gradient(var(--hairline) 1px, transparent 1px),
-    linear-gradient(90deg, var(--hairline) 1px, transparent 1px);
-  background-size: 20px 20px;
-  background-position: -1px -1px;
-  opacity: 0.5;
+@media (max-width: 767px) {
+  .editorial-shell { border-inline: 0; }
+  h1, .display-xl { font-size: clamp(2.5rem, 13vw, 4.2rem); }
 }
-
-/* Flat panel — hard border, no blur, no transparency */
-.glass-panel {
-  background: var(--panel);
-  border: var(--border-w) solid var(--hairline);
-}
-
-/* Flagship block — one solid flat copper block per page, the loud move */
-.flagship-block {
-  background: var(--copper);
-  border: var(--border-w) solid var(--copper);
-  color: #100b06;
-}
-.flagship-block .flagship-label {
-  color: rgba(16, 11, 6, 0.7);
-}
-
-/* Copper accent text */
-.text-copper {
-  color: var(--copper);
-}
-
-/* Mono numbers — tabular, terminal feel */
-.font-mono-num {
-  font-family: var(--font-mono);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: -0.02em;
-}
-
-/* Display scale — homepage hero only. Serif broadsheet authority. */
-.display-xl {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 4.75rem);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  text-wrap: balance;
-}
-
-/* Navy inverted block — footer, proof sections */
-.bg-navy {
-  background: var(--navy);
-  color: var(--navy-ink);
-}
-.bg-navy .text-ink { color: var(--navy-ink); }
-.bg-navy .text-ink-secondary { color: rgba(233, 236, 241, 0.72); }
-.bg-navy .text-ink-muted { color: rgba(233, 236, 241, 0.5); }
-.bg-navy .border-hairline { border-color: rgba(233, 236, 241, 0.16); }
-
-/* Quiet card — light advisory surface */
-.advisory-card {
-  background: var(--panel);
-  border: 1px solid var(--hairline);
-  box-shadow: 0 1px 2px rgba(22, 24, 29, 0.04);
-}
-
-/* Outcome ticker — full-bleed marquee of brand claims. Pauses on hover. */
-@keyframes ticker-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.ticker-track {
-  display: flex;
-  width: max-content;
-  animation: ticker-scroll 45s linear infinite;
-}
-.ticker-track:hover {
-  animation-play-state: paused;
-}
-
-/* ============================================================
-   ANIMATIONS — Purposeful, subtle, CSS-only
-   ============================================================ */
-
-/* Section reveal — enhances already-visible content */
-@keyframes reveal-up {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.reveal {
-  animation: reveal-up var(--duration-slow) var(--ease-out) both;
-}
-
-.reveal-delay-1 { animation-delay: 60ms; }
-.reveal-delay-2 { animation-delay: 120ms; }
-.reveal-delay-3 { animation-delay: 180ms; }
-.reveal-delay-4 { animation-delay: 240ms; }
-
-/* Copper line accent — grows on load */
-@keyframes line-grow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-.line-accent {
-  transform-origin: left;
-  animation: line-grow var(--duration-slow) var(--ease-out) both;
-}
-
-/* Pulse for live indicators */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-.pulse-dot {
-  animation: pulse-dot 2s var(--ease-in-out) infinite;
-}
-
-/* ============================================================
-   COMPONENT UTILITIES — Hero, CTA, Accordion, Cards
-   ============================================================ */
-
-/* Hero accent — flat, no soft glow */
-.hero-glow {
-  background: none;
-}
-
-/* Industrial diagonal stripe texture */
-.industrial-stripes {
-  background-image: repeating-linear-gradient(
-    135deg,
-    transparent,
-    transparent 10px,
-    rgba(184, 115, 51, 0.025) 10px,
-    rgba(184, 115, 51, 0.025) 11px
-  );
-}
-
-/* CTA hover — flat color swap, no shadow lift */
-.cta-copper {
-  transition: background-color var(--duration-normal);
-}
-.cta-copper:hover {
-  background-color: var(--copper-bright);
-}
-
-/* CTA hover — outline, flat */
-.cta-outline {
-  transition: border-color var(--duration-normal),
-              background-color var(--duration-normal);
-}
-.cta-outline:hover {
-  border-color: var(--copper);
-  background-color: rgba(184, 115, 51, 0.06);
-}
-
-/* Accordion — CSS grid rows technique */
-.accordion-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows var(--duration-normal) var(--ease-out);
-}
-.accordion-content[data-state="open"] {
-  grid-template-rows: 1fr;
-}
-.accordion-content > .accordion-inner {
-  overflow: hidden;
-}
-
-/* ============================================================
-   TICKER — continuous horizontal marquee
-   Used once, on /services, as a highlight strip beneath the
-   hero. Pauses on hover, respects prefers-reduced-motion.
-   ============================================================ */
-
-/* Credibility card hover — border only, no lift, no shadow */
-.cred-card {
-  transition: border-color var(--duration-normal);
-}
-.cred-card:hover {
-  border-color: var(--copper);
-}
-
-.ticker-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes ticker-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* ============================================================
-   REDUCED MOTION
-   ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  .ticker-track {
-    animation: none;
-  }
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
-
-/* ============================================================
-   DARK VARIANT — kept for shadcn compatibility
-   The site is dark-first; .dark is a no-op override.
-   ============================================================ */
-
-.dark {
-  --background: var(--graphite);
-  --foreground: var(--ink);
-  --card: var(--panel);
-  --card-foreground: var(--ink);
-  --popover: var(--panel);
-  --popover-foreground: var(--ink);
-  --primary: var(--copper);
-  --primary-foreground: #ffffff;
-  --secondary: var(--panel-alt);
-  --secondary-foreground: var(--ink);
-  --muted: var(--panel-alt);
-  --muted-foreground: var(--ink-secondary);
-  --accent: var(--panel-alt);
-  --accent-foreground: var(--ink);
-  --destructive: var(--red);
-  --border: var(--hairline);
-  --input: var(--hairline);
-  --ring: var(--copper);
-  --chart-1: var(--copper);
-  --chart-2: var(--green);
-  --chart-3: var(--amber);
-  --chart-4: var(--ink-secondary);
-  --chart-5: var(--ink-muted);
-  --sidebar: var(--panel);
-  --sidebar-foreground: var(--ink);
-  --sidebar-primary: var(--copper);
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: var(--panel-alt);
-  --sidebar-accent-foreground: var(--ink);
-  --sidebar-border: var(--hairline);
-  --sidebar-ring: var(--copper);
-}
-
-/* Responsive containment: fix intrinsic-width leaks locally instead of masking them. */
-html, body { min-width: 0; }
-body { overflow-wrap: anywhere; }
-main, section, article, div { min-width: 0; }
-img, svg, video, canvas { max-width: 100%; }
