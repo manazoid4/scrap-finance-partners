@@ -4,6 +4,10 @@ All notable public-facing changes are recorded here.
 
 ## [Unreleased]
 
+### Added
+- Restored the approved 26-year UK scrap metal accountancy and finance experience signal on the homepage and About page.
+- Added a publication-gated client evidence scaffold; it remains internal and contains no identifying client information.
+
 ## [0.2.1] — 2026-07-29
 
 ### Changed
