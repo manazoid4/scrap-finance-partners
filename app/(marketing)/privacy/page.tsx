@@ -1,62 +1,11 @@
 import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description: "How Scrap Finance Partners handles your data.",
-};
-
-export default function PrivacyPage() {
-  return (
-    <div className="container mx-auto max-w-3xl px-4 py-16 text-ink">
-      <h1 className="text-3xl md:text-4xl font-semibold tracking-tight mb-8">Privacy Policy</h1>
-      <div className="space-y-6 text-ink-secondary leading-relaxed text-base">
-        <p className="font-mono text-xs text-ink-muted">Last updated: 29 July 2026</p>
-
-        <h2 className="text-xl font-semibold text-ink pt-4">Who we are</h2>
-        <p>
-          Scrap Finance Partners provides finance and business support services
-          to UK scrap metal, waste and recycling businesses. Contact:{" "}
-          <a href="mailto:hello@scrapfinancepartners.co.uk" className="text-copper hover:text-copper-bright">
-            hello@scrapfinancepartners.co.uk
-          </a>.
-        </p>
-
-        <h2 className="text-xl font-semibold text-ink pt-4">What we collect</h2>
-        <p>
-          When you use our contact or health check forms we collect the details you give us: your name, company name, email address, optional phone number, selected business challenge and any context you provide. We also attach the current page, referring domain and campaign parameters to help route and understand the enquiry. We do not buy data about you and we do not use marketing cookies.
-        </p>
-
-        <h2 className="text-xl font-semibold text-ink pt-4">Why we collect it</h2>
-        <p>
-          One reason: to reply to your enquiry and, if you become a client, to
-          deliver the work. The lawful basis is legitimate interest (responding
-          to a business enquiry you initiated) and, later, contract.
-        </p>
-
-        <h2 className="text-xl font-semibold text-ink pt-4">Where it goes</h2>
-        <p>
-          Form submissions are emailed to us via Resend (our email provider)
-          and stored in our business mailbox. We use privacy-friendly,
-          cookieless analytics to count page visits. We do not sell, rent or
-          share your details with anyone else.
-        </p>
-
-        <h2 className="text-xl font-semibold text-ink pt-4">How long we keep it</h2>
-        <p>
-          Enquiries that go nowhere are deleted within 12 months. Client
-          records are kept for as long as the engagement requires and as UK
-          law demands.
-        </p>
-
-        <h2 className="text-xl font-semibold text-ink pt-4">Your rights</h2>
-        <p>
-          Under UK GDPR you can ask us what we hold about you, ask us to
-          correct it, or ask us to delete it. Email us and we will sort it —
-          usually within a few days, always within a month. If you are not
-          happy with how we handle your data you can complain to the ICO
-          (ico.org.uk).
-        </p>
-      </div>
-    </div>
-  );
-}
+export const metadata:Metadata={title:"Privacy Policy",description:"How Scrap Finance Partners handles enquiry data."};
+const sections=[
+["Who we are","Scrap Finance Partners provides commercial finance consultancy to UK scrap metal, waste and recycling businesses."],
+["What we collect","When you submit an enquiry, we collect the details you provide: name, company, email, optional phone number, selected business challenge and any written context. We also attach the current page, referring domain and campaign parameters to help route and understand the enquiry."],
+["Why we collect it","We use this information to respond to a business enquiry you initiated and, if you become a client, to deliver the agreed work. The relevant lawful bases are legitimate interests and contract."],
+["Where it goes","Form submissions are sent through Resend to the configured business mailbox. Aggregate website analytics are used to understand site usage. We do not sell or rent enquiry details."],
+["How long we keep it","Enquiries that do not progress are deleted within 12 months. Client records are kept for the engagement and any period required by UK law."],
+["Your rights","Under UK GDPR you may ask what information is held about you, request a correction or request deletion where applicable. You may also complain to the Information Commissioner’s Office."]
+];
+export default function PrivacyPage(){return <><section className="editorial-shell border-b-2 border-black p-6 sm:p-10 lg:p-12"><p className="editorial-label">Data handling / Updated 29 July 2026</p><h1 className="mt-10">Privacy policy</h1></section><section className="editorial-shell border-b-2 border-black">{sections.map(([title,copy])=><article key={title} className="grid grid-cols-1 border-b border-black last:border-b-0 md:grid-cols-12"><h2 className="p-5 text-2xl md:col-span-3 md:border-r md:border-black md:p-7">{title}</h2><p className="border-t border-black p-5 text-ink-secondary md:col-span-9 md:border-t-0 md:p-7">{copy}</p></article>)}</section></>}
