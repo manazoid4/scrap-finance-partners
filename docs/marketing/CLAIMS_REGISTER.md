@@ -5,7 +5,8 @@ Status values: `PENDING`, `APPROVED`, `REJECTED`. Pending or rejected claims mus
 | Claim | Evidence required | Owner | Status | Allowed surfaces | Reviewed |
 |---|---|---|---|---|---|
 | Founder identity, biography and credentials | Written profile and evidence | Client | PENDING | None | — |
-| Years of sector experience | Verifiable chronology | Client | PENDING | None | — |
+| 26 years of accountancy and finance experience in UK scrap metal | Client confirmation | Client | APPROVED | Homepage and `/founder` | 2026-07-29 |
+| Private client identity, engagement details and outcomes | Exact written publication approval | Client | PENDING | None; internal scaffold only | — |
 | Exact savings, margin or time outcomes | Source records and publication consent | Client | PENDING | None | — |
 | Health Check fee and delivery time | Written offer approval | Client | PENDING | None | — |
 | YardLedger availability, features or pricing | Product release approval | Client | PENDING | None | — |

@@ -1,9 +1,89 @@
-import type { Metadata } from "next"; import Link from "next/link";
-export const metadata:Metadata={title:"Case Study",description:"How commercial analysis can reveal the operational return behind scrap trading activity."};
-const sections=[
-["Challenge","Ferrous scrap trading appeared profitable, but the headline trading spread did not show the complete commercial return. Haulage, yard labour and operational capacity also needed to be considered."],
-["Approach","Three months of trading activity were reviewed, including purchase prices, selling prices, haulage costs, operational involvement and the allocation of yard and transport resources."],
-["Commercial finding","The material generated revenue, but its return after operational demands was lower than the headline margin suggested. Yard labour and transport capacity were being consumed by comparatively lower-margin activity."],
-["Recommendation","Prioritise selected higher-margin non-ferrous opportunities, including relevant aluminium grades, where the expected commercial return justified the use of yard and transport capacity."]
+import type { Metadata } from "next";
+import Link from "next/link";
+export const metadata: Metadata = {
+  title: "Case Study",
+  description:
+    "How commercial analysis can reveal the operational return behind scrap trading activity.",
+};
+const sections = [
+  [
+    "Challenge",
+    "Ferrous scrap trading appeared profitable, but the headline trading spread did not show the complete commercial return. Haulage, yard labour and operational capacity also needed to be considered.",
+  ],
+  [
+    "Approach",
+    "Three months of trading activity were reviewed, including purchase prices, selling prices, haulage costs, operational involvement and the allocation of yard and transport resources.",
+  ],
+  [
+    "Commercial finding",
+    "The material generated revenue, but its return after operational demands was lower than the headline margin suggested. Yard labour and transport capacity were being consumed by comparatively lower-margin activity.",
+  ],
+  [
+    "Recommendation",
+    "Prioritise selected higher-margin non-ferrous opportunities, including relevant aluminium grades, where the expected commercial return justified the use of yard and transport capacity.",
+  ],
 ];
-export default function CaseStudy(){return <><section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12"><div className="border-b-2 border-black p-6 sm:p-10 lg:col-span-9 lg:border-b-0 lg:border-r-2 lg:p-12"><p className="editorial-label">Commercial analysis / Case study</p><h1 className="mt-10">Improving Scrap Trading Margin Through Commercial Analysis</h1></div><div className="flex flex-col justify-between bg-copper p-6 text-graphite sm:p-9 lg:col-span-3"><p className="editorial-label">Evidence status</p><p className="mt-12 font-serif text-2xl font-bold">Client-supplied narrative. No invented numerical outcome.</p></div></section><article className="editorial-shell border-b-2 border-black">{sections.map(([heading,copy])=><section key={heading} className="grid grid-cols-1 border-b border-black last:border-b-0 md:grid-cols-12"><h2 className="p-6 text-3xl md:col-span-4 md:border-r md:border-black md:p-9">{heading}</h2><p className="border-t border-black p-6 text-lg text-ink-secondary md:col-span-8 md:border-t-0 md:p-9">{copy}</p></section>)}</article><section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12"><div className="border-b-2 border-black p-6 sm:p-9 lg:col-span-4 lg:border-b-0 lg:border-r-2"><h2 className="text-3xl">Decision impact</h2></div><ul className="divide-y divide-black lg:col-span-8">{["Improved prioritisation of higher-value trading opportunities.","Provided a clearer basis for allocating yard labour and transport capacity.","Supported more commercially informed buying decisions."].map(item=><li key={item} className="p-6 font-semibold sm:p-7">{item}</li>)}</ul></section><section className="editorial-shell grid grid-cols-1 bg-graphite text-white lg:grid-cols-12"><div className="border-b border-[#4d534e] p-6 sm:p-9 lg:col-span-8 lg:border-b-0 lg:border-r"><h2 className="text-white">Does your margin still hold after the yard has done the work?</h2></div><Link href="/health-check" className="flex min-h-32 items-center justify-between bg-copper p-6 font-bold text-graphite hover:bg-[#f0f0ed] sm:p-9 lg:col-span-4">Request Health Check <span aria-hidden>→</span></Link></section></>}
+export default function CaseStudy() {
+  return (
+    <>
+      <section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
+        <div className="border-b-2 border-black p-6 sm:p-10 lg:col-span-9 lg:border-b-0 lg:border-r-2 lg:p-12">
+          <p className="editorial-label">Commercial analysis / Case study</p>
+          <h1 className="mt-10">
+            Improving Scrap Trading Margin Through Commercial Analysis
+          </h1>
+        </div>
+        <div className="flex flex-col justify-between bg-copper p-6 text-graphite sm:p-9 lg:col-span-3">
+          <p className="editorial-label">Evidence status</p>
+          <p className="mt-12 font-serif text-2xl font-bold">
+            Anonymised commercial analysis. No unverified outcome claim.
+          </p>
+        </div>
+      </section>
+      <article className="editorial-shell border-b-2 border-black">
+        {sections.map(([heading, copy]) => (
+          <section
+            key={heading}
+            className="grid grid-cols-1 border-b border-black last:border-b-0 md:grid-cols-12"
+          >
+            <h2 className="p-6 text-3xl md:col-span-4 md:border-r md:border-black md:p-9">
+              {heading}
+            </h2>
+            <p className="border-t border-black p-6 text-lg text-ink-secondary md:col-span-8 md:border-t-0 md:p-9">
+              {copy}
+            </p>
+          </section>
+        ))}
+      </article>
+      <section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
+        <div className="border-b-2 border-black p-6 sm:p-9 lg:col-span-4 lg:border-b-0 lg:border-r-2">
+          <h2 className="text-3xl">Recommendation rationale</h2>
+        </div>
+        <ul className="divide-y divide-black lg:col-span-8">
+          {[
+            "Prioritise the trading opportunities with the stronger expected commercial return.",
+            "Allocate yard labour and transport capacity using the full operating cost.",
+            "Give buying decisions a clearer commercial basis.",
+          ].map((item) => (
+            <li key={item} className="p-6 font-semibold sm:p-7">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className="editorial-shell grid grid-cols-1 bg-graphite text-white lg:grid-cols-12">
+        <div className="border-b border-[#4d534e] p-6 sm:p-9 lg:col-span-8 lg:border-b-0 lg:border-r">
+          <h2 className="text-white">
+            Does your margin still hold after the yard has done the work?
+          </h2>
+        </div>
+        <Link
+          href="/health-check"
+          className="flex min-h-32 items-center justify-between bg-copper p-6 font-bold text-graphite hover:bg-[#f0f0ed] sm:p-9 lg:col-span-4"
+        >
+          Request Health Check <span aria-hidden>→</span>
+        </Link>
+      </section>
+    </>
+  );
+}
