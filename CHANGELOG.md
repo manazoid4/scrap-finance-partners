@@ -4,6 +4,31 @@ All notable public-facing changes are recorded here.
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-07-30 — Published pricing
+
+Client approved the Health Check fee and three monthly support levels in writing. Both now
+render on the site instead of being described only as a process.
+
+### Added
+- `data/pricing.ts` — approved figures: Health Check £2,500 (fixed), monthly support at £500 /
+  £1,000 / £2,000+ (Level 1/2/3, never called "packages" or "retainer" per `AGENTS.md`).
+- `/ways-to-work-together` rebuilt around the two priced options, a level comparison, and six
+  reassurance commitments (fixed fee before you commit, no lock-in on monthly support, no
+  surprise invoices, NDA on request, one person start to finish, the Health Check is not a sales
+  call).
+- `/health-check` now states the £2,500 fee in the hero and in a dedicated fee section, next to
+  the existing scope, exclusions and process content.
+- `tests/e2e/privacy-gate.spec.ts` — two new tests asserting the approved figures are actually
+  published, alongside the existing tests asserting the *un*approved ones are not.
+
+### Changed
+- `docs/marketing/CLAIMS_REGISTER.md` — Health Check fee and the three monthly support figures
+  moved `PENDING` → `APPROVED`. Turnaround time (a specific number of days) remains `PENDING`
+  separately from the fee.
+- `forbiddenStrings` in `tests/e2e/privacy-gate.spec.ts` no longer blocks `£2,500`/`£500`/
+  `£1,000`/`£2,000` — the *original* unapproved figures they replaced (£1,500/£3,000/£6,000
+  tiers, the £500/mo one-pager fee) remain forbidden.
+
 ## [0.3.0] — 2026-07-30 — Industrial Evidence Room
 
 Major production overhaul. Buyer-facing summary at `/updates`; this is the technical record.
