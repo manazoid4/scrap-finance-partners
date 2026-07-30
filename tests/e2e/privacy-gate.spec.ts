@@ -116,12 +116,15 @@ const publicRoutes = [
   "/privacy",
 ];
 
+// £2,500 (Health Check) and £500 / £1,000 / £2,000 (monthly support) are
+// APPROVED — see docs/marketing/CLAIMS_REGISTER.md — so they must NOT be
+// listed here. The figures below are the original, unapproved ones they
+// replaced, plus the withdrawn one-pager claims.
 const forbiddenStrings = [
   "Placeholder Name",
   "£1,500",
   "£3,000",
   "£6,000",
-  "£2,500",
   "£500/mo",
   "£120k",
   "£90k",
@@ -143,6 +146,18 @@ for (const route of publicRoutes) {
     }
   });
 }
+
+test("the approved Health Check fee is published, not withheld", async ({ page }) => {
+  await page.goto("/health-check");
+  await expect(page.getByText("£2,500").first()).toBeVisible();
+});
+
+test("the approved monthly support figures are published", async ({ page }) => {
+  await page.goto("/ways-to-work-together");
+  for (const figure of ["£500", "£1,000", "£2,000+"]) {
+    await expect(page.getByText(figure, { exact: true }).first()).toBeVisible();
+  }
+});
 
 test("withdrawn one-pagers are no longer served", async ({ request }) => {
   for (const path of [

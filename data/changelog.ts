@@ -111,11 +111,37 @@ export const releases: Release[] = [
   },
   {
     version: "2.1",
+    releaseDate: "2026-07-30",
+    status: "live",
+    title: "Published pricing",
+    summary: "The fee is now on the page. No enquiry needed to find out what it costs.",
+    evidence: "Deployed and verified in production",
+    entries: [
+      {
+        change: "The Finance Health Check fee (£2,500, fixed) is published on the site.",
+        benefit: "You can judge the cost before making contact, not after.",
+        relatedPage: "/health-check",
+      },
+      {
+        change:
+          "Ongoing monthly support is priced at three levels — £500, £1,000 and £2,000+ a month — each stating who it is for and what it includes.",
+        benefit: "You can see what a level costs and covers without a sales conversation.",
+        relatedPage: "/ways-to-work-together",
+      },
+      {
+        change:
+          "Added six stated commitments: fixed fee before you commit, no lock-in on monthly support (30 days' notice, no minimum term), no day rates or surprise invoices, an NDA on request before you send anything, and one person doing the work start to finish.",
+        benefit: "Things you can hold us to, not just things we say about ourselves.",
+        relatedPage: "/ways-to-work-together",
+      },
+    ],
+  },
+  {
+    version: "2.2",
     releaseDate: null,
     status: "upcoming",
-    title: "Named authority and a published engagement basis",
-    summary:
-      "Drafted and ready. Waiting on written sign-off before anything is published.",
+    title: "Named authority",
+    summary: "Drafted and ready. Waiting on written sign-off before it is published.",
     evidence: "Approved, not yet released",
     entries: [
       {
@@ -123,12 +149,6 @@ export const releases: Release[] = [
           "A named profile with a photograph, sector background and direct contact details for the person who does the work.",
         benefit: "You will know exactly who you are dealing with before making contact.",
         relatedPage: "/about",
-      },
-      {
-        change: "A published basis for the Health Check fee and turnaround.",
-        benefit:
-          "You will be able to judge cost and timing from the site rather than having to ask.",
-        relatedPage: "/ways-to-work-together",
       },
     ],
   },

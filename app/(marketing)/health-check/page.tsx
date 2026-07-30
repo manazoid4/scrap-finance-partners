@@ -17,6 +17,7 @@ import {
   questionsReviewed,
   reviewStages,
 } from "@/data/health-check";
+import { healthCheck } from "@/data/pricing";
 
 export const metadata: Metadata = {
   title: "Finance Health Check",
@@ -61,6 +62,15 @@ export default function HealthCheckPage() {
             picture.
           </p>
           <dl className="mt-8 space-y-4 border-t border-[#4d534e] pt-6 text-sm">
+            <div>
+              <dt className="font-mono text-[11px] uppercase tracking-[.08em] text-copper">
+                Fee
+              </dt>
+              <dd className="mt-1 font-serif text-3xl font-bold leading-none">
+                {healthCheck.fee}
+              </dd>
+              <dd className="mt-2 text-[#c6cbc5]">{healthCheck.feeNote}</dd>
+            </div>
             <div>
               <dt className="font-mono text-[11px] uppercase tracking-[.08em] text-copper">
                 Reply time
@@ -236,16 +246,33 @@ export default function HealthCheckPage() {
         </ul>
       </section>
 
-      {/* Fee and turnaround basis — process, not a number. */}
-      <section className="editorial-shell grid grid-cols-1 border-b-2 border-black md:grid-cols-2">
-        <div className="border-b-2 border-black p-6 sm:p-9 md:border-b-0 md:border-r-2 md:p-10">
-          <h2 className="text-[clamp(1.4rem,2.2vw,2rem)]">How the fee is set</h2>
-          <p className="mt-5 text-ink-secondary">{engagement.feeBasis}</p>
+      {/* Fee and turnaround. */}
+      <section className="editorial-shell border-b-2 border-black">
+        <div className="grid grid-cols-1 border-b-2 border-black md:grid-cols-12">
+          <div className="border-b-2 border-black bg-copper p-6 text-graphite sm:p-9 md:col-span-4 md:border-b-0 md:border-r-2 md:p-10">
+            <p className="font-mono text-[11px] uppercase tracking-[.08em]">The fee</p>
+            <p className="mt-4 font-serif text-[clamp(3rem,6vw,4.5rem)] font-bold leading-none tracking-[-.03em]">
+              {healthCheck.fee}
+            </p>
+            <p className="mt-4 font-semibold">{healthCheck.feeNote}</p>
+          </div>
+          <div className="p-6 sm:p-9 md:col-span-8 md:p-10">
+            <h2 className="text-[clamp(1.4rem,2.2vw,2rem)]">How the fee is set</h2>
+            <p className="mt-5 text-ink-secondary">{engagement.feeBasis}</p>
+            <h2 className="mt-8 text-[clamp(1.4rem,2.2vw,2rem)]">How timing is agreed</h2>
+            <p className="mt-5 text-ink-secondary">{engagement.turnaroundBasis}</p>
+          </div>
         </div>
-        <div className="p-6 sm:p-9 md:p-10">
-          <h2 className="text-[clamp(1.4rem,2.2vw,2rem)]">How timing is agreed</h2>
-          <p className="mt-5 text-ink-secondary">{engagement.turnaroundBasis}</p>
-        </div>
+        <ul className="divide-y divide-black">
+          {healthCheck.whatItBuys.map((item) => (
+            <li key={item} className="flex gap-3 p-5 font-semibold sm:p-7">
+              <span aria-hidden className="font-mono text-copper-dim">
+                →
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
       </section>
 
       {/* Afterwards. */}

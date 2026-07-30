@@ -11,7 +11,7 @@ approval-dependent content passes through, and it fails closed: a record missing
 directions — the gate logic itself, and a crawl of every public route checking that no
 unapproved figure or placeholder identity reaches the HTML.
 
-Last reviewed: 2026-07-30.
+Last reviewed: 2026-07-30 (pricing approved same day, see "Changes" below).
 
 ## Register
 
@@ -28,18 +28,26 @@ Last reviewed: 2026-07-30.
 | Founder identity, name, portrait and biography | Written profile, evidence and portrait usage rights | Client | PENDING | None | — |
 | Founder direct contact details (email, telephone) | Client confirmation of published contact route | Client | PENDING | None | — |
 | Founder qualifications and professional memberships | Certificates or register entries | Client | PENDING | None | — |
-| Health Check fee and turnaround time | Written offer approval | Client | PENDING | None | — |
+| Health Check fee: £2,500, fixed | Client written approval | Client | APPROVED | `/health-check`, `/ways-to-work-together`, forms, footer | 2026-07-30 |
+| Monthly support levels: £500 / £1,000 / £2,000+ per month | Client written approval | Client | APPROVED | `/ways-to-work-together` | 2026-07-30 |
+| Health Check turnaround time (specific days) | Written offer approval | Client | PENDING | None | — |
 | Exact savings, margin or time outcomes | Source records and publication consent | Client | PENDING | None | — |
 | Private client identity, engagement details and outcomes | Exact written publication approval | Client | PENDING | None; internal scaffold only | — |
 | YardLedger availability, features or pricing | Product release approval | Client | PENDING | None; `/updates` "Exploring" wording only | — |
 | Month-end close time reduction ("7 → 2 days") | Source records and publication consent | Client | REJECTED | None — withdrawn 2026-07-30 | 2026-07-30 |
-| Retainer or monthly fee figures (£500 / £1,500 / £3,000 / £6,000) | Written offer approval | Client | REJECTED | None — withdrawn 2026-07-30 | 2026-07-30 |
+| Original unapproved fee figures (£500/mo one-pager, £1,500 / £3,000 / £6,000 tiers) | Written offer approval | Client | REJECTED | None — superseded by the approved £2,500 / £500 / £1,000 / £2,000+ rows above, 2026-07-30 | 2026-07-30 |
 | "What this replaces: a full-time FD at £80k+" | Substantiation of the comparison | Client | REJECTED | None — withdrawn 2026-07-30 | 2026-07-30 |
 | Money-back guarantee ("3 months, full money back") | Written commercial terms | Client | REJECTED | None — withdrawn 2026-07-30 | 2026-07-30 |
 | Charitable donation ("13% of every subscription") | Written policy and evidence of donations | Client | REJECTED | None — withdrawn 2026-07-30 | 2026-07-30 |
 | Named client outcome figures (£120k, £90k, £20k) | Source records and publication consent | Client | REJECTED | None — source file deleted 2026-07-30 | 2026-07-30 |
 
 ## Changes made on 2026-07-30
+
+**Pricing approved and published.** The client confirmed the Health Check fee (£2,500, fixed)
+and three monthly support levels (£500 / £1,000 / £2,000+ per month) in writing. `data/pricing.ts`
+now holds the approved figures; they render on `/health-check` and `/ways-to-work-together`. This
+is a distinct, later decision from the same-day privacy work below — the original unapproved
+figures stay `REJECTED` and were never the ones published.
 
 **Withdrawn from public surfaces.** `public/one-pagers/{overview,health-check,yardledger}.html`
 were being served publicly and carried the fee, close-time, FD-comparison, money-back and charity

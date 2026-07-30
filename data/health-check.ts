@@ -163,7 +163,7 @@ export const afterwards = [
  */
 export const engagement = {
   feeBasis:
-    "The fee is fixed and agreed in writing before any work begins. It is set from the scope agreed at stage one: the trading period examined, how many areas are reviewed, and how much of the information already exists. There is no day rate that runs on, and the fee does not move once the scope is agreed.",
+    "The Finance Health Check is £2,500. Fixed, agreed in writing before any work begins, and it does not move once the scope is agreed. There is no day rate running underneath it, and nothing you are obliged to buy afterwards. Where a business is unusually large, or the records need more work than a standard review, that is discussed and agreed before you commit — never invoiced afterwards.",
   turnaroundBasis:
     "Timing is agreed alongside the fee, and depends on the scope and how quickly the requested information can be provided. You get a date before you commit, not after.",
   responseWindow: "within one working day",
