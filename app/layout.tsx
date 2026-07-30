@@ -19,5 +19,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className={`${archivo.variable} ${libreBaskerville.variable} ${geistMono.variable}`}><body>{children}<Analytics /></body></html>;
+  return <html lang="en-GB" className={`${archivo.variable} ${libreBaskerville.variable} ${geistMono.variable}`}><body><a href="#main" className="skip-link">Skip to main content</a>{children}<Analytics /></body></html>;
 }

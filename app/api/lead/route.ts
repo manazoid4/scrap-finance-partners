@@ -16,7 +16,9 @@ export async function POST(request: Request) {
   const body = Object.fromEntries(Object.entries(limits).map(([key, max]) => [key, clean(raw[key], max)])) as Record<string, string>;
   const startedAt = Number(raw.startedAt || 0);
   if (startedAt && Date.now() - startedAt < 1200) return NextResponse.json({ error: "Please try again" }, { status: 400 });
-  if (!body.name || !body.company || !emailPattern.test(body.email) || !body.challenge || !body.timing) return NextResponse.json({ error: "Please complete the required fields" }, { status: 400 });
+  // Only name, company and work email are required. The qualification answers
+  // are optional by design and must never block a submission.
+  if (!body.name || !body.company || !emailPattern.test(body.email)) return NextResponse.json({ error: "Please complete the required fields" }, { status: 400 });
 
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.LEAD_FROM;
@@ -28,7 +30,7 @@ export async function POST(request: Request) {
 
   const lines = [
     `Name: ${body.name}`, `Company: ${body.company}`, `Email: ${body.email}`, `Phone: ${body.phone || "-"}`,
-    `Challenge: ${body.challenge}`, `Timing: ${body.timing}`, `Intent: ${body.intent || "website"}`, `Source: ${body.source || "website"}`,
+    `Challenge: ${body.challenge || "-"}`, `Timing: ${body.timing || "-"}`, `Intent: ${body.intent || "website"}`, `Source: ${body.source || "website"}`,
     `Page: ${body.page || "-"}`, `Referrer domain: ${body.referrerDomain || "-"}`,
     `UTM source: ${body.utmSource || "-"}`, `UTM medium: ${body.utmMedium || "-"}`, `UTM campaign: ${body.utmCampaign || "-"}`, `UTM content: ${body.utmContent || "-"}`, `UTM term: ${body.utmTerm || "-"}`,
     "", "Context:", body.message || "-",
