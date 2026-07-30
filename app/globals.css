@@ -9,12 +9,15 @@
   --paper-raised: #fafaf7;
   --graphite: #171a18;
   --graphite-raised: #222622;
+  /* --copper is a SURFACE colour. Graphite text on it reaches 4.6:1.
+     Never put white text on copper (3.8:1) and never use it as body text on
+     paper (3.3:1) — use --copper-dim for text on light grounds (5.9:1). */
   --copper: #c66a35;
   --copper-bright: #dc7a3f;
   --copper-dim: #8f4825;
   --ink: #131513;
   --ink-secondary: #444944;
-  --ink-muted: #686e68;
+  --ink-muted: #5a605a;
   --line: #202420;
   --line-soft: #b9bdb7;
   --green: #2d6244;
@@ -142,11 +145,61 @@
 .editorial-field::placeholder { color: #595f59; }
 .editorial-field:focus { border-color: var(--copper-dim); outline: 2px solid var(--copper-dim); outline-offset: 1px; }
 
+/* ---- Skip link -------------------------------------------------------- */
+/* Clipped rather than pushed off-canvas: a large negative offset counts as
+   horizontal overflow at narrow widths. */
+.skip-link { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.skip-link:focus { left: 0; top: 0; z-index: 100; display: inline-flex; width: auto; height: auto; min-height: 3rem; margin: 0; align-items: center; overflow: visible; clip-path: none; background: var(--copper); color: var(--graphite); padding: .75rem 1.25rem; font-weight: 800; outline: 3px solid var(--graphite); outline-offset: -3px; }
+
+/* ---- Evidence exhibit -------------------------------------------------
+   A document artifact: ruled, stamped, monospaced. Used for the illustrative
+   Health Check output and the case note. Deliberately reads as paper. */
+.exhibit { border: 2px solid var(--line); background: var(--paper-raised); }
+.exhibit-head { border-bottom: 2px solid var(--line); background: var(--graphite); color: #f4f4ef; }
+.exhibit-meta { display: grid; gap: 0; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; }
+.exhibit-meta > * { border-bottom: 1px solid var(--line-soft); padding: .6rem .9rem; }
+.exhibit-meta > *:last-child { border-bottom: 0; }
+@media (min-width: 640px) { .exhibit-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); } .exhibit-meta > *:nth-child(odd) { border-right: 1px solid var(--line-soft); } }
+.exhibit-section { border-bottom: 1px solid var(--line); padding: 1.1rem .9rem; }
+.exhibit-section:last-child { border-bottom: 0; }
+.redacted { display: inline-block; background: var(--ink); color: transparent; user-select: none; padding: 0 .1em; }
+
+/* Diagonal status stamp. Not decorative — it marks the artifact as illustrative. */
+.stamp { display: inline-block; border: 2px solid var(--copper-dim); color: var(--copper-dim); font-family: var(--font-mono); font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: .35rem .6rem; }
+.stamp-invert { border-color: var(--copper); color: var(--copper); }
+
+/* ---- Ledger ------------------------------------------------------------
+   Running index down the left margin. The one repeated device that earns it. */
+.ledger { border-top: 2px solid var(--line); counter-reset: ledger; }
+.ledger > * { counter-increment: ledger; border-bottom: 1px solid var(--line); }
+.ledger-num::before { content: counter(ledger, decimal-leading-zero); font-family: var(--font-mono); font-weight: 700; color: var(--copper-dim); }
+
+/* ---- Pressure map ------------------------------------------------------ */
+.pressure-step { display: flex; min-height: 44px; width: 100%; align-items: center; gap: .6rem; border: 2px solid var(--line); background: var(--paper-raised); padding: .6rem .75rem; text-align: left; font-weight: 700; }
+.pressure-step[aria-selected="true"] { background: var(--graphite); color: #f4f4ef; }
+.pressure-step:hover:not([aria-selected="true"]) { background: var(--panel-alt); }
+.pressure-rule { border-top: 2px solid var(--line); }
+
+/* ---- First-load sequence ----------------------------------------------
+   One orchestrated reveal, CSS only. Content is never hidden behind JS: if
+   CSS fails the content is visible, and the animation only ever runs once. */
+@keyframes sfp-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes sfp-wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+.seq { animation: sfp-rise .5s cubic-bezier(.2,.6,.2,1) both; }
+.seq-1 { animation-delay: .04s; }
+.seq-2 { animation-delay: .12s; }
+.seq-3 { animation-delay: .2s; }
+.seq-4 { animation-delay: .28s; }
+.seq-wipe { animation: sfp-wipe .6s cubic-bezier(.2,.6,.2,1) both; animation-delay: .16s; }
+
 @media (max-width: 767px) {
   .editorial-shell { border-inline: 0; }
   h1, .display-xl { font-size: clamp(2.5rem, 13vw, 4.2rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  /* animation-delay must be reset too: with fill-mode `both`, a delayed
+     animation holds its `from` state (opacity 0) for the whole delay, which
+     would leave hero content invisible for reduced-motion users. */
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-delay: 0ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transition-delay: 0ms !important; }
 }

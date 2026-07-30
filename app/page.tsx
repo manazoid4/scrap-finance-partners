@@ -1,227 +1,196 @@
 import Link from "next/link";
-import SiteHeader from "@/components/site-header";
-import SiteFooter from "@/components/site-footer";
 
-const reviewRows = [
-  {
-    area: "Trading margin",
-    question:
-      "Does the apparent spread survive haulage, yard time and operational involvement?",
-    decision: "Know which activity earns capacity.",
-  },
-  {
-    area: "Stock confidence",
-    question:
-      "Do the records used for buying and cash decisions reflect the physical process?",
-    decision: "Separate a reporting gap from a real stock problem.",
-  },
-  {
-    area: "Transport",
-    question:
-      "Is haulage visible when the deal is judged—or only after the movement is complete?",
-    decision: "Put route economics into the commercial choice.",
-  },
-  {
-    area: "Management information",
-    question:
-      "Do reports arrive in time, and does each measure lead to a named decision?",
-    decision: "Reduce noise and improve decision timing.",
-  },
-];
+import FounderAuthority from "@/components/founder-authority";
+import PressureMap from "@/components/pressure-map";
+import SampleOutput from "@/components/sample-output";
+import SiteFooter from "@/components/site-footer";
+import SiteHeader from "@/components/site-header";
+import { caseDisclaimer, caseReference, caseStages, caseTitle } from "@/data/case-evidence";
+import { reviewStages } from "@/data/health-check";
+
+const finding = caseStages.find((stage) => stage.id === "finding");
+const recommendation = caseStages.find((stage) => stage.id === "recommendation");
 
 export default function HomePage() {
   return (
     <div className="min-h-screen min-w-0 bg-background">
       <SiteHeader />
-      <main>
-        <section className="editorial-shell grid min-h-[37rem] grid-cols-1 border-b-2 border-black lg:grid-cols-12">
-          <div className="flex flex-col justify-between border-b-2 border-black p-5 sm:p-8 lg:col-span-8 lg:border-b-0 lg:border-r-2 lg:p-10 xl:p-14">
-            <div className="flex items-center justify-between border-b border-black pb-4 font-mono text-[11px] uppercase tracking-[.08em]">
-              <span>Commercial mandate</span>
-              <span>UK / Scrap &amp; Recycling</span>
+      <main id="main">
+        {/* Hero — the problem, then the action. CTA sits above the fold at every width. */}
+        <section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
+          <div className="flex flex-col justify-between border-b-2 border-black p-5 sm:p-8 lg:col-span-8 lg:border-b-0 lg:border-r-2 lg:p-12">
+            <div className="seq seq-1 flex items-center justify-between border-b border-black pb-4 font-mono text-[11px] uppercase tracking-[.08em]">
+              <span>UK scrap &amp; recycling</span>
+              <span>Commercial finance</span>
             </div>
-            <div className="py-12 lg:py-16">
-              <h1 className="max-w-5xl">
-                Know what makes money—and what only makes tonnage.
+
+            <div className="py-10 lg:py-14">
+              <h1 className="seq seq-2 max-w-5xl">
+                Your best-selling grade might be your worst deal.
               </h1>
-              <p className="editorial-intro mt-8">
-                Scrap Finance Partners connects trading, stock, transport and
-                finance so owner-managers can judge the whole commercial
-                return—not just the headline spread.
+              <p className="seq seq-3 editorial-intro mt-7">
+                The spread looks fine. Then haulage, handling, yard time and tied-up cash take
+                their cut — and nothing in the monthly reporting shows you what is left. A Finance
+                Health Check finds out.
               </p>
             </div>
-            <div className="flex flex-col gap-3 border-t border-black pt-5 sm:flex-row sm:items-center">
+
+            <div className="seq seq-4 flex flex-col gap-3 border-t border-black pt-5 sm:flex-row sm:items-center">
               <Link href="/health-check" className="editorial-action">
-                Request a Finance Health Check{" "}
+                Request a Finance Health Check
                 <span className="ml-3" aria-hidden>
                   →
                 </span>
               </Link>
-              <Link
-                href="/health-check#what-we-review"
-                className="editorial-link sm:ml-3"
-              >
-                Examine the review scope
+              <Link href="/health-check#what-you-get" className="editorial-link sm:ml-3">
+                See exactly what you get
               </Link>
             </div>
           </div>
+
           <aside
             className="flex flex-col bg-graphite text-white lg:col-span-4"
-            aria-label="Commercial test"
+            aria-label="The commercial test"
           >
-            <div className="border-b border-[#4d534e] p-5 font-mono text-[11px] uppercase tracking-[.08em] text-copper sm:p-8">
-              The commercial test
-            </div>
-            <div className="flex flex-1 items-center p-6 sm:p-8 lg:p-10">
-              <p className="font-serif text-[clamp(2rem,4vw,4rem)] font-bold leading-[1.02] tracking-[-.03em]">
+            <div className="seq-wipe flex flex-1 items-center p-6 sm:p-8 lg:p-10">
+              <p className="font-serif text-[clamp(1.9rem,3.6vw,3.4rem)] font-bold leading-[1.02] tracking-[-.03em]">
                 Does the margin still hold after the yard has done the work?
               </p>
             </div>
             <div className="divide-y divide-[#4d534e] border-t border-[#4d534e] text-sm text-[#c6cbc5]">
               <p className="px-6 py-4 sm:px-8">Haulage and route economics</p>
               <p className="px-6 py-4 sm:px-8">Labour, handling and capacity</p>
-              <p className="px-6 py-4 sm:px-8">
-                Stock, cash and reporting confidence
-              </p>
+              <p className="px-6 py-4 sm:px-8">Stock, cash and reporting confidence</p>
             </div>
           </aside>
         </section>
 
-        <section className="editorial-shell grid grid-cols-1 border-b-2 border-black md:grid-cols-12">
-          <p className="border-b border-black bg-copper p-5 font-serif text-2xl font-bold leading-tight text-graphite md:col-span-8 md:border-b-0 md:border-r md:p-7">
-            Built on 26 years of accountancy and finance experience in UK scrap
-            metal.
-          </p>
-          <Link
-            href="/founder"
-            className="flex min-h-20 items-center justify-between p-5 font-bold hover:bg-graphite hover:text-white md:col-span-4 md:p-7"
-          >
-            See the experience behind the work <span aria-hidden>→</span>
-          </Link>
+        {/* Authority, immediately after the hero. */}
+        <section
+          className="editorial-shell border-b-2 border-black"
+          aria-label="Who does the work"
+        >
+          <FounderAuthority />
         </section>
 
-        <section className="editorial-shell border-b-2 border-black">
+        {/* Flagship interaction. */}
+        <section id="pressure-map" className="editorial-shell border-b-2 border-black">
           <div className="grid grid-cols-1 border-b-2 border-black md:grid-cols-12">
-            <div className="border-b border-black p-5 md:col-span-3 md:border-b-0 md:border-r md:p-8">
-              <p className="editorial-label">Commercial review index</p>
-            </div>
-            <div className="p-5 md:col-span-9 md:p-8">
-              <h2>Where the numbers meet the operation.</h2>
+            <div className="p-5 md:col-span-7 md:p-10">
+              <h2>Seven things happen between the buy and the bank.</h2>
               <p className="editorial-intro mt-5">
-                The work is organised around decisions. Each review area has a
-                practical commercial question behind it.
+                Each one takes something out of the deal. Most reporting shows you the first two.
+                Work through them.
+              </p>
+            </div>
+            <div className="flex items-end border-t border-black p-5 md:col-span-5 md:border-l md:border-t-0 md:p-10">
+              <p className="text-sm text-ink-secondary">
+                No figures and no calculator. This explains what gets examined, and why it changes
+                the answer.
               </p>
             </div>
           </div>
-          <div className="editorial-index">
-            {reviewRows.map((row) => (
-              <article
-                key={row.area}
-                className="grid grid-cols-1 md:grid-cols-12"
-              >
-                <h3 className="p-5 md:col-span-3 md:border-r md:border-black md:p-7">
-                  {row.area}
-                </h3>
-                <p className="border-t border-black p-5 text-ink-secondary md:col-span-5 md:border-t-0 md:border-r md:p-7">
-                  {row.question}
-                </p>
-                <p className="border-t border-black p-5 font-semibold md:col-span-4 md:border-t-0 md:p-7">
-                  {row.decision}
-                </p>
-              </article>
-            ))}
-          </div>
+          <PressureMap />
         </section>
 
+        {/* The artifact. */}
         <section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
-          <div className="border-b-2 border-black bg-copper p-6 text-graphite sm:p-8 lg:col-span-5 lg:border-b-0 lg:border-r-2 lg:p-10">
-            <p className="editorial-label">Case evidence</p>
-            <h2 className="mt-8">
-              A profitable trade can still be the wrong use of capacity.
-            </h2>
-            <Link href="/case-studies" className="editorial-link mt-9">
-              Read the commercial margin case study
+          <div className="border-b-2 border-black p-6 sm:p-8 lg:col-span-4 lg:border-b-0 lg:border-r-2 lg:p-10">
+            <h2>This is what you actually receive.</h2>
+            <p className="editorial-intro mt-6">
+              A short written document that answers one commercial question, states what it rests
+              on, and says what to do first.
+            </p>
+            <Link href="/health-check#example-output" className="editorial-link mt-8">
+              Read the full example
             </Link>
           </div>
-          <div className="lg:col-span-7">
-            <div className="border-b border-black p-6 sm:p-8 lg:p-10">
-              <p className="font-serif text-2xl font-bold leading-tight">
-                Three months of trading activity were reviewed across purchase
-                price, selling price, haulage, operational involvement and
-                resource allocation.
-              </p>
+          <div className="p-4 sm:p-6 lg:col-span-8 lg:p-10">
+            <SampleOutput />
+          </div>
+        </section>
+
+        {/* Case evidence, framed as an exhibit rather than another card grid. */}
+        <section className="editorial-shell border-b-2 border-black">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-black bg-graphite px-5 py-4 text-white sm:px-8">
+            <p className="font-mono text-[11px] uppercase tracking-[.08em] text-copper">
+              {caseReference}
+            </p>
+            <span className="stamp stamp-invert">Anonymised</span>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="border-b-2 border-black p-6 sm:p-8 lg:col-span-5 lg:border-b-0 lg:border-r-2 lg:p-10">
+              <h2>{caseTitle}</h2>
+              <p className="mt-6 text-sm text-ink-muted">{caseDisclaimer}</p>
+              <Link href="/case-studies" className="editorial-link mt-8">
+                Read the full engagement note
+              </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="border-b border-black p-6 md:border-b-0 md:border-r md:p-8">
-                <p className="editorial-label text-copper-dim">Finding</p>
-                <p className="mt-4 text-ink-secondary">
-                  The return after operational demands was lower than the
-                  headline margin suggested.
-                </p>
-              </div>
-              <div className="p-6 md:p-8">
-                <p className="editorial-label text-copper-dim">Decision</p>
-                <p className="mt-4 text-ink-secondary">
-                  Use yard and transport capacity where the expected commercial
-                  return justifies it.
-                </p>
-              </div>
+            <div className="lg:col-span-7">
+              {finding && (
+                <div className="border-b border-black p-6 sm:p-8 lg:p-10">
+                  <p className="font-mono text-[11px] font-bold uppercase tracking-[.08em] text-copper-dim">
+                    {finding.label}
+                  </p>
+                  <p className="mt-4 font-serif text-xl font-bold leading-snug sm:text-2xl">
+                    {finding.body}
+                  </p>
+                </div>
+              )}
+              {recommendation && (
+                <div className="p-6 sm:p-8 lg:p-10">
+                  <p className="font-mono text-[11px] font-bold uppercase tracking-[.08em] text-copper-dim">
+                    {recommendation.label}
+                  </p>
+                  <p className="mt-4 text-ink-secondary">{recommendation.body}</p>
+                </div>
+              )}
             </div>
           </div>
         </section>
 
+        {/* Process, as a running ledger. */}
         <section className="editorial-shell border-b-2 border-black">
-          <div className="grid grid-cols-1 lg:grid-cols-12">
-            <div className="border-b-2 border-black p-6 sm:p-8 lg:col-span-5 lg:border-b-0 lg:border-r-2 lg:p-10">
-              <h2>The Finance Health Check is the first formal step.</h2>
+          <div className="grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
+            <div className="p-6 sm:p-8 lg:col-span-5 lg:p-10">
+              <h2>Five stages. Scope agreed before anything starts.</h2>
               <p className="editorial-intro mt-6">
-                A focused commercial review, scoped before work begins. No
-                invented recovery figure and no pressure to buy a larger
-                programme.
+                Fixed fee, agreed in writing, before work begins. No day rate that runs on.
               </p>
             </div>
-            <ol className="divide-y-2 divide-black lg:col-span-7">
-              {[
-                [
-                  "01",
-                  "Establish the question",
-                  "Agree what needs testing and the information already used to run the business.",
-                ],
-                [
-                  "02",
-                  "Review the commercial picture",
-                  "Connect the financial records with the operating demands behind them.",
-                ],
-                [
-                  "03",
-                  "Set the order of action",
-                  "Identify the material issues, practical next steps and clear scope boundaries.",
-                ],
-              ].map(([number, title, copy]) => (
-                <li
-                  key={number}
-                  className="grid grid-cols-[4rem_minmax(0,1fr)]"
-                >
-                  <span className="flex items-start justify-center border-r-2 border-black p-5 font-mono text-sm font-bold text-copper-dim">
-                    {number}
-                  </span>
-                  <div className="p-5 sm:p-7">
-                    <h3>{title}</h3>
-                    <p className="mt-3 text-ink-secondary">{copy}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+            <div className="flex items-end border-t border-black p-6 lg:col-span-7 lg:border-l lg:border-t-0 lg:p-10">
+              <p className="text-sm text-ink-secondary">
+                If a Health Check is not the right next step for you, we will say so. An enquiry is
+                not a commitment.
+              </p>
+            </div>
           </div>
+          <ol className="divide-y-2 divide-black">
+            {reviewStages.map((stage) => (
+              <li
+                key={stage.number}
+                className="grid grid-cols-[3.5rem_minmax(0,1fr)] sm:grid-cols-[5rem_minmax(0,1fr)]"
+              >
+                <span className="flex items-start justify-center border-r-2 border-black p-5 font-mono text-sm font-bold text-copper-dim">
+                  {stage.number}
+                </span>
+                <div className="p-5 sm:p-7">
+                  <h3>{stage.title}</h3>
+                  <p className="mt-3 max-w-3xl text-ink-secondary">{stage.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </section>
 
         <section className="editorial-shell grid grid-cols-1 bg-graphite text-white lg:grid-cols-12">
           <div className="border-b border-[#4d534e] p-6 sm:p-8 lg:col-span-8 lg:border-b-0 lg:border-r lg:p-10">
             <h2 className="max-w-4xl text-white">
-              Bring the yard reality into the finance picture.
+              Which decision are you currently making on a number you do not fully trust?
             </h2>
             <p className="mt-5 max-w-2xl text-[#c6cbc5]">
-              Tell us which commercial decision is currently hardest to trust.
+              Tell us that, and nothing else if you would rather not. Name, company and email is
+              all the form asks for.
             </p>
           </div>
           <Link

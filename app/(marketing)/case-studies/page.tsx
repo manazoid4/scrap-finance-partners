@@ -1,78 +1,100 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+
+import {
+  caseDisclaimer,
+  caseEvidenceStatus,
+  caseRationale,
+  caseReference,
+  caseStages,
+  caseTitle,
+} from "@/data/case-evidence";
+
 export const metadata: Metadata = {
   title: "Case Study",
   description:
-    "How commercial analysis can reveal the operational return behind scrap trading activity.",
+    "An anonymised engagement note: how commercial analysis revealed the operational return behind scrap trading activity.",
 };
-const sections = [
-  [
-    "Challenge",
-    "Ferrous scrap trading appeared profitable, but the headline trading spread did not show the complete commercial return. Haulage, yard labour and operational capacity also needed to be considered.",
-  ],
-  [
-    "Approach",
-    "Three months of trading activity were reviewed, including purchase prices, selling prices, haulage costs, operational involvement and the allocation of yard and transport resources.",
-  ],
-  [
-    "Commercial finding",
-    "The material generated revenue, but its return after operational demands was lower than the headline margin suggested. Yard labour and transport capacity were being consumed by comparatively lower-margin activity.",
-  ],
-  [
-    "Recommendation",
-    "Prioritise selected higher-margin non-ferrous opportunities, including relevant aluminium grades, where the expected commercial return justified the use of yard and transport capacity.",
-  ],
-];
-export default function CaseStudy() {
+
+export default function CaseStudiesPage() {
   return (
     <>
-      <section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
-        <div className="border-b-2 border-black p-6 sm:p-10 lg:col-span-9 lg:border-b-0 lg:border-r-2 lg:p-12">
-          <p className="editorial-label">Commercial analysis / Case study</p>
-          <h1 className="mt-10">
-            Improving Scrap Trading Margin Through Commercial Analysis
-          </h1>
-        </div>
-        <div className="flex flex-col justify-between bg-copper p-6 text-graphite sm:p-9 lg:col-span-3">
-          <p className="editorial-label">Evidence status</p>
-          <p className="mt-12 font-serif text-2xl font-bold">
-            Anonymised commercial analysis. No unverified outcome claim.
+      {/* Exhibit header — an annex cover sheet, not another hero. */}
+      <section className="editorial-shell border-b-2 border-black">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-black bg-graphite px-5 py-4 text-white sm:px-8">
+          <p className="font-mono text-[11px] uppercase tracking-[.08em] text-copper">
+            {caseReference}
           </p>
+          <span className="stamp stamp-invert">Anonymised</span>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12">
+          <div className="border-b-2 border-black p-6 sm:p-10 lg:col-span-8 lg:border-b-0 lg:border-r-2 lg:p-12">
+            <h1 className="seq seq-1">{caseTitle}</h1>
+          </div>
+          <dl className="seq seq-2 lg:col-span-4">
+            <div className="border-b border-black p-6 sm:p-8">
+              <dt className="font-mono text-[11px] uppercase tracking-[.08em] text-copper-dim">
+                Evidence status
+              </dt>
+              <dd className="mt-3 font-semibold">{caseEvidenceStatus}</dd>
+            </div>
+            <div className="p-6 sm:p-8">
+              <dt className="font-mono text-[11px] uppercase tracking-[.08em] text-copper-dim">
+                Disclosure
+              </dt>
+              <dd className="mt-3 text-ink-secondary">{caseDisclaimer}</dd>
+            </div>
+          </dl>
         </div>
       </section>
+
+      {/* The record itself, as a numbered annex. */}
       <article className="editorial-shell border-b-2 border-black">
-        {sections.map(([heading, copy]) => (
-          <section
-            key={heading}
-            className="grid grid-cols-1 border-b border-black last:border-b-0 md:grid-cols-12"
-          >
-            <h2 className="p-6 text-3xl md:col-span-4 md:border-r md:border-black md:p-9">
-              {heading}
-            </h2>
-            <p className="border-t border-black p-6 text-lg text-ink-secondary md:col-span-8 md:border-t-0 md:p-9">
-              {copy}
-            </p>
-          </section>
-        ))}
+        <ol className="divide-y-2 divide-black">
+          {caseStages.map((stage, index) => (
+            <li key={stage.id} className="grid grid-cols-1 md:grid-cols-12">
+              <div className="flex items-start gap-4 border-b border-black p-6 md:col-span-4 md:border-b-0 md:border-r md:p-9">
+                <span className="font-mono text-sm font-bold text-copper-dim">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h2 className="text-[clamp(1.4rem,2.2vw,2rem)]">{stage.label}</h2>
+              </div>
+              <p className="p-6 text-lg text-ink-secondary md:col-span-8 md:p-9">{stage.body}</p>
+            </li>
+          ))}
+        </ol>
       </article>
+
+      {/* Why the recommendation followed — kept separate from any claim of result. */}
       <section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
-        <div className="border-b-2 border-black p-6 sm:p-9 lg:col-span-4 lg:border-b-0 lg:border-r-2">
-          <h2 className="text-3xl">Recommendation rationale</h2>
+        <div className="border-b-2 border-black bg-copper p-6 text-graphite sm:p-9 lg:col-span-4 lg:border-b-0 lg:border-r-2 lg:p-10">
+          <h2 className="text-[clamp(1.4rem,2.2vw,2rem)]">Why that recommendation followed</h2>
         </div>
         <ul className="divide-y divide-black lg:col-span-8">
-          {[
-            "Prioritise the trading opportunities with the stronger expected commercial return.",
-            "Allocate yard labour and transport capacity using the full operating cost.",
-            "Give buying decisions a clearer commercial basis.",
-          ].map((item) => (
-            <li key={item} className="p-6 font-semibold sm:p-7">
+          {caseRationale.map((item) => (
+            <li key={item} className="flex gap-3 p-6 font-semibold sm:p-8">
+              <span aria-hidden className="font-mono text-copper-dim">
+                →
+              </span>
               {item}
             </li>
           ))}
         </ul>
       </section>
+
+      {/* Explicit limits on what this page claims. */}
+      <section className="editorial-shell border-b-2 border-black bg-panel-alt p-6 sm:p-9 md:p-10">
+        <h2 className="text-[clamp(1.3rem,2vw,1.8rem)]">What this note does not claim</h2>
+        <p className="mt-5 max-w-4xl text-ink-secondary">
+          No saving, margin improvement or recovered value is stated here, because none was
+          measured. The recommendation was made and adopted; what it earned afterwards was never
+          quantified, so it is not reported. Any figure attributed to this work anywhere else did
+          not come from us.
+        </p>
+      </section>
+
       <section className="editorial-shell grid grid-cols-1 bg-graphite text-white lg:grid-cols-12">
-        <div className="border-b border-[#4d534e] p-6 sm:p-9 lg:col-span-8 lg:border-b-0 lg:border-r">
+        <div className="border-b border-[#4d534e] p-6 sm:p-9 lg:col-span-8 lg:border-b-0 lg:border-r lg:p-10">
           <h2 className="text-white">
             Does your margin still hold after the yard has done the work?
           </h2>
@@ -81,7 +103,7 @@ export default function CaseStudy() {
           href="/health-check"
           className="flex min-h-32 items-center justify-between bg-copper p-6 font-bold text-graphite hover:bg-[#f0f0ed] sm:p-9 lg:col-span-4"
         >
-          Request Health Check <span aria-hidden>→</span>
+          Find out <span aria-hidden>→</span>
         </Link>
       </section>
     </>
