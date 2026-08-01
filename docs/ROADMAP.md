@@ -11,6 +11,9 @@
 - Build first 25-prospect list
 
 ## First 30 days
+- Launch secure client login, signup, recovery and organisation bootstrap
+- Add lead records with email, phone, source, consent basis, notes and follow-up dates
+- Add reusable generic email templates, draft approval and a suppression-aware send log
 - Build 100-prospect list
 - Send first 50 outreach messages
 - Publish 10 LinkedIn posts
@@ -21,8 +24,7 @@
 
 ## First 90 days
 - Create case studies
-- Build CRM
-- Add client portal prototype
+- Add client reporting and document exchange to the working acquisition CRM
 - Create reporting upload workflow
 - Package dashboard/reporting into repeatable system
 - Test Scrap Finance OS concept

@@ -54,8 +54,17 @@ the fixed-scope Finance Health Check. Monthly support is discussed only after a 
 - Won revenue, cash collected and commission due.
 - Which pain angle produced useful conversations; revise before increasing volume.
 
-## Client portal next
+## Client workspace
 
-The account system will be invitation-led for paying clients: authentication, secure report access,
-lead and commission summaries, document exchange and password recovery. Public signup is not an
-acquisition priority and should not expose private campaign data.
+The web workspace is organised around each Scrap Finance Partners client. It stores company and
+contact details, source and consent basis, pipeline status, follow-up notes, reusable email
+templates, suppression records, an outbound-message audit trail and attributable collected revenue.
+
+Signup creates an authenticated user, then a private organisation workspace. Row-level security
+keeps every organisation isolated. Owners control membership; owners and admins control revenue
+records. No service-role key is exposed to the browser.
+
+Portal email must be draft-first. A message can only be sent after the operator checks the lead,
+lawful basis, source, suppression status, subject and copy. Production delivery also requires the
+server-only provider variables and `SEND_EMAILS_ENABLED=true`; development and previews stay in
+draft-only mode.

@@ -10,6 +10,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test:acquisition": "node --test tests/acquisition/*.test.mjs",
+    "test:account": "node --test tests/account/*.test.mjs",
     "outreach:prepare": "node scripts/prepare-outreach.mjs",
     "outreach:send": "node scripts/send-outreach.mjs",
     "outreach:commission": "node scripts/commission-report.mjs",
@@ -19,6 +20,8 @@
   "dependencies": {
     "@base-ui/react": "^1.6.0",
     "@radix-ui/react-slot": "^1.3.0",
+    "@supabase/ssr": "^0.12.4",
+    "@supabase/supabase-js": "^2.111.0",
     "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
