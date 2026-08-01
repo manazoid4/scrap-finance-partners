@@ -68,10 +68,13 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b-2 border-black bg-graphite text-white">
-      <div className="hidden border-b border-[#4d534e] md:block">
-        <div className="editorial-shell flex min-h-8 items-center justify-between px-5 font-mono text-[10px] uppercase tracking-[.08em] text-[#b9beb9]">
-          <span>UK scrap &amp; recycling</span>
-          <span>Commercial finance insight</span>
+      <div className="border-b border-[#4d534e]">
+        <div className="editorial-shell flex min-h-8 items-center justify-between px-4 font-mono text-[10px] uppercase tracking-[.08em] text-[#b9beb9] sm:px-5">
+          <span className="hidden md:inline">UK scrap &amp; recycling</span>
+          <span className="md:hidden">Client workspace</span>
+          <Link href="/login" className="font-bold text-white underline decoration-copper underline-offset-4 hover:text-copper">
+            Client Login
+          </Link>
         </div>
       </div>
 
