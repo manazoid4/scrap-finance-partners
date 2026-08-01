@@ -19,8 +19,8 @@ const groups = [
     title: "Reference",
     links: [
       ["/about", "About"],
-      ["/insights", "Insights"],
       ["/updates", "Updates"],
+      ["/contact", "Contact"],
       ["/privacy", "Privacy"],
     ],
   },

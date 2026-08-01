@@ -40,6 +40,7 @@ test("optional qualification answers are still captured when given", async ({ pa
   await form.getByLabel("Your name").fill("Test Person");
   await form.getByLabel("Company").fill("Example Yard");
   await form.getByLabel("Work email").fill("test@example.com");
+  await form.getByText("Add phone, priority or timing").click();
   await form.getByLabel("What needs attention first?").selectOption({ label: "Trading margin" });
   await form
     .getByLabel("When are you looking to act?")
@@ -62,7 +63,7 @@ test("a failed submission shows an accessible error and keeps the answers", asyn
   await form.getByRole("button", { name: "Send enquiry" }).click();
 
   // Scoped to the form: Next renders its own role="alert" route announcer.
-  await expect(form.getByRole("alert")).toContainText("could not be sent");
+  await expect(form.getByRole("alert")).toContainText("could not send the form");
   // Answers survive the failure so the user can retry.
   await expect(form.getByLabel("Company")).toHaveValue("Example Yard");
 });

@@ -15,6 +15,7 @@ const nextConfig: NextConfig = {
       { source: "/pricing", destination: "/ways-to-work-together", permanent: true },
       { source: "/software", destination: "/updates", permanent: true },
       { source: "/dashboard-demo", destination: "/health-check", permanent: true },
+      { source: "/insights", destination: "/updates", permanent: true },
     ];
   },
 };
