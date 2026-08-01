@@ -3,6 +3,9 @@
 `migrations/20260801201911_create_lead_workspace.sql` is the reviewed source of truth for the
 client acquisition workspace. It has not been applied to a remote Supabase project.
 
+Database seeding is disabled. The migration creates structure and access policies only; it inserts
+no organisations, users, leads, templates, messages, metrics or revenue.
+
 Before deployment:
 
 1. Create or identify the dedicated Scrap Finance Partners Supabase project.

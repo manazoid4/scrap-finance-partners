@@ -20,6 +20,8 @@
 - Added current Supabase SSR packages and local project configuration. No remote project was
   linked or migrated during this session.
 - Live portal sending remains explicitly gated by `SEND_EMAILS_ENABLED=false`.
+- Removed all invented outreach and revenue records from repository templates and disabled
+  Supabase seeding. The workspace must open empty and display only persisted real records.
 - Blocked: the local Probity pre-edit hook cannot review TS/TSX/JSX changes because its configured
   `gpt-5.6-sol` model requires a newer Codex desktop runtime. CLI 0.146.0 is current locally; restart
   or update the desktop app before applying the prepared login/portal UI tranche.

@@ -13,15 +13,15 @@ test("corporate recipients are eligible and sole traders require consent", () =>
 
 test("queue generation removes suppressed and duplicate recipients", () => {
   const prospects = [
-    { id: "1", companyName: "North Yard Ltd", companyType: "limited-company", email: "director@north.test", painAngle: "stock", sourceUrl: "https://north.test" },
-    { id: "2", companyName: "Duplicate Ltd", companyType: "limited-company", email: "DIRECTOR@north.test", painAngle: "margin", sourceUrl: "https://duplicate.test" },
-    { id: "3", companyName: "Suppressed Ltd", companyType: "limited-company", email: "owner@suppressed.test", painAngle: "reporting", sourceUrl: "https://suppressed.test" },
+    { id: "1", companyName: "TEST-COMPANY-A", companyType: "limited-company", email: "a@invalid.test", painAngle: "stock", sourceUrl: "https://invalid.test/a" },
+    { id: "2", companyName: "TEST-DUPLICATE", companyType: "limited-company", email: "A@INVALID.TEST", painAngle: "margin", sourceUrl: "https://invalid.test/b" },
+    { id: "3", companyName: "TEST-SUPPRESSED", companyType: "limited-company", email: "blocked@invalid.test", painAngle: "reporting", sourceUrl: "https://invalid.test/c" },
   ];
 
-  const queue = buildQueue(prospects, ["owner@suppressed.test"], new Date("2026-08-01T09:00:00Z"));
+  const queue = buildQueue(prospects, ["blocked@invalid.test"], new Date("2026-08-01T09:00:00Z"));
 
   assert.equal(queue.length, 4);
-  assert.equal(queue.every((message) => message.email === "director@north.test"), true);
+  assert.equal(queue.every((message) => message.email === "a@invalid.test"), true);
   assert.deepEqual(queue.map((message) => message.touch), [1, 2, 3, 4]);
   assert.equal(queue.every((message) => message.approved === false), true);
 });

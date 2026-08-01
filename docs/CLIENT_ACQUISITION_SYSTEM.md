@@ -17,7 +17,8 @@ the fixed-scope Finance Health Check. Monthly support is discussed only after a 
 ## Operating flow
 
 1. Copy `templates/outreach/prospects.example.json` to
-   `private/outreach/prospects.json` and replace the invented record.
+   `private/outreach/prospects.json`. The template is deliberately empty; add only verified,
+   genuinely sourced prospects.
 2. Record every source URL and company type. Do not commit real prospect information.
 3. Copy the suppression example to `private/outreach/suppression.json` and retain every opt-out.
 4. Run `npm run outreach:prepare`.
@@ -59,6 +60,10 @@ the fixed-scope Finance Health Check. Monthly support is discussed only after a 
 The web workspace is organised around each Scrap Finance Partners client. It stores company and
 contact details, source and consent basis, pipeline status, follow-up notes, reusable email
 templates, suppression records, an outbound-message audit trail and attributable collected revenue.
+
+The workspace ships empty. It must never seed example companies, contacts, messages, pipeline
+figures, testimonials or revenue. Empty states should explain the next action without pretending
+that activity has happened.
 
 Signup creates an authenticated user, then a private organisation workspace. Row-level security
 keeps every organisation isolated. Owners control membership; owners and admins control revenue

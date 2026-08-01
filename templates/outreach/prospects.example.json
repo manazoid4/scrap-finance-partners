@@ -1,15 +1,1 @@
-[
-  {
-    "id": "yard-001",
-    "companyName": "Example Recycling Ltd",
-    "companyType": "limited-company",
-    "website": "https://example.com",
-    "contactName": "",
-    "email": "finance@example.com",
-    "role": "Finance Director",
-    "sourceUrl": "https://example.com/contact",
-    "painAngle": "stock",
-    "consent": false,
-    "notes": "Replace this example; never commit real prospect data."
-  }
-]
+[]
