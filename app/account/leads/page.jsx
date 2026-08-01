@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { addLead, deleteLead, updateLeadStatus } from "../actions";
 import { getWorkspace } from "@/lib/workspace-server";
 
@@ -26,6 +28,14 @@ export default async function LeadsPage({ searchParams }) {
       </div>
       {params?.error && <p role="alert" className="mt-5 border-2 border-red-900 bg-red-50 p-4 text-sm text-red-950">{params.error}</p>}
       {params?.notice && <p role="status" className="mt-5 border-2 border-[#815322] bg-[#fff4df] p-4 text-sm">{params.notice}</p>}
+
+      <section className="mt-6 flex flex-wrap items-center justify-between gap-4 border-2 border-black bg-white p-5">
+        <div>
+          <h2 className="font-bold">New to the workspace?</h2>
+          <p className="mt-1 max-w-2xl text-sm text-[#4d534e]">Follow the verification, follow-up and opt-out process before contacting a lead.</p>
+        </div>
+        <Link href="/account/guide" className="border-2 border-black bg-graphite px-4 py-2 text-sm font-bold text-white">Read the guide</Link>
+      </section>
 
       <details className="mt-6 border-2 border-black bg-white" open={leads.length === 0}>
         <summary className="cursor-pointer px-5 py-4 font-bold">Add a verified lead</summary>
