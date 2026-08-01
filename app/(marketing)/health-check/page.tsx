@@ -36,12 +36,11 @@ export default function HealthCheckPage() {
             <span>Fixed fee, agreed first</span>
           </div>
           <h1 className="seq seq-2 mt-10 max-w-5xl">
-            Find out which of your numbers is lying to you.
+            Find out which numbers you can trust.
           </h1>
           <p className="seq seq-3 editorial-intro mt-7">
-            A bounded review of the trading, stock, transport, cash and reporting information you
-            already use — to establish which commercial decisions are being made on figures that
-            do not hold up.
+            We review the trading, stock, transport, cash and reports you already use. You get a
+            clear view of what holds up and what needs attention.
           </p>
           <div className="seq seq-4 mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link href="#request" className="editorial-action">
@@ -51,15 +50,15 @@ export default function HealthCheckPage() {
               </span>
             </Link>
             <Link href="#example-output" className="editorial-link sm:ml-3">
-              See an example output first
+              View a sample report
             </Link>
           </div>
         </div>
 
         <aside className="flex flex-col justify-between bg-graphite p-6 text-white sm:p-9 lg:col-span-4 lg:p-10">
           <p className="font-serif text-[clamp(1.5rem,2.6vw,2.1rem)] font-bold leading-tight">
-            Built for owner-managed scrap and recycling businesses that need a clearer commercial
-            picture.
+            For owner-managed scrap and recycling businesses that need a clearer view of
+            performance.
           </p>
           <dl className="mt-8 space-y-4 border-t border-[#4d534e] pt-6 text-sm">
             <div>
@@ -73,13 +72,13 @@ export default function HealthCheckPage() {
             </div>
             <div>
               <dt className="font-mono text-[11px] uppercase tracking-[.08em] text-copper">
-                Reply time
+                Reply
               </dt>
               <dd className="mt-1 font-semibold">You hear back {engagement.responseWindow}.</dd>
             </div>
             <div>
               <dt className="font-mono text-[11px] uppercase tracking-[.08em] text-copper">
-                Who reads it
+                Who responds
               </dt>
               <dd className="mt-1 text-[#c6cbc5]">{engagement.reviewedBy}</dd>
             </div>

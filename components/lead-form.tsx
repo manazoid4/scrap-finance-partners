@@ -103,8 +103,7 @@ export default function LeadForm({
       <div className="border-b-2 border-black p-5">
         <p className="font-serif text-2xl font-bold">Send an enquiry</p>
         <p className="mt-2 text-sm text-ink-secondary">
-          Three fields are required. Everything below them is optional, and helps us reply
-          usefully first time.
+          Name, company and work email are all we need.
         </p>
       </div>
 
@@ -129,7 +128,7 @@ export default function LeadForm({
             className="editorial-field mt-2"
           />
         </label>
-        <label className="border-b border-black p-4 text-sm font-bold sm:border-r">
+        <label className="border-b border-black p-4 text-sm font-bold sm:col-span-2">
           Work email
           <input
             name="email"
@@ -140,46 +139,50 @@ export default function LeadForm({
             className="editorial-field mt-2"
           />
         </label>
-        <label className="border-b border-black p-4 text-sm font-bold">
-          Telephone <span className="font-normal text-ink-muted">(optional)</span>
-          <input
-            name="phone"
-            type="tel"
-            maxLength={40}
-            autoComplete="tel"
-            className="editorial-field mt-2"
-          />
-        </label>
       </div>
 
-      <label className="block border-b border-black p-4 text-sm font-bold">
-        What needs attention first?{" "}
-        <span className="font-normal text-ink-muted">(optional)</span>
-        <select name="challenge" className="editorial-field mt-2" defaultValue="">
-          <option value="">Not sure yet</option>
-          <option>Trading margin</option>
-          <option>Stock confidence</option>
-          <option>Haulage and transport cost</option>
-          <option>Reporting and month-end</option>
-          <option>Cash and working capital</option>
-          <option>Something else</option>
-        </select>
-      </label>
-
-      <label className="block border-b border-black p-4 text-sm font-bold">
-        When are you looking to act?{" "}
-        <span className="font-normal text-ink-muted">(optional)</span>
-        <select name="timing" className="editorial-field mt-2" defaultValue="">
-          <option value="">Not sure yet</option>
-          <option>As soon as practical</option>
-          <option>Within three months</option>
-          <option>Exploring for later</option>
-        </select>
-      </label>
+      <details className="border-b border-black">
+        <summary className="min-h-12 cursor-pointer px-4 py-3 text-sm font-bold">
+          Add phone, priority or timing <span className="font-normal text-ink-muted">(optional)</span>
+        </summary>
+        <div className="border-t border-black">
+          <label className="block border-b border-black p-4 text-sm font-bold">
+            Telephone
+            <input
+              name="phone"
+              type="tel"
+              maxLength={40}
+              autoComplete="tel"
+              className="editorial-field mt-2"
+            />
+          </label>
+          <label className="block border-b border-black p-4 text-sm font-bold">
+            What needs attention first?
+            <select name="challenge" className="editorial-field mt-2" defaultValue="">
+              <option value="">Not sure yet</option>
+              <option>Trading margin</option>
+              <option>Stock confidence</option>
+              <option>Haulage and transport cost</option>
+              <option>Reporting and month-end</option>
+              <option>Cash and working capital</option>
+              <option>Something else</option>
+            </select>
+          </label>
+          <label className="block p-4 text-sm font-bold">
+            When are you looking to act?
+            <select name="timing" className="editorial-field mt-2" defaultValue="">
+              <option value="">Not sure yet</option>
+              <option>As soon as practical</option>
+              <option>Within three months</option>
+              <option>Exploring for later</option>
+            </select>
+          </label>
+        </div>
+      </details>
 
       <div className="border-b-2 border-black p-4">
         <label htmlFor={`${fieldId}-message`} className="block text-sm font-bold">
-          Anything else worth knowing?{" "}
+          What would you like us to look at?{" "}
           <span className="font-normal text-ink-muted">(optional)</span>
         </label>
         <textarea
@@ -205,14 +208,14 @@ export default function LeadForm({
       <div aria-live="assertive" aria-atomic="true">
         {status === "error" && (
           <div role="alert" className="border-t-2 border-black bg-red p-4 text-sm font-bold text-white">
-            <p>The form could not be sent. Your answers are still here, so you can try again.</p>
+            <p>We could not send the form. Your answers are still here. Please try again.</p>
             {contactEmail && (
               <p className="mt-2 font-normal">
-                If it keeps failing, email{" "}
+                Or email{" "}
                 <a href={`mailto:${contactEmail}`} className="font-bold underline">
                   {contactEmail}
                 </a>{" "}
-                instead and it reaches the same person.
+                instead.
               </p>
             )}
           </div>
@@ -220,9 +223,8 @@ export default function LeadForm({
       </div>
 
       <p className="border-t border-black p-4 text-xs text-ink-muted">
-        You will get a reply {engagement.responseWindow}. {engagement.reviewedBy} Commercial
-        consultancy only — this is not regulated financial advice. Your details are used solely
-        to answer this enquiry.{" "}
+        You will get a reply {engagement.responseWindow}. Commercial consultancy only — not
+        regulated financial advice. We only use your details to answer this enquiry.{" "}
         <a href="/privacy" className="font-bold underline">
           Privacy
         </a>

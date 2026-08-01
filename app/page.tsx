@@ -7,38 +7,15 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { caseDisclaimer, caseReference, caseStages, caseTitle } from "@/data/case-evidence";
 import { reviewStages } from "@/data/health-check";
-import { pressureStages } from "@/data/pressure-map";
 
 const finding = caseStages.find((stage) => stage.id === "finding");
 const recommendation = caseStages.find((stage) => stage.id === "recommendation");
-const tapeItems = pressureStages.map((stage, index) => ({
-  code: "SFP-" + String(index + 1).padStart(2, "0"),
-  label: stage.label,
-}));
 
 export default function HomePage() {
   return (
     <div className="min-h-screen min-w-0 bg-background">
       <SiteHeader />
       <main id="main">
-        <section className="terminal-tape" aria-label="Commercial review scope">
-          <p className="sr-only">
-            The review follows the full deal from purchase price to true commercial return.
-          </p>
-          <div className="terminal-tape-track ticker-track" aria-hidden="true">
-            {[0, 1].map((group) => (
-              <div className="terminal-tape-group" key={group}>
-                {tapeItems.map((item) => (
-                  <span className="terminal-tape-item" key={group + "-" + item.code}>
-                    <span className="terminal-tape-code">{item.code}</span>
-                    {item.label}
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Hero — the problem, then the action. CTA sits above the fold at every width. */}
         <section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
           <div className="flex flex-col justify-between border-b-2 border-black p-5 sm:p-8 lg:col-span-8 lg:border-b-0 lg:border-r-2 lg:p-12">
@@ -52,15 +29,14 @@ export default function HomePage() {
                 Your best-selling grade might be your worst deal.
               </h1>
               <p className="seq seq-3 editorial-intro mt-7">
-                The spread looks fine. Then haulage, handling, yard time and tied-up cash take
-                their cut — and nothing in the monthly reporting shows you what is left. A Finance
-                Health Check finds out.
+                A strong spread can disappear once haulage, handling, yard time and tied-up cash
+                are counted. A Finance Health Check shows what is really left.
               </p>
             </div>
 
             <div className="seq seq-4 flex flex-col gap-3 border-t border-black pt-5 sm:flex-row sm:items-center">
               <Link href="/health-check" className="editorial-action">
-                Request a Finance Health Check
+                Request a Health Check
                 <span className="ml-3" aria-hidden>
                   →
                 </span>
@@ -72,27 +48,18 @@ export default function HomePage() {
           </div>
 
           <aside
-            className="flex flex-col bg-[#0b0e10] text-white lg:col-span-4"
+            className="flex flex-col bg-graphite text-white lg:col-span-4"
             aria-label="The commercial test"
           >
-            <div className="seq-wipe flex flex-1 flex-col justify-center p-6 sm:p-8 lg:p-10">
-              <p className="editorial-label text-copper">Commercial test / 01</p>
-              <p className="mt-5 text-[clamp(1.75rem,3.2vw,3.1rem)] font-bold leading-[.98] tracking-[-.04em]">
+            <div className="seq-wipe flex flex-1 items-center p-6 sm:p-8 lg:p-10">
+              <p className="font-serif text-[clamp(1.9rem,3.6vw,3.4rem)] font-bold leading-[1.02] tracking-[-.03em]">
                 Does the margin still hold after the yard has done the work?
               </p>
             </div>
-            <div className="terminal-panel border-x-0 border-b-0">
-              <div className="terminal-panel-head">
-                <span>Review chain</span>
-                <span className="terminal-status"><span className="terminal-dot" />Ready</span>
-              </div>
-              {pressureStages.map((stage, index) => (
-                <div className="terminal-row" key={stage.id}>
-                  <span className="terminal-code">{String(index + 1).padStart(2, "0")}</span>
-                  <span>{stage.label}</span>
-                  <span className="terminal-status">Check</span>
-                </div>
-              ))}
+            <div className="divide-y divide-[#4d534e] border-t border-[#4d534e] text-sm text-[#c6cbc5]">
+              <p className="px-6 py-4 sm:px-8">Haulage</p>
+              <p className="px-6 py-4 sm:px-8">Handling and capacity</p>
+              <p className="px-6 py-4 sm:px-8">Stock and cash</p>
             </div>
           </aside>
         </section>
@@ -109,16 +76,14 @@ export default function HomePage() {
         <section id="pressure-map" className="editorial-shell border-b-2 border-black">
           <div className="grid grid-cols-1 border-b-2 border-black md:grid-cols-12">
             <div className="p-5 md:col-span-7 md:p-10">
-              <h2>Seven things happen between the buy and the bank.</h2>
+              <h2>Seven pressures sit between the buy and the bank.</h2>
               <p className="editorial-intro mt-5">
-                Each one takes something out of the deal. Most reporting shows you the first two.
-                Work through them.
+                Most reporting shows the buy and sell price. The review checks the rest.
               </p>
             </div>
             <div className="flex items-end border-t border-black p-5 md:col-span-5 md:border-l md:border-t-0 md:p-10">
               <p className="text-sm text-ink-secondary">
-                No figures and no calculator. This explains what gets examined, and why it changes
-                the answer.
+                No calculator or estimates. This simply shows what we review.
               </p>
             </div>
           </div>
@@ -128,10 +93,9 @@ export default function HomePage() {
         {/* The artifact. */}
         <section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
           <div className="border-b-2 border-black p-6 sm:p-8 lg:col-span-4 lg:border-b-0 lg:border-r-2 lg:p-10">
-            <h2>This is what you actually receive.</h2>
+            <h2>A clear written report.</h2>
             <p className="editorial-intro mt-6">
-              A short written document that answers one commercial question, states what it rests
-              on, and says what to do first.
+              The question, the evidence, the finding and what to do first.
             </p>
             <Link href="/health-check#example-output" className="editorial-link mt-8">
               Read the full example
@@ -185,15 +149,14 @@ export default function HomePage() {
         <section className="editorial-shell border-b-2 border-black">
           <div className="grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
             <div className="p-6 sm:p-8 lg:col-span-5 lg:p-10">
-              <h2>Five stages. Scope agreed before anything starts.</h2>
+              <h2>Five clear stages. One fixed scope.</h2>
               <p className="editorial-intro mt-6">
-                Fixed fee, agreed in writing, before work begins. No day rate that runs on.
+                You agree the scope and fee before work starts.
               </p>
             </div>
             <div className="flex items-end border-t border-black p-6 lg:col-span-7 lg:border-l lg:border-t-0 lg:p-10">
               <p className="text-sm text-ink-secondary">
-                If a Health Check is not the right next step for you, we will say so. An enquiry is
-                not a commitment.
+                If this is not the right service, we will say so. An enquiry commits you to nothing.
               </p>
             </div>
           </div>
@@ -218,18 +181,17 @@ export default function HomePage() {
         <section className="editorial-shell grid grid-cols-1 bg-graphite text-white lg:grid-cols-12">
           <div className="border-b border-[#4d534e] p-6 sm:p-8 lg:col-span-8 lg:border-b-0 lg:border-r lg:p-10">
             <h2 className="max-w-4xl text-white">
-              Which decision are you currently making on a number you do not fully trust?
+              Which number do you trust least?
             </h2>
             <p className="mt-5 max-w-2xl text-[#c6cbc5]">
-              Tell us that, and nothing else if you would rather not. Name, company and email is
-              all the form asks for.
+              Tell us. The form only requires your name, company and email.
             </p>
           </div>
           <Link
             href="/health-check"
             className="flex min-h-36 items-center justify-between bg-copper p-6 text-xl font-bold text-graphite hover:bg-[#f0f0ed] sm:p-8 lg:col-span-4"
           >
-            Request Health Check <span aria-hidden>→</span>
+            Request a Health Check <span aria-hidden>→</span>
           </Link>
         </section>
       </main>
