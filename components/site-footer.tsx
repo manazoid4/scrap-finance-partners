@@ -19,8 +19,8 @@ const groups = [
     title: "Reference",
     links: [
       ["/about", "About"],
+      ["/insights", "Insights"],
       ["/updates", "Updates"],
-      ["/contact", "Contact"],
       ["/privacy", "Privacy"],
     ],
   },
@@ -34,8 +34,8 @@ export default function SiteFooter() {
     <footer className="border-t-2 border-black bg-graphite text-white">
       <div className="editorial-shell grid grid-cols-1 md:grid-cols-12">
         <div className="border-b border-[#4d534e] p-6 md:col-span-6 md:border-b-0 md:border-r md:p-8">
-          <Link href="/" className="text-2xl font-bold uppercase tracking-[-.04em]">
-            Scrap Finance <span className="text-copper">Partners</span>
+          <Link href="/" className="font-serif text-2xl font-bold tracking-[-.025em]">
+            Scrap Finance Partners
           </Link>
           <p className="mt-5 max-w-lg text-sm text-[#c6cbc5]">
             Commercial finance insight for UK scrap and recycling businesses. Trading, stock,
