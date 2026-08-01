@@ -1,0 +1,75 @@
+# Client Acquisition System
+
+## Objective
+
+Win suitable UK scrap and recycling clients for Scrap Finance Partners. The first campaign sells
+the fixed-scope Finance Health Check. Monthly support is discussed only after a real need is found.
+
+## Commercial model
+
+- Base campaign management: **£150 per month**.
+- Success fee: **15% of net revenue actually collected** from an attributable new client during
+  their first six months.
+- Exclude VAT, refunds, unpaid invoices, existing relationships and opportunities already in the
+  client's pipeline.
+- Record the lead source before the first meeting. Pay commission only after client funds clear.
+
+## Operating flow
+
+1. Copy `templates/outreach/prospects.example.json` to
+   `private/outreach/prospects.json`. The template is deliberately empty; add only verified,
+   genuinely sourced prospects.
+2. Record every source URL and company type. Do not commit real prospect information.
+3. Copy the suppression example to `private/outreach/suppression.json` and retain every opt-out.
+4. Run `npm run outreach:prepare`.
+5. Review every generated message in `private/outreach/queue.json`; set `approved` to `true` only
+   after checking the company, recipient, source and wording.
+6. Run `npm run outreach:send` for a dry run.
+7. Run `npm run outreach:send -- --confirm` only when the approved batch is ready.
+8. Stop scheduled follow-ups as soon as a recipient replies, objects, opts out or bounces.
+9. Record paid, campaign-attributable invoices in `private/outreach/revenue.json`; run
+   `npm run outreach:commission` to generate the private commission report.
+
+## Eligibility and compliance controls
+
+- Limited companies, LLPs and other corporate bodies are eligible by default.
+- Sole traders and non-corporate partnerships require recorded consent before email outreach.
+- Personal business-contact data still requires a documented UK GDPR lawful basis, transparent
+  privacy information, source recording and prompt handling of objections.
+- Do not use tracking pixels. Measure delivery, replies, booked meetings, proposals, wins and cash
+  collected.
+- Identify Scrap Finance Partners honestly. Never disguise the sender, invent client outcomes or
+  imply an existing relationship.
+- Treat the suppression list as permanent operational data. Never delete someone merely so they
+  can re-enter a future list.
+
+## Pipeline stages
+
+`sourced → verified → approved → contacted → replied → qualified → meeting → proposal → won/lost → paid`
+
+## Weekly review
+
+- New verified companies and excluded records.
+- Delivery failures, objections and suppression additions.
+- Replies, qualified conversations, meetings and proposals.
+- Won revenue, cash collected and commission due.
+- Which pain angle produced useful conversations; revise before increasing volume.
+
+## Client workspace
+
+The web workspace is organised around each Scrap Finance Partners client. It stores company and
+contact details, source and consent basis, pipeline status, follow-up notes, reusable email
+templates, suppression records, an outbound-message audit trail and attributable collected revenue.
+
+The workspace ships empty. It must never seed example companies, contacts, messages, pipeline
+figures, testimonials or revenue. Empty states should explain the next action without pretending
+that activity has happened.
+
+Signup creates an authenticated user, then a private organisation workspace. Row-level security
+keeps every organisation isolated. Owners control membership; owners and admins control revenue
+records. No service-role key is exposed to the browser.
+
+Portal email must be draft-first. A message can only be sent after the operator checks the lead,
+lawful basis, source, suppression status, subject and copy. Production delivery also requires the
+server-only provider variables and `SEND_EMAILS_ENABLED=true`; development and previews stay in
+draft-only mode.
