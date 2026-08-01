@@ -9,6 +9,10 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "test:acquisition": "node --test tests/acquisition/*.test.mjs",
+    "outreach:prepare": "node scripts/prepare-outreach.mjs",
+    "outreach:send": "node scripts/send-outreach.mjs",
+    "outreach:commission": "node scripts/commission-report.mjs",
     "test:e2e": "playwright test",
     "test:e2e:install": "playwright install chromium"
   },

@@ -1,0 +1,10 @@
+[
+  {
+    "leadId": "yard-001",
+    "companyName": "Example Recycling Ltd",
+    "invoiceId": "SFP-1001",
+    "paidAt": "2026-08-01",
+    "status": "paid",
+    "netCollectedGbp": 2500
+  }
+]

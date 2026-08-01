@@ -4,6 +4,21 @@ All notable public-facing changes are recorded here.
 
 ## [Unreleased]
 
+### Added
+- Private-by-default acquisition workflow: prospect eligibility checks, suppression and duplicate
+  removal, four-touch email queue generation, human approval gates and confirmed batch sending.
+- Paid-revenue attribution and commission reporting at a configurable rate (15% by default).
+- Outreach, suppression and revenue templates containing invented examples only; real lead data is
+  stored under the Git-ignored `private/outreach/` directory.
+- A recurring £150 client-acquisition invoice template with separate success-fee terms.
+
+### Security
+- Email delivery is a dry run unless `--confirm` is supplied, and only explicitly approved, due
+  messages are eligible.
+- Sole traders and non-corporate partnerships are excluded unless consent is recorded.
+- Every sent message includes its source, privacy link and a direct stop instruction.
+- Production dependency audit now reports zero known vulnerabilities.
+
 ## [0.4.0] — 2026-07-30 — Published pricing
 
 Client approved the Health Check fee and three monthly support levels in writing. Both now
