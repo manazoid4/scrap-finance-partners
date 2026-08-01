@@ -70,8 +70,9 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 border-b-2 border-black bg-graphite text-white">
       <div className="hidden border-b border-[#4d534e] md:block">
         <div className="editorial-shell flex min-h-8 items-center justify-between px-5 font-mono text-[10px] uppercase tracking-[.08em] text-[#b9beb9]">
+          <span>SFP / Commercial control</span>
           <span>UK scrap &amp; recycling</span>
-          <span>Commercial finance insight</span>
+          <span className="text-green"><span className="terminal-dot" />System online</span>
         </div>
       </div>
 
@@ -81,8 +82,8 @@ export default function SiteHeader() {
           className="flex min-w-0 items-center border-r border-[#4d534e] px-4 sm:px-5"
           onClick={() => setOpen(false)}
         >
-          <span className="font-serif text-[1.05rem] font-bold leading-none tracking-[-.025em] sm:text-xl">
-            Scrap Finance Partners
+          <span className="text-[1.02rem] font-bold uppercase leading-none tracking-[-.035em] sm:text-lg">
+            Scrap Finance <span className="text-copper">Partners</span>
           </span>
         </Link>
 

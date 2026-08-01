@@ -7,15 +7,38 @@ import SiteFooter from "@/components/site-footer";
 import SiteHeader from "@/components/site-header";
 import { caseDisclaimer, caseReference, caseStages, caseTitle } from "@/data/case-evidence";
 import { reviewStages } from "@/data/health-check";
+import { pressureStages } from "@/data/pressure-map";
 
 const finding = caseStages.find((stage) => stage.id === "finding");
 const recommendation = caseStages.find((stage) => stage.id === "recommendation");
+const tapeItems = pressureStages.map((stage, index) => ({
+  code: "SFP-" + String(index + 1).padStart(2, "0"),
+  label: stage.label,
+}));
 
 export default function HomePage() {
   return (
     <div className="min-h-screen min-w-0 bg-background">
       <SiteHeader />
       <main id="main">
+        <section className="terminal-tape" aria-label="Commercial review scope">
+          <p className="sr-only">
+            The review follows the full deal from purchase price to true commercial return.
+          </p>
+          <div className="terminal-tape-track ticker-track" aria-hidden="true">
+            {[0, 1].map((group) => (
+              <div className="terminal-tape-group" key={group}>
+                {tapeItems.map((item) => (
+                  <span className="terminal-tape-item" key={group + "-" + item.code}>
+                    <span className="terminal-tape-code">{item.code}</span>
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Hero — the problem, then the action. CTA sits above the fold at every width. */}
         <section className="editorial-shell grid grid-cols-1 border-b-2 border-black lg:grid-cols-12">
           <div className="flex flex-col justify-between border-b-2 border-black p-5 sm:p-8 lg:col-span-8 lg:border-b-0 lg:border-r-2 lg:p-12">
@@ -49,18 +72,27 @@ export default function HomePage() {
           </div>
 
           <aside
-            className="flex flex-col bg-graphite text-white lg:col-span-4"
+            className="flex flex-col bg-[#0b0e10] text-white lg:col-span-4"
             aria-label="The commercial test"
           >
-            <div className="seq-wipe flex flex-1 items-center p-6 sm:p-8 lg:p-10">
-              <p className="font-serif text-[clamp(1.9rem,3.6vw,3.4rem)] font-bold leading-[1.02] tracking-[-.03em]">
+            <div className="seq-wipe flex flex-1 flex-col justify-center p-6 sm:p-8 lg:p-10">
+              <p className="editorial-label text-copper">Commercial test / 01</p>
+              <p className="mt-5 text-[clamp(1.75rem,3.2vw,3.1rem)] font-bold leading-[.98] tracking-[-.04em]">
                 Does the margin still hold after the yard has done the work?
               </p>
             </div>
-            <div className="divide-y divide-[#4d534e] border-t border-[#4d534e] text-sm text-[#c6cbc5]">
-              <p className="px-6 py-4 sm:px-8">Haulage and route economics</p>
-              <p className="px-6 py-4 sm:px-8">Labour, handling and capacity</p>
-              <p className="px-6 py-4 sm:px-8">Stock, cash and reporting confidence</p>
+            <div className="terminal-panel border-x-0 border-b-0">
+              <div className="terminal-panel-head">
+                <span>Review chain</span>
+                <span className="terminal-status"><span className="terminal-dot" />Ready</span>
+              </div>
+              {pressureStages.map((stage, index) => (
+                <div className="terminal-row" key={stage.id}>
+                  <span className="terminal-code">{String(index + 1).padStart(2, "0")}</span>
+                  <span>{stage.label}</span>
+                  <span className="terminal-status">Check</span>
+                </div>
+              ))}
             </div>
           </aside>
         </section>
