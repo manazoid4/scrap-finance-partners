@@ -19,16 +19,16 @@ test("website capture creates an actionable pipeline record", () => {
   assert.equal(lead.consent_basis, "direct_enquiry");
   assert.equal(lead.next_follow_up_at, "2026-08-03T10:00:00.000Z");
   assert.match(lead.notes, /Trading margin/);
-  assert.match(lead.notes, /summer-health-check/);
+  assert.match(lead.notes, /summer-health-check/);\n  assert.equal(lead.utm_campaign, "summer-health-check");
 });
 
 test("repeat enquiries update the existing record without delaying an earlier action", () => {
   const incoming = buildInboundLead({ company: "A verified company", name: "A real enquirer", email: "enquirer@example.test" }, "organization-id", "owner-id", new Date("2026-08-02T10:00:00.000Z"));
-  const merged = mergeInboundLead({ phone: "01234 567890", notes: "Earlier verified note", next_follow_up_at: "2026-08-02T12:00:00.000Z" }, incoming);
+  const merged = mergeInboundLead({ phone: "01234 567890", notes: "Earlier verified note", next_follow_up_at: "2026-08-02T12:00:00.000Z", utm_campaign: "existing-campaign" }, incoming);
 
   assert.equal(merged.phone, "01234 567890");
   assert.equal(merged.next_follow_up_at, "2026-08-02T12:00:00.000Z");
-  assert.match(merged.notes, /Earlier verified note/);
+  assert.match(merged.notes, /Earlier verified note/);\n  assert.equal(merged.utm_campaign, "existing-campaign");
 });
 
 test("submission is persisted before its notification is attempted", async () => {
