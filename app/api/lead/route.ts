@@ -21,7 +21,7 @@ async function persistLead(body: Record<string, string>) {
   const incoming = buildInboundLead(body, organizationId, createdBy);
   const { data: existing, error: lookupError } = await supabase
     .from("leads")
-    .select("id, phone, notes, next_follow_up_at")
+    .select("id, phone, notes, next_follow_up_at, utm_source, utm_medium, utm_campaign, utm_content, utm_term, landing_page, referrer_domain")
     .eq("organization_id", organizationId)
     .ilike("email", incoming.email)
     .maybeSingle();
