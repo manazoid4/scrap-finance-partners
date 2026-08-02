@@ -6,6 +6,7 @@ import { getWorkspace } from "@/lib/workspace-server";
 const navigation = [
   { href: "/account/guide", label: "Start here" },
   { href: "/account/leads", label: "Leads" },
+  { href: "/account/campaigns", label: "Campaign links" },
   { href: "/account/templates", label: "Email templates" },
   { href: "/account/outbox", label: "Email & send log" },
 ];
