@@ -16,9 +16,16 @@ export default async function LeadsPage({ searchParams }) {
       .from("leads")
       .select("id, company_name, contact_name, email, phone, source, consent_basis, status, notes, next_follow_up_at, updated_at")
       .eq("organization_id", workspace.organization.id)
+      .order("next_follow_up_at", { ascending: true, nullsFirst: false })
       .order("updated_at", { ascending: false });
     leads = data ?? [];
   }
+  const now = Date.now();
+  const activeLeads = leads.filter((lead) => !["won", "lost", "suppressed"].includes(lead.status));
+  const dueLeads = activeLeads.filter((lead) => lead.next_follow_up_at && new Date(lead.next_follow_up_at).getTime() <= now);
+  const newLeads = leads.filter((lead) => lead.status === "new");
+  const meetings = leads.filter((lead) => lead.status === "meeting");
+  const wonLeads = leads.filter((lead) => lead.status === "won");
 
   return (
     <>
@@ -28,6 +35,19 @@ export default async function LeadsPage({ searchParams }) {
       </div>
       {params?.error && <p role="alert" className="mt-5 border-2 border-red-900 bg-red-50 p-4 text-sm text-red-950">{params.error}</p>}
       {params?.notice && <p role="status" className="mt-5 border-2 border-[#815322] bg-[#fff4df] p-4 text-sm">{params.notice}</p>}
+
+      <section aria-labelledby="pipeline-heading" className="mt-6 border-y border-black bg-white">
+        <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-black py-3">
+          <h2 id="pipeline-heading" className="font-bold">Today’s pipeline</h2>
+          <p className="text-xs text-[#4d534e]">Website enquiries enter here automatically.</p>
+        </div>
+        <dl className="grid grid-cols-2 divide-x divide-y divide-black sm:grid-cols-4 sm:divide-y-0">
+          <div className="p-4"><dt className="text-xs text-[#4d534e]">Action due</dt><dd className="mt-1 font-mono text-2xl font-bold text-red-900">{dueLeads.length}</dd></div>
+          <div className="p-4"><dt className="text-xs text-[#4d534e]">New</dt><dd className="mt-1 font-mono text-2xl font-bold">{newLeads.length}</dd></div>
+          <div className="p-4"><dt className="text-xs text-[#4d534e]">Meetings</dt><dd className="mt-1 font-mono text-2xl font-bold">{meetings.length}</dd></div>
+          <div className="p-4"><dt className="text-xs text-[#4d534e]">Won</dt><dd className="mt-1 font-mono text-2xl font-bold text-[#255f3a]">{wonLeads.length}</dd></div>
+        </dl>
+      </section>
 
       <section className="mt-6 flex flex-wrap items-center justify-between gap-4 border-2 border-black bg-white p-5">
         <div>
@@ -46,7 +66,7 @@ export default async function LeadsPage({ searchParams }) {
           <label className="text-sm font-bold">Phone<input name="phone" type="tel" disabled={!workspace.configured} className="mt-1 min-h-11 w-full border-2 border-black px-3 font-normal disabled:bg-[#e5e5e0]" /></label>
           <label className="text-sm font-bold">Website<input name="website" type="url" disabled={!workspace.configured} className="mt-1 min-h-11 w-full border-2 border-black px-3 font-normal disabled:bg-[#e5e5e0]" /></label>
           <label className="text-sm font-bold">Source<input name="source" disabled={!workspace.configured} className="mt-1 min-h-11 w-full border-2 border-black px-3 font-normal disabled:bg-[#e5e5e0]" /></label>
-          <label className="text-sm font-bold">Contact basis<select name="consentBasis" disabled={!workspace.configured} className="mt-1 min-h-11 w-full border-2 border-black bg-white px-3 font-normal disabled:bg-[#e5e5e0]"><option value="not_recorded">Not recorded</option><option value="consent">Consent</option><option value="legitimate_interest">Legitimate interest</option><option value="existing_customer">Existing customer</option></select></label>
+          <label className="text-sm font-bold">Contact basis<select name="consentBasis" disabled={!workspace.configured} className="mt-1 min-h-11 w-full border-2 border-black bg-white px-3 font-normal disabled:bg-[#e5e5e0]"><option value="not_recorded">Not recorded</option><option value="direct_enquiry">Direct enquiry</option><option value="consent">Consent</option><option value="legitimate_interest">Legitimate interest</option><option value="existing_customer">Existing customer</option></select></label>
           <label className="text-sm font-bold">Next follow-up<input name="nextFollowUp" type="datetime-local" disabled={!workspace.configured} className="mt-1 min-h-11 w-full border-2 border-black px-3 font-normal disabled:bg-[#e5e5e0]" /></label>
           <label className="text-sm font-bold sm:col-span-2 xl:col-span-3">Notes<textarea name="notes" rows={3} disabled={!workspace.configured} className="mt-1 w-full border-2 border-black p-3 font-normal disabled:bg-[#e5e5e0]" /></label>
           <button disabled={!workspace.configured} className="min-h-11 border-2 border-black bg-copper px-4 font-bold disabled:bg-[#c6c6bf]">Save lead</button>
