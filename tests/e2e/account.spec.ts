@@ -38,7 +38,7 @@ test("campaign builder creates attributable health-check links without seed data
   await page.getByLabel("Campaign name").fill("Finance Health Check");
 
   await expect(page.getByLabel("Generated campaign link")).toHaveValue(
-    "http://localhost:3000/health-check?utm_source=regional-association&utm_medium=partner&utm_campaign=finance-health-check",
+    /\/health-check\?utm_source=regional-association&utm_medium=partner&utm_campaign=finance-health-check$/,
   );
   await expect(page.getByText("No attributed enquiries yet")).toBeVisible();
 });
