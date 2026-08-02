@@ -25,3 +25,10 @@
 - Blocked: the local Probity pre-edit hook cannot review TS/TSX/JSX changes because its configured
   `gpt-5.6-sol` model requires a newer Codex desktop runtime. CLI 0.146.0 is current locally; restart
   or update the desktop app before applying the prepared login/portal UI tranche.
+
+## 2026-08-02 — website enquiry to lead pipeline
+
+- Connected genuine website enquiries directly to the authenticated lead workspace.
+- Added source and UTM context, direct-enquiry basis, duplicate handling and an automatic next-day action.
+- Added a Today’s pipeline summary so the client can see due, new, meeting and won records quickly.
+- Kept production lead data unseeded; only real submissions create records.
