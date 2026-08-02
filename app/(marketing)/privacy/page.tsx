@@ -4,7 +4,7 @@ const sections=[
 ["Who we are","Scrap Finance Partners provides commercial finance consultancy to UK scrap metal, waste and recycling businesses."],
 ["What we collect","When you submit an enquiry, we collect the details you provide: name, company, email, optional phone number, selected business challenge and any written context. We also attach the current page, referring domain and campaign parameters to help route and understand the enquiry."],
 ["Why we collect it","We use this information to respond to a business enquiry you initiated and, if you become a client, to deliver the agreed work. The relevant lawful bases are legitimate interests and contract."],
-["Where it goes","Form submissions are sent through Resend to the configured business mailbox. Aggregate website analytics are used to understand site usage. We do not sell or rent enquiry details."],
+["Where it goes","Form submissions are saved in the secure client workspace and may trigger a notification through Resend to the configured business mailbox. Aggregate website analytics and campaign parameters are used to understand site usage and enquiry sources. We do not sell or rent enquiry details."],
 ["How long we keep it","Enquiries that do not progress are deleted within 12 months. Client records are kept for the engagement and any period required by UK law."],
 ["Your rights","Under UK GDPR you may ask what information is held about you, request a correction or request deletion where applicable. You may also complain to the Information Commissioner’s Office."]
 ];
