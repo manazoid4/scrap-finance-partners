@@ -14,7 +14,8 @@ export default function CampaignLinkBuilder({ siteUrl }) {
   const generatedUrl = useMemo(() => {
     if (!source.trim() || !campaign.trim()) return "";
     try {
-      return buildCampaignUrl(siteUrl, { source, medium, campaign, content });
+      const origin = typeof window === "undefined" ? siteUrl : window.location.origin;
+      return buildCampaignUrl(origin, { source, medium, campaign, content });
     } catch {
       return "";
     }
