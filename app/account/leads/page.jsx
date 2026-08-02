@@ -20,7 +20,7 @@ export default async function LeadsPage({ searchParams }) {
       .order("updated_at", { ascending: false });
     leads = data ?? [];
   }
-  const now = Date.now();
+  // Server-rendered request timestamp; it intentionally changes between requests.\n  // eslint-disable-next-line react-hooks/purity\n  const now = Date.now();
   const activeLeads = leads.filter((lead) => !["won", "lost", "suppressed"].includes(lead.status));
   const dueLeads = activeLeads.filter((lead) => lead.next_follow_up_at && new Date(lead.next_follow_up_at).getTime() <= now);
   const newLeads = leads.filter((lead) => lead.status === "new");
