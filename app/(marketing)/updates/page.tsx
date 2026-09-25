@@ -6,7 +6,7 @@ import { releases, statusLabels, statusNotes } from "@/data/changelog";
 export const metadata: Metadata = {
   title: "Updates",
   description:
-    "What is live on this site, what is approved and coming, and what is only being considered.",
+    "A record of the pages and features built for this portfolio demo.",
 };
 
 const formatDate = (iso: string) =>
@@ -23,13 +23,12 @@ export default function UpdatesPage() {
         <div className="border-b-2 border-black p-6 sm:p-10 lg:col-span-7 lg:border-b-0 lg:border-r-2 lg:p-12">
           <h1 className="seq seq-1">What changed, and what it means for you.</h1>
           <p className="seq seq-2 editorial-intro mt-8">
-            A plain record of what is actually live on this site, what is approved and coming, and
-            what is no more than an idea. Anything not yet available is labelled so it cannot be
-            mistaken for something you can buy.
+            A record of the pages and features built for this portfolio demo.
+            Enquiries are disabled; this site is not an operating consultancy.
           </p>
         </div>
         <dl className="seq seq-3 lg:col-span-5">
-          {(Object.keys(statusLabels) as (keyof typeof statusLabels)[]).map((status) => (
+          {(["live"] as const).map((status) => (
             <div key={status} className="border-b border-black p-6 last:border-b-0 sm:p-8">
               <dt className="font-mono text-[11px] font-bold uppercase tracking-[.08em] text-copper-dim">
                 {statusLabels[status]}
@@ -40,7 +39,7 @@ export default function UpdatesPage() {
         </dl>
       </section>
 
-      {releases.map((release) => (
+      {releases.filter((release) => release.status === "live").map((release) => (
         <section
           key={`${release.version}-${release.status}`}
           className="editorial-shell border-b-2 border-black"
@@ -95,9 +94,7 @@ export default function UpdatesPage() {
       <section className="editorial-shell border-b-2 border-black p-6 sm:p-9 md:p-10">
         <h2 className="text-[clamp(1.3rem,2vw,1.8rem)]">What this record deliberately omits</h2>
         <p className="mt-5 max-w-4xl text-ink-secondary">
-          Nothing here names a client or describes their business. Anything under
-          &ldquo;Exploring&rdquo; is an idea, not a product, and cannot be bought, booked or
-          joined. Technical detail belongs in the repository changelog, not on a page meant for
+          Nothing here names a client or describes their business. Unreleased plans and unapproved founder details are omitted. Technical detail belongs in the repository changelog, not on a page meant for
           people deciding whether to work with us.
         </p>
       </section>

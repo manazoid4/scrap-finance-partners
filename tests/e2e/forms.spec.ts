@@ -1,87 +1,43 @@
 import { expect, test } from "@playwright/test";
 
-test("lead form submits with only the three required fields", async ({ page }) => {
-  let payload: Record<string, string> = {};
-  let requests = 0;
-  await page.route("**/api/lead", async (route) => {
-    requests++;
-    payload = route.request().postDataJSON();
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: '{"ok":true}',
+for (const route of ["/contact", "/health-check"]) {
+  test(`${route} presents an inert enquiry preview`, async ({ page }) => {
+    const submissions: string[] = [];
+    page.on("request", (request) => {
+      if (request.method() === "POST") submissions.push(request.url());
     });
+    await page.goto(route);
+    const preview = page.getByRole("region", { name: "Demo enquiry form" });
+    await expect(preview).toContainText("Demo build — enquiries are disabled.");
+    for (const name of ["Your name", "Company", "Work email"]) {
+      await expect(preview.getByLabel(name, { exact: true })).toBeDisabled();
+    }
+    await expect(preview.getByRole("button")).toBeDisabled();
+    await preview.getByText("Add phone, priority or timing").click();
+    await expect(preview.getByLabel("Telephone")).toBeDisabled();
+    await expect(preview.getByLabel("What needs attention first?")).toBeDisabled();
+    await expect(preview.locator("form")).toHaveCount(0);
+    expect(submissions).toEqual([]);
   });
+}
 
-  await page.goto("/health-check?utm_source=test&utm_campaign=qa");
-  const form = page.locator("form");
-  await form.getByLabel("Your name").fill("Test Person");
-  await form.getByLabel("Company").fill("Example Yard");
-  await form.getByLabel("Work email").fill("test@example.com");
-  // Deliberately leaves challenge, timing, phone and message empty.
-  await form.getByRole("button", { name: "Request Health Check" }).click();
-
-  await expect(page.getByRole("status")).toContainText("Enquiry received.");
-  expect(requests).toBe(1);
-  expect(payload.company).toBe("Example Yard");
-  expect(payload.utmSource).toBe("test");
-  expect(payload.utmCampaign).toBe("qa");
+test("the old lead endpoint rejects direct and stale-client submissions", async ({ request }) => {
+  for (const data of [{}, { name: "Test Person", company: "Example Yard", email: "test@example.com", message: "QA only" }]) {
+    const response = await request.post("/api/lead", { data });
+    expect(response.status()).toBe(403);
+    expect(await response.json()).toEqual({ error: "Demo build — enquiries are disabled. No details are collected or sent." });
+  }
 });
 
-test("optional qualification answers are still captured when given", async ({ page }) => {
-  let payload: Record<string, string> = {};
-  await page.route("**/api/lead", async (route) => {
-    payload = route.request().postDataJSON();
-    await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
-  });
-
-  await page.goto("/contact");
-  const form = page.locator("form");
-  await form.getByLabel("Your name").fill("Test Person");
-  await form.getByLabel("Company").fill("Example Yard");
-  await form.getByLabel("Work email").fill("test@example.com");
-  await form.getByText("Add phone, priority or timing").click();
-  await form.getByLabel("What needs attention first?").selectOption({ label: "Trading margin" });
-  await form
-    .getByLabel("When are you looking to act?")
-    .selectOption({ label: "Within three months" });
-  await form.getByRole("button", { name: "Send enquiry" }).click();
-
-  await expect(page.getByRole("status")).toBeVisible();
-  expect(payload.challenge).toBe("Trading margin");
-  expect(payload.timing).toBe("Within three months");
-});
-
-test("a failed submission shows an accessible error and keeps the answers", async ({ page }) => {
-  await page.route("**/api/lead", (route) => route.fulfill({ status: 500, body: "{}" }));
-
-  await page.goto("/contact");
-  const form = page.locator("form");
-  await form.getByLabel("Your name").fill("Test Person");
-  await form.getByLabel("Company").fill("Example Yard");
-  await form.getByLabel("Work email").fill("test@example.com");
-  await form.getByRole("button", { name: "Send enquiry" }).click();
-
-  // Scoped to the form: Next renders its own role="alert" route announcer.
-  await expect(form.getByRole("alert")).toContainText("could not send the form");
-  // Answers survive the failure so the user can retry.
-  await expect(form.getByLabel("Company")).toHaveValue("Example Yard");
-});
-
-test("the enquiry form is completable by keyboard alone", async ({ page }) => {
-  await page.route("**/api/lead", (route) =>
-    route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' }),
-  );
-
-  await page.goto("/contact");
-  const form = page.locator("form");
-  await form.getByLabel("Your name").focus();
-  await page.keyboard.type("Test Person");
-  await page.keyboard.press("Tab");
-  await page.keyboard.type("Example Yard");
-  await page.keyboard.press("Tab");
-  await page.keyboard.type("test@example.com");
-
-  await form.getByRole("button", { name: "Send enquiry" }).press("Enter");
-  await expect(page.getByRole("status")).toBeVisible();
+test("enquiry previews also stay disabled without JavaScript", async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  for (const route of ["/contact", "/health-check"]) {
+    await page.goto(`${test.info().project.use.baseURL}${route}`);
+    const preview = page.getByRole("region", { name: "Demo enquiry form" });
+    await expect(preview.getByLabel("Your name")).toBeDisabled();
+    await expect(preview.getByRole("button")).toBeDisabled();
+    await expect(preview.locator("form")).toHaveCount(0);
+  }
+  await context.close();
 });

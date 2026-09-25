@@ -20,7 +20,9 @@ export default async function LeadsPage({ searchParams }) {
       .order("updated_at", { ascending: false });
     leads = data ?? [];
   }
-  // Server-rendered request timestamp; it intentionally changes between requests.\n  // eslint-disable-next-line react-hooks/purity\n  const now = Date.now();
+  // Server-rendered request timestamp; it intentionally changes between requests.
+  // eslint-disable-next-line react-hooks/purity
+  const now = Date.now();
   const activeLeads = leads.filter((lead) => !["won", "lost", "suppressed"].includes(lead.status));
   const dueLeads = activeLeads.filter((lead) => lead.next_follow_up_at && new Date(lead.next_follow_up_at).getTime() <= now);
   const newLeads = leads.filter((lead) => lead.status === "new");
@@ -39,7 +41,7 @@ export default async function LeadsPage({ searchParams }) {
       <section aria-labelledby="pipeline-heading" className="mt-6 border-y border-black bg-white">
         <div className="flex flex-wrap items-baseline justify-between gap-2 border-b border-black py-3">
           <h2 id="pipeline-heading" className="font-bold">Today’s pipeline</h2>
-          <p className="text-xs text-[#4d534e]">Website enquiries enter here automatically.</p>
+          <p className="text-xs text-[#4d534e]">Website enquiries are disabled in this demo build.</p>
         </div>
         <dl className="grid grid-cols-2 divide-x divide-y divide-black sm:grid-cols-4 sm:divide-y-0">
           <div className="p-4"><dt className="text-xs text-[#4d534e]">Action due</dt><dd className="mt-1 font-mono text-2xl font-bold text-red-900">{dueLeads.length}</dd></div>

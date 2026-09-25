@@ -29,3 +29,17 @@ jobs:
 
       - name: Build Next.js app
         run: npm run build
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Acquisition and account tests
+        run: |
+          npm run test:acquisition
+          npm run test:account
+
+      - name: Install test browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser tests
+        run: npm run test:e2e -- --workers=2

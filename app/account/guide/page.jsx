@@ -12,8 +12,8 @@ export default function WorkspaceGuidePage() {
 
       <ol className="mt-6 border-2 border-black bg-white">
         <li className="border-b border-black p-5">
-          <strong>Website enquiries arrive automatically.</strong>
-          <p className="mt-1 text-sm text-[#4d534e]">A genuine form submission is saved as a new lead with its source, campaign details and a next-day follow-up. Check Today’s pipeline first.</p>
+          <strong>Website enquiries are disabled in this demo build.</strong>
+          <p className="mt-1 text-sm text-[#4d534e]">The public forms are previews only. They do not create leads or send messages.</p>
         </li>
         <li className="border-b border-black p-5">
           <strong>1. Add and verify the lead.</strong>
