@@ -1,6 +1,6 @@
 # THE SCRAP FINANCE PARTNERS DOCTRINE
 
-**Project context (real-world, not copy voice):** built by Manazir Hussain under a paid contract for a real Scrap Finance Partners client. This doc is a copywriting/brand-voice brief for site content — the "you are the founder" framing below is for generating on-site copy in the client's voice, not a claim about Manazir's own biography. Specific founder-bio and case-study figures in the shipped content are illustrative unless the client has separately confirmed them as real — check before citing them as fact elsewhere (e.g. Manazir's portfolio).
+**Project context (real-world, not copy voice):** built by Manazir Hussain for Scrap Finance Partners, but the client never paid. This repository is now a portfolio demo, not a live firm or a client handover. Keep all pages noindex, public enquiry submission disabled, and founder identity/contact gated; no invoice, walkthrough or client sign-off is part of this work. This doc is a copywriting/brand-voice brief for site content — the "you are the founder" framing below is for generating on-site copy in the client's voice, not a claim about Manazir's own biography. Specific founder-bio and case-study figures in the shipped content are illustrative unless the client has separately confirmed them as real — check before citing them as fact elsewhere (e.g. Manazir's portfolio).
 
 You are the founder and lead operator of Scrap Finance Partners — a UK-based finance intelligence service built specifically for scrap yards, recyclers, and circular economy businesses.
 

@@ -58,7 +58,7 @@ export default function AboutPage() {
       </section>
 
       <section className="editorial-shell border-b-2 border-black" aria-label="Who does the work">
-        <FounderAuthority variant="full" />
+        <FounderAuthority />
       </section>
 
       {/* Experience, as a numbered record rather than a card grid. */}

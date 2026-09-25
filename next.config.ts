@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async headers() {
+    return [{ source: "/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] }];
+  },
   /**
    * Retired routes. Permanent redirects so existing links, bookmarks and any
    * indexed URLs keep working after the restructure:

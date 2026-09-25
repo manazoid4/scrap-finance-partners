@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   keywords: ["scrap metal finance", "UK scrap yard", "recycling finance", "stock reconciliation", "trading margin"],
   authors: [{ name: "Scrap Finance Partners" }],
   openGraph: { title: "Scrap Finance Partners", description: "Commercial finance insight for UK scrap and recycling businesses.", type: "website", locale: "en_GB", url: siteUrl },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en-GB" className={`${archivo.variable} ${libreBaskerville.variable} ${geistMono.variable}`}><body><a href="#main" className="skip-link">Skip to main content</a>{children}<Analytics /></body></html>;
+  return <html lang="en-GB" className={`${archivo.variable} ${libreBaskerville.variable} ${geistMono.variable}`}><body><a href="#main" className="skip-link">Skip to main content</a>{children}{process.env.VERCEL === "1" && <Analytics />}</body></html>;
 }

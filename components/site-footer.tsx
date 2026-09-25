@@ -1,10 +1,5 @@
 import Link from "next/link";
 
-import { engagement } from "@/data/health-check";
-import { founderContact, hasApprovedContact } from "@/data/founder";
-
-const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "";
-
 const groups = [
   {
     title: "Work",
@@ -27,9 +22,6 @@ const groups = [
 ];
 
 export default function SiteFooter() {
-  const approved = hasApprovedContact() ? founderContact : null;
-  const email = approved?.email ?? contactEmail;
-
   return (
     <footer className="border-t-2 border-black bg-graphite text-white">
       <div className="editorial-shell grid grid-cols-1 md:grid-cols-12">
@@ -42,38 +34,9 @@ export default function SiteFooter() {
             transport and finance considered as one commercial picture.
           </p>
 
-          <div className="mt-6 border-t border-[#4d534e] pt-5">
-            <p className="font-mono text-[11px] uppercase tracking-[.08em] text-copper">
-              Rather talk than fill in a form?
-            </p>
-            {email ? (
-              <p className="mt-3">
-                <a
-                  href={`mailto:${email}`}
-                  className="inline-flex min-h-11 items-center border-b-2 border-copper font-bold hover:text-copper"
-                >
-                  {email}
-                </a>
-              </p>
-            ) : (
-              <p className="mt-3 text-sm text-[#c6cbc5]">
-                <Link href="/contact" className="font-bold underline hover:text-copper">
-                  Send an enquiry
-                </Link>{" "}
-                and you will get a reply {engagement.responseWindow}.
-              </p>
-            )}
-            {approved?.telephone && approved.telephoneHref && (
-              <p className="mt-2">
-                <a
-                  href={approved.telephoneHref}
-                  className="inline-flex min-h-11 items-center border-b-2 border-copper font-bold hover:text-copper"
-                >
-                  {approved.telephone}
-                </a>
-              </p>
-            )}
-          </div>
+          <p className="mt-6 border-t border-[#4d534e] pt-5 text-sm text-[#c6cbc5]">
+            Portfolio demo — no business services or enquiries are available through this site.
+          </p>
         </div>
 
         {groups.map((group) => (
@@ -108,6 +71,7 @@ export default function SiteFooter() {
           professionals.
         </p>
         <p className="mt-3">© {new Date().getFullYear()} Scrap Finance Partners.</p>
+        <p className="mt-2"><a href="https://www.mazworks.uk" className="inline-flex min-h-11 items-center underline hover:text-white">Website built by Maz Works</a></p>
       </div>
     </footer>
   );

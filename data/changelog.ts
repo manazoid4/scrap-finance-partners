@@ -57,7 +57,7 @@ export const releases: Release[] = [
       },
       {
         change:
-          "Added an example of what a Health Check output looks like, clearly labelled as a format example built on invented figures.",
+          "Added an example of what a Health Check output looks like, clearly labelled as a format example with redacted figures.",
         benefit:
           "You can see the shape of the deliverable instead of taking a description on trust.",
         relatedPage: "/health-check#example-output",
@@ -72,13 +72,13 @@ export const releases: Release[] = [
       {
         change:
           "The enquiry form now asks only for your name, company and work email. Telephone, the commercial challenge, timing and any extra context are optional.",
-        benefit: "Less to fill in before you get a reply.",
+        benefit: "The preview shows the required fields and optional qualification questions.",
         relatedPage: "/contact",
       },
       {
         change:
-          "Every enquiry point now states the response window, who reads the enquiry, and an email address you can use instead of the form.",
-        benefit: "You know when to expect a reply and who is reading it.",
+          "The portfolio demo retains the enquiry layout with submission disabled and a direct Maz Works contact for questions about the build.",
+        benefit: "You can inspect the flow without sending business or personal details.",
         relatedPage: "/contact",
       },
       {

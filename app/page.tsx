@@ -184,7 +184,7 @@ export default function HomePage() {
               Which number do you trust least?
             </h2>
             <p className="mt-5 max-w-2xl text-[#c6cbc5]">
-              Tell us. The form only requires your name, company and email.
+              Explore the enquiry preview. Submissions are disabled in this demo build.
             </p>
           </div>
           <Link

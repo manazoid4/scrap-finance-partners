@@ -189,7 +189,7 @@ export default function WaysToWorkTogetherPage() {
         <div className="border-b border-[#4d534e] p-6 sm:p-9 lg:col-span-8 lg:border-b-0 lg:border-r lg:p-10">
           <h2 className="text-white">Start with the question, not the invoice.</h2>
           <p className="mt-5 text-[#c6cbc5]">
-            You will hear back {engagement.responseWindow}. {engagement.reviewedBy}
+            Demo build — enquiries are disabled. You can explore the enquiry layout without submitting details.
           </p>
         </div>
         <Link

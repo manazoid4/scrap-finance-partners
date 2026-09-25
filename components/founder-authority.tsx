@@ -17,11 +17,7 @@ import {
  * experience claim, and the fact that one person does the work — rather than
  * leaving a visible hole or inventing a name.
  */
-export default function FounderAuthority({
-  variant = "compact",
-}: {
-  variant?: "compact" | "full";
-}) {
+export default function FounderAuthority() {
   const identity = hasApprovedIdentity() ? founderIdentity : null;
   const contact = hasApprovedContact() ? founderContact : null;
 
@@ -98,24 +94,14 @@ export default function FounderAuthority({
               </p>
             ) : (
               <p className="mt-3 font-semibold">
-                Enquiries go straight to the person who would do the work.{" "}
+                This portfolio demo does not accept enquiries.{" "}
                 <Link href="/contact" className="editorial-link">
-                  Send one here
+                  View the enquiry preview
                 </Link>
               </p>
             )}
           </div>
         </div>
-
-        {variant === "full" && (
-          <div className="border-t border-black p-6 sm:p-8">
-            <p className="text-sm text-ink-muted">
-              The full professional background, including name and photograph, is published once
-              confirmed. Nothing about the person doing this work is stated on this site until it
-              can be evidenced.
-            </p>
-          </div>
-        )}
       </div>
     </div>
   );

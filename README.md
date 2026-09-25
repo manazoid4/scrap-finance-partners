@@ -1,6 +1,8 @@
 # Scrap Finance Partners
 
-Live site: [scrap-finance-partners.vercel.app](https://scrap-finance-partners.vercel.app)
+Portfolio demo only: no operating business uses this site. Public enquiries are disabled and every page is noindex. Founder identity and contact details remain unapproved and unpublished.
+
+Demo site: [scrap-finance-partners.vercel.app](https://scrap-finance-partners.vercel.app)
 
 ## Local Setup
 

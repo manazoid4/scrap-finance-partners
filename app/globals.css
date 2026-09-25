@@ -103,7 +103,7 @@
 
 @layer base {
   * { box-sizing: border-box; border-color: var(--border); }
-  html { min-width: 0; scroll-behavior: smooth; }
+  html { min-width: 0; scroll-behavior: smooth; scroll-padding-top: 7rem; }
   body { min-width: 0; margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-sans); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; -webkit-font-smoothing: antialiased; }
   main, section, article, div { min-width: 0; }
   img, svg, video, canvas { max-width: 100%; }

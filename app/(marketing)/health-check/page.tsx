@@ -74,7 +74,7 @@ export default function HealthCheckPage() {
               <dt className="font-mono text-[11px] uppercase tracking-[.08em] text-copper">
                 Reply
               </dt>
-              <dd className="mt-1 font-semibold">You hear back {engagement.responseWindow}.</dd>
+              <dd className="mt-1 font-semibold">Demo build — enquiries are disabled.</dd>
             </div>
             <div>
               <dt className="font-mono text-[11px] uppercase tracking-[.08em] text-copper">
@@ -302,13 +302,13 @@ export default function HealthCheckPage() {
       >
         <div className="border-b border-[#4d534e] p-6 text-white sm:p-9 lg:col-span-5 lg:border-b-0 lg:border-r lg:p-10">
           <h2 className="text-white">Start with the decision you cannot currently trust.</h2>
-          <p className="mt-6 max-w-lg text-[#c6cbc5]">{engagement.reviewedBy}</p>
+          <p className="mt-6 max-w-lg text-[#c6cbc5]">Explore the enquiry flow in this portfolio demo.</p>
           <p className="mt-4 max-w-lg text-[#c6cbc5]">
-            You will hear back {engagement.responseWindow}. {engagement.noObligation}
+            This is a demonstration, not a booking service. No details are collected or sent.
           </p>
         </div>
         <div className="p-4 sm:p-8 lg:col-span-7 lg:p-10">
-          <LeadForm source="health-check-page" submitLabel="Request Health Check" />
+          <LeadForm submitLabel="Request Health Check" />
         </div>
       </section>
     </>

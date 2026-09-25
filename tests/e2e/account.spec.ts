@@ -16,7 +16,7 @@ test("client login and empty lead workspace are visible without seeded data", as
   await expect(page.getByText("No leads yet")).toBeVisible();
   await expect(page.getByText("0 real records")).toBeVisible();
   await expect(page.getByRole("heading", { level: 2, name: "Today’s pipeline" })).toBeVisible();
-  await expect(page.getByText("Website enquiries enter here automatically.")).toBeVisible();
+  await expect(page.getByText("Website enquiries are disabled in this demo build.")).toBeVisible();
 });
 
 
@@ -26,5 +26,5 @@ test("workspace guide explains the real-data operating process", async ({ page }
   await expect(page.getByText("Add and verify the lead.")).toBeVisible();
   await expect(page.getByText("Respect objections and opt-outs.")).toBeVisible();
   await expect(page.getByText("Never add invented contacts, activity or results.")).toBeVisible();
-  await expect(page.getByText("Website enquiries arrive automatically.")).toBeVisible();
+  await expect(page.getByText("Website enquiries are disabled in this demo build.")).toBeVisible();
 });
